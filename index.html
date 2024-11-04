@@ -6,7 +6,7 @@
     <title>Wan-Lin HU</title>
     <style>
         :root {
-            --primary-color: #2196F3;
+            --primary-color: #ffc500;
             --hover-color: #1976D2;
             --text-color: #333;
             --bg-light: #f8f9fa;
@@ -87,6 +87,17 @@
             transform: scale(1.05);
         }
 
+        .profile-section h2 {
+            color: white;
+            border: none;
+            margin-bottom: 5px;
+        }
+
+        .profile-section p {
+            color: white;
+            opacity: 0.9;
+        }
+
         .contact-info {
             background-color: var(--bg-light);
             padding: 20px;
@@ -150,17 +161,87 @@
             line-height: 1.6;
         }
 
-        /* Custom highlight for current page */
         .nav-links a.active {
             background-color: rgba(255, 255, 255, 0.3);
             font-weight: bold;
         }
-
     </style>
 </head>
 <body>
-    <!-- Rest of the HTML remains the same -->
-    <!-- The content structure is identical, just with enhanced styling -->
-    <!-- Copy the same body content from your original HTML -->
+    <div class="sidebar">
+        <div class="profile-section">
+            <img src="/api/placeholder/150/150" alt="Wan-Lin HU">
+            <h2>Wan-Lin HU</h2>
+            <p>Postdoctoral fellow</p>
+        </div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="research.html">Research</a></li>
+                <li><a href="publications.html">Publications</a></li>
+                <li><a href="teaching.html">Teaching</a></li>
+                <li><a href="resources.html">Resources</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="[Insert your CV PDF link here]">Download CV</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="main-content">
+        <div class="contact-info">
+            <p>Tel.: +886-2-2783-9910 ext. 1412</p>
+            <p>Email: huwanlin@earth.sinica.edu.tw</p>
+            <p>Pronouns: she/her/hers</p>
+            <p>Nationality: Taiwanese</p>
+        </div>
+
+        <div class="section">
+            <h2>RESEARCH INTERESTS</h2>
+            <p>Structural geology and tectonics, tectonophysics, orogeny, fold-and-thrust belts, and subduction zones, observational seismology, numerical simulations.</p>
+        </div>
+
+        <div class="section">
+            <h2>EDUCATION</h2>
+            <ul>
+                <li>2019–2023: Ph.D., Asian School of the Environment, Nanyang Technological University, Singapore</li>
+                <li>2013–2015: M.Sc., Department of Geoscience, National Taiwan University, Taipei, Taiwan</li>
+                <li>2008–2013: B.Sc., Department of Geoscience, National Taiwan University, Taipei, Taiwan</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>WORK EXPERIENCE</h2>
+            <ul>
+                <li>Apr., 2024–present: Postdoctoral fellow, Institute of Earth Sciences, Academia Sinica, Taipei, Taiwan</li>
+                <li>Aug., 2016–Aug., 2018: Professional geologist and researcher, Sinotech Engineering Consultant Inc., Taipei, Taiwan</li>
+                <li>Jan., 2016–Jul., 2016: Research assistant, Department of Earth and Environment Sciences, National Chung-Cheng University, Chiayi, Taiwan</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>PUBLICATIONS</h2>
+            <h3>In preparation</h3>
+            <div class="publication">
+                <p>Hu et al., Doublet in doublet: Stress heterogeneity revealed by an intraslab earthquake doublet in the Northern Manila subduction zone and its implications for mantle rheology.</p>
+            </div>
+            <div class="publication">
+                <p>Hu et al., Lithological and structural controls on the evolution and deformation of the mudstone-rich fold-thrust belt in Southwestern Taiwan.</p>
+            </div>
+
+            <h3>Peer-reviewed journal articles</h3>
+            <div class="publication">
+                <p>Wei, S. et al., 2022. Simultaneous rupture propagation through fault bifurcation of the 2021 Mw7.4 Maduo earthquake. Geophysical Research Letters, 49, e2022GL100283. 
+                <a href="https://doi.org/10.1029/2022GL100283" class="doi-link" target="_blank">https://doi.org/10.1029/2022GL100283</a></p>
+            </div>
+            <div class="publication">
+                <p>Hu, W.-L., 2022, How do differences in interpreting seismic images affect estimates of geological slip rates? Solid Earth, 13, 1281-1290. 
+                <a href="https://doi.org/10.5194/se-13-1281-2022" class="doi-link" target="_blank">https://doi.org/10.5194/se-13-1281-2022</a></p>
+            </div>
+            <div class="publication">
+                <p>Hu, W.-L. and Stevens, V. L., 2022, Duplex kinematics reduces both frontal advance and seismic moment deficit in the Himalaya. Geology, 50 (10): 1161-1165. 
+                <a href="https://doi.org/10.1130/G50229.1" class="doi-link" target="_blank">https://doi.org/10.1130/G50229.1</a></p>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
