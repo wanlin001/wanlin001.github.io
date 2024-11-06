@@ -1,0 +1,137 @@
+:root {
+    --primary-color: #ffc500;
+    --hover-color: #ff7c00;
+    --text-color: #333;
+    --bg-light: #f8f9fa;
+    --shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Base styles */
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    min-height: 100vh;
+    background-color: #fff;
+    color: var(--text-color);
+}
+
+/* Sidebar styles */
+.sidebar {
+    width: 280px;
+    background: linear-gradient(145deg, #2196F3, #1976D2);
+    padding: 25px;
+    position: fixed;
+    height: 100vh;
+    overflow-y: auto;
+    color: white;
+    box-shadow: var(--shadow);
+}
+
+/* Main content styles */
+.main-content {
+    margin-left: 280px;
+    padding: 40px;
+    flex: 1;
+    max-width: 800px;
+    background-color: #fff;
+}
+
+/* Research page specific styles */
+.research-project {
+    margin-bottom: 60px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.research-project:hover {
+    transform: translateY(-5px);
+}
+
+.research-header {
+    background-color: var(--bg-light);
+    padding: 20px;
+    border-bottom: 3px solid var(--primary-color);
+}
+
+.research-header h2 {
+    color: var(--primary-color);
+    margin: 0;
+    border: none;
+    font-size: 1.8em;
+}
+
+.research-header h3 {
+    color: #666;
+    margin: 10px 0 0 0;
+    font-weight: normal;
+    font-size: 1.2em;
+}
+
+.research-content {
+    padding: 20px;
+}
+
+.research-figure {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.research-figure img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+}
+
+.figure-caption {
+    margin-top: 10px;
+    color: #666;
+    font-style: italic;
+    font-size: 0.9em;
+    padding: 0 20px;
+}
+
+.keywords {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.keyword {
+    background-color: var(--bg-light);
+    color: var(--text-color);
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.9em;
+    transition: all 0.3s ease;
+}
+
+.keyword:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.page-title {
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+    border-bottom: 3px solid var(--primary-color);
+}
+
+.page-title h1 {
+    color: var(--primary-color);
+    margin: 0;
+    font-size: 2.5em;
+}
+
+.page-title p {
+    color: #666;
+    margin: 10px 0 0 0;
+    font-size: 1.2em;
+    line-height: 1.6;
+}
