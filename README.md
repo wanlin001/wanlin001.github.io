@@ -18,6 +18,7 @@
 **加內容**
 
 - [5. 加一篇論文](#5-加一篇論文) — front matter 欄位、按鈕怎麼自動長出來、metric 圈圈
+- [5b. PDF 與研討會清單](#5b-pdf-與研討會清單) — PDF 放哪、怎麼壓縮；研討會發表寫在哪
 - [6. 標籤的名稱與顏色](#6-標籤的名稱與顏色) — 論文和 Notes 共用一份標籤；點標籤篩選
 - [7. 加一個新分區](#7-加一個新分區) — 論文頁的新區塊，或頁面裡的新章節
 - [8. 加一個新頁面與選單按鈕](#8-加一個新頁面與選單按鈕) — 兩步：建 .md、加進 navigation.yml
@@ -155,6 +156,7 @@ cd ~/Documents/GitHub/huwanlin && bundle exec jekyll serve --port 4321
 | Fieldwork 野外地圖 | `_pages/fieldwork.md` |
 | Resources | `_pages/resources.md` |
 | CV **內容** | `_data/cv.yml` ← 純 YAML，不用碰 HTML |
+| 論文 PDF、投影片 | 丟進 `files/`，在論文 front matter 寫 `paperurl:` |
 | CV **版型** | `_pages/cv.html` |
 | 論文清單**版型** | `_pages/publications.html` |
 | 單篇論文 | `_publications/*.md` |
@@ -231,67 +233,63 @@ cd ~/Documents/GitHub/huwanlin && ruby -ryaml -e 'YAML.load_file("_data/notes.ym
 
 ## 4b. 首頁的 News 與 Guides
 
-首頁 <https://wanlin001.github.io/> 有兩個清單：
+首頁 <https://wanlin001.github.io/> 有兩塊，資料分別在不同地方。
 
-- **News** —— 一則一則的近況，最新的寫在最上面
-- **Guides** —— 說明每個分頁在幹嘛，點下去直接過去
+### News —— 一則消息 = `_news/` 底下一個 `.md` 檔
 
-兩個的內容都在 **`_data/home.yml`**，卡片樣式跟 Publications、Notes 是同一套。
+版面是一行一則：**符號或小圖 · 日期 · 一行標題**。
 
-### 加一則 News
+**只是一句話的消息**（點下去連到站內或站外某處）：
 
-```yaml
-news:
-
-  - date: "Jun 2026"
-    title: "Postdoctoral Paper Award, NSTC Taiwan"
-    excerpt: "國科會地球科學研究推動中心博士後研究論文獎。"
-    url: /cv/#awards--funding
-
-  - date: "May 2026"                                  # ← 往下加就好
-    title: "Fieldwork at the Vajont Dam, Italy"
-    excerpt: "為《地質》季刊的稿件走訪 Monte Toc 滑動面與 Longarone。"
-    url: /travel/#vajont-dam
-    image: /images/travel/vajont/20260516_152714_monte-toc.jpg   # ← 可以加圖
+```markdown
+---
+title: "Postdoctoral Paper Award, NSTC Taiwan"
+date: 2026-06-16
+icon: "fas fa-award"
+link: /cv/#awards--funding
+---
 ```
 
-**順序就是顯示順序**，新的寫在最上面。
+檔名建議 `年-月-日-短名.md`，例如 `2026-06-16-nstc-award.md`。
 
-### 加一個 Guide
+**想寫成一整篇**（文字 + 照片，有自己的頁面）：**不要寫 `link:`**，改在 `---` 底下寫內容：
 
-```yaml
-guides:
+```markdown
+---
+title: "Fieldwork at the Vajont Dam"
+date: 2026-05-16
+icon: "fas fa-mountain"
+image: /images/travel/vajont/20260516_152714_monte-toc.jpg
+---
 
-  - title: "Research"
-    url: /research/
-    excerpt: "一兩句話說明這一頁在幹嘛。"
+這裡開始寫，一般 Markdown。
+
+{% raw %}{% include photos.html dir="/images/travel/vajont" files="1.jpg, 2.jpg" %}{% endraw %}
 ```
 
-新增了頁面就在這裡補一條，讀者從首頁就找得到。
-
-### 欄位（只有 title 必填）
+標題就會連到 `/news/2026-05-16-vajont/`，那是一個完整的頁面。
 
 | 欄位 | 說明 |
 |---|---|
-| `title` | 標題，中文英文都可以 |
-| `date` | 日期，格式隨意。News 建議寫，Guides 通常不用 |
-| `url` | 點下去要去哪。站內寫 `/research/`，站外寫完整網址（會開新分頁）|
-| `excerpt` | 一兩句說明 |
-| `image` | 小圖。站內圖寫 `/images/…`，也可以用外部網址。不寫就沒有圖 |
+| `title` | 一行標題 ← 必填 |
+| `date` | `YYYY-MM-DD` ← 必填，決定排序（新的在上）|
+| `icon` | 左邊的小符號，Font Awesome 名稱。不寫用預設圓點 |
+| `image` | 左邊改放小圖（會蓋掉 icon）。建議用現成的照片 |
+| `link` | 有寫 → 標題連到這裡，內文不會產生頁面<br>沒寫 → 標題連到自己的頁面 |
 
-- **`news:` 和 `guides:` 各自整個檔案只能出現一次**，加第二則是往下多一組 `- title:`
-- `url` 不寫的話那則就是**純文字、不能點**（適合純公告）
-- 寫成 `news: []` 整個 News 區塊會自動隱藏，`guides:` 也一樣
+### Guides —— 網站導覽的方塊
 
-### 想連到某一頁的某個段落
+在 **`_data/home.yml`** 的 guides 清單：
 
-網址後面加 `#` 加該段標題的代號，例如 `/publications/#manuscripts`、`/travel/#vajont-dam`。
-代號就是標題轉小寫、空格換成 `-`。
+```yaml
+  - title: "Research"
+    url: /research/
+    icon: "fas fa-globe-asia"
+    excerpt: "What I work on, and the tools I use."
+```
 
-### 首頁其他部分
-
-最上面那幾段自我介紹、「What I am working on now」、Contact 都在 **`_pages/about.md`**，
-是一般 Markdown，直接改字就好。那個檔裡的 Liquid 迴圈是用來讀 `_data/home.yml` 的，不用碰。
+說明**寫一行就好**，方塊會自動排成網格。圖示到
+<https://fontawesome.com/search?o=r&m=free> 找，挑 Free 的，複製它的 class 名稱。
 
 ---
 
@@ -344,6 +342,56 @@ excerpt: '一兩句話的摘要，顯示在卡片上。'
 
 要查某一篇現在有沒有資料，在瀏覽器開：
 `https://metrics-api.dimensions.ai/doi/你的DOI`
+
+---
+
+## 5b. PDF 與研討會清單
+
+### 論文 PDF 放哪
+
+**放進 `files/`**，然後在論文的 front matter 指過去：
+
+```bash
+cp ~/某處/論文.pdf ~/Documents/GitHub/huwanlin/files/Hu-Tan-2026-Tectonophysics.pdf
+```
+
+```yaml
+paperurl: '/files/Hu-Tan-2026-Tectonophysics.pdf'
+```
+
+卡片上就會多一個 **PDF** 按鈕。檔名用 `作者-年-期刊.pdf` 最好認，**不要有空格和中文**。
+
+> ⚠️ **期刊 PDF 通常很大，先壓再放。** 22 MB 的原檔壓到 3.7 MB 完全看不出差別：
+>
+> ```bash
+> gs -sDEVICE=pdfwrite -dPDFSETTINGS=/ebook -dNOPAUSE -dQUIET -dBATCH \
+>    -dColorImageResolution=200 -dGrayImageResolution=200 \
+>    -sOutputFile=小的.pdf 原本的.pdf
+> ```
+>
+> （圖片會自動壓縮，PDF 不會 —— 這個要手動跑。）
+
+⚠️ 出版社的版權規定不一。多數期刊允許放 **accepted manuscript**，不見得允許放
+**published PDF**。不確定就查 <https://openpolicyfinder.jisc.ac.uk/>，或只留 DOI。
+
+### 研討會發表
+
+在 **`_data/conferences.yml`**，顯示在 Publications 頁最下面，是**一行一則的細清單**，
+不是厚卡片：
+
+```yaml
+conferences:
+
+  - authors: "Hu, W.-L. & Tan, E."      # 人多就寫 "Hu, W.-L., et al."
+    year: 2026
+    title: "Geodynamic modelling of slab–slab interactions…"
+    venue: "EGU General Assembly"
+    place: "Vienna, Austria"
+    doi: "10.5194/egusphere-egu26-2911"  # 可省略，有就變成連結
+    invited: true                        # 可省略，受邀演講才寫
+```
+
+新的寫最上面。
 
 ---
 
@@ -562,30 +610,41 @@ notes:                   # 每一則筆記
 
 ### Travel（`/travel/`）
 
-這一頁是純 Markdown，但備好了三個「積木」，複製貼上就好：
+一趟旅行的開頭用 `trip.html`，一行就有標題 + 時間地點 + 地圖：
+
+```liquid
+{% raw %}{% include trip.html title="Vajont Dam" when="May 2026"
+                     place="Erto e Casso and Longarone, Italy"
+                     lat="46.2672" lon="12.3293" span="0.055" %}{% endraw %}
+```
+
+底下就自由發揮，一般 Markdown 加上這幾個積木：
 
 ```liquid
 {% raw %}照片：
-{% include photos.html dir="/images/travel/nepal" files="1.jpg, 2.jpg" %}
-{% include photos.html dir="/images/travel/nepal" files="1.jpg, 2.jpg"
-                       captions="第一張, 第二張" caption="整組的說明" %}
+{% include photos.html dir="/images/travel/vajont" files="1.jpg, 2.jpg"
+                       captions="第一張, 第二張" %}
 
-地圖：
-{% include map.html mid="182NqsK3rnf..." caption="說明" %}
-
-連結卡（Medium / HackMD / 任何網址）：
+連結卡：
 {% include link-card.html title="標題" url="https://..." source="Medium"
                           date="2026" excerpt="一句說明" %}{% endraw %}
 ```
 
-其他就是一般 Markdown：`======` 是大標題（一趟旅行）、`------` 是小標題、
-`**粗體**`、`[連結](網址)`。
+`trip.html` 的地圖有兩種寫法，二選一：
 
-`_pages/travel.md` 最上面有一段註解寫著全部用法，直接照抄。照片怎麼放見 [11. 照片牆](#11-照片牆)。
+| 寫法 | 用在 |
+|---|---|
+| `lat="46.2672" lon="12.3293"` | 單一地點，畫 OpenStreetMap。**不用 API key、不用設定分享**。再加 `span="0.055"` 調整看多大範圍 |
+| `mid="182NqsK3rnf..."` | 自己做的 Google My Maps，網址裡 `mid=` 後面那串。地圖要設成公開分享 |
+| 兩個都不寫 | 就沒有地圖 |
+
+座標怎麼拿：Google Maps 上對著地點按右鍵，第一列就是。
+
+`_pages/travel.md` 最上面的註解寫了完整用法，直接照抄。
 
 > ⚠️ **在註解裡寫 Liquid 範例要包 `{% raw %}...{% endraw %}`** ——
-> HTML 註解 `<!-- -->` 只是「不顯示」，Liquid 還是會執行裡面的 `{% include %}`，
-> 結果就是頁面上冒出一張空的地圖或卡片。
+> HTML 註解 `<!-- -->` 只是「不顯示」，Liquid 還是會執行裡面的 `{% include %}`。
+> 另外**註解裡不要再出現 `<!--`**，會讓註解提前結束、文字漏到頁面上。
 
 ### 照片怎麼放
 

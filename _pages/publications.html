@@ -67,6 +67,7 @@ author_profile: true
           <p class="pub-card__meta">
             {% if post.venue %}<i>{{ post.venue }}</i>{% endif %}{% if post.volume %}, {{ post.volume }}{% endif %}
             {% if post.year %} | {{ post.year }}{% endif %}
+            {% if post.language %} <span class="pub-lang">{{ post.language }}</span>{% endif %}
             {% if post.openaccess %} <span class="pub-tag pub-tag--oa">Open access</span>{% endif %}
           </p>
 
@@ -109,5 +110,24 @@ author_profile: true
   {% endfor %}
   {% if title_shown %}</section>{% endif %}
 {% endfor %}
+
+{% comment %} conference talks: a thin list, not cards — content in _data/conferences.yml {% endcomment %}
+{% assign talks = site.data.conferences.conferences %}
+{% if talks.size > 0 %}
+<section class="pub-section" id="conferences">
+  <h2>Conference presentations</h2>
+  <ol class="talks">
+  {% for t in talks %}
+    <li class="talk">
+      <span class="talk__year">{{ t.year }}</span>
+      <span class="talk__body">
+        <span class="talk__title">{% if t.doi %}<a href="https://doi.org/{{ t.doi }}">{{ t.title }}</a>{% else %}{{ t.title }}{% endif %}{% if t.invited %} <span class="talk__invited">Invited</span>{% endif %}</span>
+        <span class="talk__meta">{{ t.authors }} · {{ t.venue }}{% if t.place %}, {{ t.place }}{% endif %}</span>
+      </span>
+    </li>
+  {% endfor %}
+  </ol>
+</section>
+{% endif %}
 
 <p class="pub-empty" id="pub-empty" hidden>No publications with that tag yet.</p>

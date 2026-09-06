@@ -1,0 +1,38 @@
+{% comment %}
+  The standard opening block for one trip: heading, when + where, and a map.
+  Write the text and photographs below it as ordinary Markdown.
+
+  {% include trip.html title="Vajont Dam" when="May 2026"
+                       place="Erto e Casso, Italy"
+                       lat="46.2672" lon="12.3293" %}
+
+  {% include trip.html title="Nepal — Himalaya" when="Nov 2022"
+                       place="Pokhara and Mustang"
+                       mid="182NqsK3rnf44xUX4dDm4nh-JwxQ-F40" %}
+
+  title   heading for the trip                              (required)
+  when    date, any format you like                         (optional)
+  place   where it was                                      (optional)
+  lat/lon a single point — draws an OpenStreetMap           (optional)
+  span    how much area the map shows, default 0.05         (optional)
+  mid     a Google My Maps id — draws that map instead      (optional)
+  caption a line under the map                              (optional)
+
+  Give it either lat+lon, or mid, or neither (then there is no map).
+{% endcomment %}
+
+<h2 id="{{ include.title | slugify }}">{{ include.title }}</h2>
+
+{% if include.when or include.place %}
+<p class="trip-meta">
+  {% if include.when %}<i class="fas fa-calendar" aria-hidden="true"></i> {{ include.when }}{% endif %}
+  {% if include.when and include.place %}<span class="trip-meta__sep">·</span>{% endif %}
+  {% if include.place %}<i class="fas fa-location-dot" aria-hidden="true"></i> {{ include.place }}{% endif %}
+</p>
+{% endif %}
+
+{% if include.mid %}
+  {% include map.html mid=include.mid caption=include.caption %}
+{% elsif include.lat and include.lon %}
+  {% include place-map.html lat=include.lat lon=include.lon span=include.span caption=include.caption %}
+{% endif %}

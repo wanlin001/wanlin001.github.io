@@ -10,6 +10,7 @@ first_author: true
 venue: 'Tectonophysics'
 volume: '937, 231349'
 doi: '10.1016/j.tecto.2026.231349'
+paperurl: '/files/Hu-Tan-2026-Tectonophysics.pdf'
 topics: [modelling, structural, hazard]
 excerpt: 'Thermal-mechanical finite-element modelling combined with crustal-scale geodetic observations disentangles structural from lithological controls on surface deformation.'
 ---

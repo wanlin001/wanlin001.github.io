@@ -1,5 +1,5 @@
 ---
-title: "Island of catastrophe — geotourism in northern Sumatra: Banda Aceh"
+title: "災難之島 —— 北蘇門答臘的地質旅遊：班達亞齊"
 collection: publications
 category: outreach
 permalink: /publication/2024-geology-tichi-sumatra
@@ -7,10 +7,11 @@ date: 2024-12-01
 year: 2024
 # TODO 換成妳的中文姓名寫法，例如 authors: '胡○○'
 authors: 'Hu, W.-L.'
-venue: 'Geology (Ti-Chi)'
+venue: '地質 Ti-Chi'
 volume: '43(4), 72–78'
 paperurl: 'https://twgeoref.gsmma.gov.tw/GeoWeb/cp.do?action=cp&kt=2748&xItem=312647&ctNode=217&mp=6'
 topics: [outreach, hazard, tectonics]
+language: 'in Mandarin'
 excerpt: 'Written in Mandarin for a general audience. Travel writing about Banda Aceh twenty years after the 2004 tsunami: how the wreckage was preserved and turned into a destination, and how a society lives alongside catastrophe.'
 ---
 

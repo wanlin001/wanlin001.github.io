@@ -66,7 +66,7 @@ author:
   keybase          : # Username
   instagram        : # Username
   lastfm           : # Username
-  linkedin         : # Username
+  linkedin         : "wan-lin-hu-5122a835"
   mastodon         : # URL
   medium           : # URL
   pinterest        : # Username
@@ -102,7 +102,7 @@ author:
 # ═══════════════════════════════════════════════════════════════════════════
 publication_category:
   outreach:
-    title: 'Public engagement writing'
+    title: '科普寫作 · Public engagement writing'
     label: 'Outreach'
   manuscripts:
     title: 'Peer-reviewed journal articles'
@@ -265,6 +265,9 @@ collections:
   publications:
     output: true
     permalink: /:collection/:path/
+  news:
+    output: true
+    permalink: /news/:path/
 
 
 # These settings control how pages and collections are included in the site
@@ -276,6 +279,15 @@ defaults:
     values:
       layout: single
       author_profile: true
+  # _news
+  - scope:
+      path: ""
+      type: news
+    values:
+      layout: single
+      author_profile: true
+      share: false
+      comments: false
   # _publications
   - scope:
       path: ""

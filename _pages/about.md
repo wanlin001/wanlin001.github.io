@@ -27,25 +27,29 @@ can be reproduced independently.
 News
 ======
 
-<!-- 內容在 _data/home.yml 的 news:，不用改下面這幾行 -->
+<!-- 一則消息 = _news/ 底下一個 .md 檔。詳見 README -->
 
-{% if site.data.home.news.size > 0 %}
-<div class="post-list post-list--news">
-{% for n in site.data.home.news %}
-  {% if n.url %}
-  <a class="post-card" href="{{ n.url }}"{% if n.url contains '://' %} target="_blank" rel="noopener"{% endif %}>
-  {% else %}
-  <div class="post-card post-card--static">
-  {% endif %}
-    {% if n.image %}<span class="post-card__thumb" style="background-image:url('{{ n.image }}');"></span>{% endif %}
-    <span class="post-card__text">
-      <span class="post-card__title">{{ n.title }}</span>
-      {% if n.date %}<span class="post-card__meta">{{ n.date }}</span>{% endif %}
-      {% if n.excerpt %}<span class="post-card__excerpt">{{ n.excerpt }}</span>{% endif %}
+{% assign items = site.news | sort: "date" | reverse %}
+{% if items.size > 0 %}
+<ul class="news">
+{% for n in items %}
+  {% assign target = n.link | default: n.url %}
+  {% assign has_page = false %}
+  {% if n.content != blank %}{% assign has_page = true %}{% endif %}
+  {% if n.link %}{% assign has_page = false %}{% endif %}
+  <li class="news__item">
+    <span class="news__mark">
+      {% if n.image %}<span class="news__thumb" style="background-image:url('{{ n.image }}');"></span>
+      {% else %}<i class="{{ n.icon | default: 'fas fa-circle-dot' }}" aria-hidden="true"></i>{% endif %}
     </span>
-  {% if n.url %}</a>{% else %}</div>{% endif %}
+    <time class="news__date" datetime="{{ n.date | date: '%Y-%m-%d' }}">{{ n.date | date: "%d %b %Y" }}</time>
+    <span class="news__title">
+      {% if has_page or n.link %}<a href="{{ target }}"{% if target contains '://' %} target="_blank" rel="noopener"{% endif %}>{{ n.title }}</a>
+      {% else %}{{ n.title }}{% endif %}
+    </span>
+  </li>
 {% endfor %}
-</div>
+</ul>
 {% endif %}
 
 Guides
