@@ -9,7 +9,7 @@
 #    加第二則是在 notes: 底下多一組「  - title:」，不是再寫一次 notes:。
 #
 # 欄位（除了 title 和 url，其他都可以不寫）：
-#   - title     標題          ← 必填
+#   - title     標題          ← 必填。中文英文都可以，妳自己決定
 #     url       連結          ← 必填
 #     category  分區代號，填上面 categories 裡的 key；不填就歸到 Other
 #     source    來源，例如 HackMD / Medium / Notion
@@ -42,24 +42,18 @@ categories:
 
 notes:
 
-  - title: "Multi-day hiking gear checklist"
+  - title: "兩日以上登山裝備清單"
     url: "https://hackmd.io/@HuWanLin/H1qQUcWX1l"
     category: hiking
     source: "HackMD"
     date: "Feb 2024"
-    excerpt: "Packing list for trips of two days or more, with tick boxes you can click straight on the page. Written in Mandarin."
+    excerpt: "多日行程的打包清單，可以直接在頁面上打勾。從隨身行李、營地裝備到緊急用品，出門前照著掃一遍。"
 
-  - title: "Day hike gear checklist"
+  - title: "一日登山裝備清單"
     url: "https://hackmd.io/@HuWanLin/H1TIhHTt-x"
     category: hiking
     source: "HackMD"
-    excerpt: "The short version, for single-day trips. Written in Mandarin."
-
-  - title: "Day hike gear checklist"
-    url: "https://hackmd.io/@HuWanLin/H1TIhHTt-x"
-    category: hiking
-    source: "HackMD"
-    excerpt: "The short version, for single-day trips. Written in Mandarin."
+    excerpt: "單日行程的精簡版。"
 
 # 想再加一則，把下面這段複製出來、拿掉開頭的 # 就好：
 #

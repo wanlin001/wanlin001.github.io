@@ -172,9 +172,17 @@ social:
   links: # An array of links to social media profiles
 
 
-# Analytics
+# Analytics — 訪客統計
+# provider 設 "custom" 之後，只要填下面其中一個代號就會開始計算人流。
+# 兩個都是無 cookie、不需要同意橫幅，後台只有妳自己看得到。
+#   goatcounter_code : 到 goatcounter.com 免費註冊，填網址前面那段（例如 wanlin）
+#   cloudflare_token : Cloudflare Web Analytics 給的 token
+# 兩個都留空 = 完全不追蹤（現在就是這樣）。
+# 本機 jekyll serve 預覽永遠不會被計入。
 analytics:
-  provider               :  "false" # false (default), "google", "google-universal", "google-analytics-4", "custom"
+  provider               : "custom" # false, "google", "google-universal", "google-analytics-4", "custom"
+  goatcounter_code       :          # 例如 wanlin
+  cloudflare_token       :
   google:
     tracking_id          :
 

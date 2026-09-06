@@ -386,6 +386,7 @@ notes:                   # 每一則筆記
 ```
 
 - 只有 `title` 和 `url` 是必填，其他全部可以不寫
+- **標題和說明中文英文都可以**，一則一則自己決定（標籤 `topics` 才是統一英文）
 - **`categories:` 和 `notes:` 各自只能出現一次**（YAML 重複的 key 會蓋掉前面的）
 - 加一則 = 在 `notes:` 底下多一組 `- title:`
 - `category:` 沒填或填了不存在的代號 → 自動歸到最後的 Other 區
@@ -442,6 +443,53 @@ notes:                   # 每一則筆記
 ```bash
 sips -Z 1600 ~/Documents/GitHub/huwanlin/images/travel/nepal/*.jpg
 ```
+
+---
+
+## 7c. 訪客統計（人流）
+
+**目前是關閉的** —— `_config.yml` 的 `analytics:` 兩個代號都留空，網站不會載入任何追蹤程式。
+填其中一個就會開始計算。
+
+### 選項 A：GoatCounter（推薦）
+
+免費、開源、**不用 cookie、不用同意橫幅**，後台只有妳自己看得到。
+
+1. 到 <https://www.goatcounter.com/signup> 註冊，網址取一個名字，例如 `wanlin`
+   → 妳的後台就是 `https://wanlin.goatcounter.com`
+2. 註冊時**不要**勾「public」，後台就只有妳登入看得到
+3. 在 `_config.yml` 填：
+
+   ```yaml
+   analytics:
+     provider               : "custom"
+     goatcounter_code       : wanlin
+   ```
+
+4. `git push`，等幾分鐘，之後開後台就看得到人流
+
+### 選項 B：Cloudflare Web Analytics
+
+一樣免費、無 cookie。到 Cloudflare 後台 → Web Analytics → Add a site，
+輸入 `wanlin001.github.io`，把它給的 token 填進 `cloudflare_token:`。
+
+### 選項 C：Google Analytics 4
+
+功能最多，但**會用 cookie**，歐盟訪客理論上需要同意橫幅，對學術個人網站有點過頭。
+真的要用的話佈景本身就支援：
+
+```yaml
+analytics:
+  provider               : "google-analytics-4"
+  google:
+    tracking_id          : G-XXXXXXXXXX
+```
+
+### 兩件要知道的事
+
+- **本機預覽永遠不會被計入** —— 追蹤程式只在 `JEKYLL_ENV=production` 時輸出，
+  也就是只有 GitHub Pages 建出來的版本才有；`jekyll serve` 不會。
+- 想關掉就把代號清空，或把 `provider` 改回 `false`。
 
 ---
 
