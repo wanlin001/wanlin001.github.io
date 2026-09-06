@@ -84,7 +84,6 @@ geology:
   label: "Geology"
   color: "#8b5a2b"
 
-
 seismology:
   label: "Seismology"
-  color: "#f0f70f"
+  color: "#B7950B"
