@@ -1,15 +1,31 @@
-# ---------------------------------------------------------------------------
-# Research-field tags shown on the publications page.
+# ═══════════════════════════════════════════════════════════════════════════
+#  標籤（TAGS）的名稱與顏色 —— 論文頁和 Notes 頁共用這一個檔
+# ═══════════════════════════════════════════════════════════════════════════
 #
-# HOW TO ADD A TAG
-#   1. add a block below:            my-key:
-#                                      label: "Display name"   <- 一律用英文
-#                                      color: "#2e9e6b"
-#   2. use it in a publication file: topics: [my-key, another-key]
+#  ┌─ 想改什麼 ──────────────────┬─ 去哪改 ────────────────────────────────┐
+#  │ 標籤的文字、顏色、新增、刪除│ 這個檔案                                │
+#  │ 哪一篇論文掛哪些標籤        │ _publications/*.md 的 topics:           │
+#  │ 哪一則筆記掛哪些標籤        │ _data/notes.yml 的 topics:              │
+#  │ 論文的分區（Journal/科普…） │ _config.yml 的 publication_category     │
+#  │ 筆記的章節分類              │ _data/notes.yml 的 categories:          │
+#  └─────────────────────────────┴─────────────────────────────────────────┘
 #
-# The key is what you type in the front matter; the label is what readers see.
-# Any hex colour works. Delete a block to remove the tag everywhere.
-# ---------------------------------------------------------------------------
+#  想知道現在有哪些標籤、各被用了幾次：
+#      ruby scripts/list_labels.rb
+#
+# ── 新增一個標籤 ─────────────────────────────────────────────────────────
+#      my-key:                    <- 代號，就是 topics: [...] 裡要寫的字
+#        label: "Display name"    <- 讀者看到的字，一律用英文
+#        color: "#2e9e6b"         <- 任何 hex 色碼
+#
+#  然後在論文或筆記裡寫  topics: [my-key]
+#
+# ── 幾件要知道的事 ───────────────────────────────────────────────────────
+#   · 定義了但沒被用到的標籤，完全不會出現在網站上，留著沒關係
+#   · 篩選列只列出「該頁面真的有在用」的標籤，所以論文的標籤不會跑到 Notes 頁
+#   · 刪掉一個標籤前，記得把用到它的 topics: 也一起拿掉
+#   · 改完這個檔，本機預覽要按 Ctrl+C 重開才會生效
+# ═══════════════════════════════════════════════════════════════════════════
 
 geodynamics:
   label: "Geodynamics"

@@ -1,8 +1,42 @@
-# ---------------------------------------------------------------------------
-# Notes 頁的內容（/notes/，在選單 Others 底下）。
+# ═══════════════════════════════════════════════════════════════════════════
+#  NOTES 頁的內容  →  https://wanlin001.github.io/notes/
+# ═══════════════════════════════════════════════════════════════════════════
 #
-# 兩個部分：
-#   categories:  分區。順序 = 頁面上的顯示順序
+#  ┌─ 想改什麼 ──────────────────┬─ 去哪改 ────────────────────────────────┐
+#  │ 章節分類（新增/改名/排序）  │ 這個檔案，下面的 categories: 區塊       │
+#  │ 每一則筆記                  │ 這個檔案，下面的 notes: 區塊            │
+#  │ 標籤的名稱和顏色            │ _data/topics.yml（跟論文共用）          │
+#  │ 頁面版型                    │ _pages/notes.html（一般不用碰）         │
+#  └─────────────────────────────┴─────────────────────────────────────────┘
+#
+#  想知道現在有哪些分類、哪些標籤、各被用了幾次：
+#      ruby scripts/list_labels.rb
+#
+#  改完存檔前先驗一下格式（印出 OK 就沒問題）：
+#      ruby -ryaml -e 'YAML.load_file("_data/notes.yml"); puts "OK"'
+#
+# ── 常犯的三個 YAML 錯誤 ──────────────────────────────────────────────────
+#   ❌ -title: "x"        ✅ - title: "x"     橫線後面要有空格
+#   ❌ url:"https://…"    ✅ url: "https://…"  冒號後面要有空格
+#   ❌ category: Other    ✅ category: other   大小寫要跟 categories: 一致
+#
+#  「categories:」和「notes:」各自整個檔案只能出現一次。
+#  加第二則是在 notes: 底下多一組「  - title:」，不是再寫一次 notes:。
+#
+# ── 每一則的欄位（只有 title 和 url 必填）─────────────────────────────────
+#   - title     標題        中文英文都可以，妳自己決定
+#     url       連結
+#     category  分類代號，填 categories: 裡的 key；沒填就掉到 Other
+#     source    來源，例如 HackMD / Medium / Notion
+#     date      日期，格式隨意
+#     excerpt   一兩句說明
+#     image     封面圖網址，或 /images/xxx.jpg
+#     topics    標籤，例如 [gear, checklist]。選用，一則一則決定：
+#               全部都不寫 → 頁面上方的篩選列整條自動消失
+#               只要有一則寫 → 篩選列自動出現，且只列出有被用到的標籤
+# ═══════════════════════════════════════════════════════════════════════════
+
+categories:  分區。順序 = 頁面上的顯示順序
 #   notes:       每一則筆記
 #
 # ⚠️ 「categories:」和「notes:」各自整個檔案只能出現一次。
@@ -68,7 +102,6 @@ notes:
     source: "HackMD"
     excerpt: "自己寫的互動式 SAC 波形檢視與到時挑選工具的使用說明：可獨立標記多個震相、bandpass 濾波、STA/LTA、包絡線、排序與縮放，針對大型測網資料設計。"
 
-
   - title: "時空對位與軌跡影像誌"
     url: "https://hackmd.io/@HuWanLin/BkT1kOTF-x"
     category: fieldwork
@@ -88,14 +121,11 @@ notes:
     source: "HackMD"
     excerpt: "SAC 常用指令備忘：讀檔、排序、繪圖、標頭欄位操作，以及安裝與學習資源的連結整理。"
 
-# ⚠️ 下面這則的 HackMD 筆記目前是「非公開」，貼上去讀者會看到 403。
-#    到 HackMD 把它改成「知道連結的人可以閱讀」之後，把 # 拿掉就會出現。
-#
-#  - title: "Git 常用指令"
-#    url: "https://hackmd.io/@HuWanLin/Hy1YjHJSbl"
-#    category: research
-#    source: "HackMD"
-#    excerpt: "（等筆記公開後補上說明）"
+  - title: "Git 多主機協作完整指南"
+    url: "https://hackmd.io/@HuWanLin/Hy1YjHJSbl"
+    category: research
+    source: "HackMD"
+    excerpt: "以 fork ASPECT 為例，整理多台機器之間的 Git 協作流程：upstream / origin / clone 的架構、初始設置、日常工作流程、分支管理與視覺化、GitHub Token 設定，附常用指令速查表。"
 
 # 想再加一則，把下面這段複製出來、拿掉開頭的 # 就好：
 #

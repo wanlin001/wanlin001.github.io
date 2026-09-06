@@ -83,9 +83,23 @@ author:
   zhihu            : # Username
 
 # Publication Category - The following the list of publication categories and their headings
-# Order here = order of the sections on the /publications/ page.
-# To add a new section: add a block here, then set `category: <key>` in a file
-# under _publications/. The colour of the label comes from _data/topics.yml.
+# ═══════════════════════════════════════════════════════════════════════════
+#  論文頁的分區  →  https://wanlin001.github.io/publications/
+#  這裡的順序 = 頁面上分區的順序。
+#
+#  新增一個分區：在下面加一組，然後在 _publications/*.md 寫 category: <代號>
+#      title: 分區標題（讀者看到的）    label: 卡片上那個小色塊的字
+#  想給新分區顏色，在 assets/css/custom.css 加一行：
+#      .pub-tag--代號 { background: #16a085; }
+#
+#  ── 相關的東西在哪 ──
+#    彩色標籤的文字和顏色   _data/topics.yml   ← 跟 Notes 頁共用同一個檔
+#    哪一篇掛哪些標籤       _publications/*.md 的 topics:
+#    Notes 頁的章節分類     _data/notes.yml 的 categories:
+#
+#  想知道現在有哪些分區、哪些標籤、各被用了幾次：
+#      ruby scripts/list_labels.rb
+# ═══════════════════════════════════════════════════════════════════════════
 publication_category:
   outreach:
     title: '科普寫作 · Public engagement writing'

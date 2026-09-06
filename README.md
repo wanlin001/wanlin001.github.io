@@ -192,6 +192,42 @@ excerpt: '一兩句話的摘要，顯示在卡片上。'
 
 ---
 
+## 3b. 想知道現在有哪些分類和標籤
+
+跑這行，會把所有標籤、Notes 的章節分類、論文的分區全部列出來，
+連「各被用了幾次」「定義了但沒用到」都會標出來：
+
+```bash
+cd ~/Documents/GitHub/huwanlin && ruby scripts/list_labels.rb
+```
+
+輸出長這樣：
+
+```
+TAGS  ── edit _data/topics.yml ──────────────────────────
+  code           label                  colour    used_by
+  geodynamics    Geodynamics            #c0392b   3 pub
+  gear           Gear                   #0d9488   — (unused)
+
+NOTES SECTIONS  ── edit `categories:` in _data/notes.yml ─
+  hiking         Hiking                 2 note(s)
+  research       Research notes         5 note(s)
+
+PUBLICATION SECTIONS  ── edit `publication_category:` in _config.yml ─
+  manuscripts    Peer-reviewed journal articles   5 item(s)
+```
+
+`_data/notes.yml`、`_data/topics.yml`、`_config.yml` 三個檔的最上面也都寫了
+「想改什麼 → 去哪改」的對照表，打開檔案第一眼就看得到。
+
+**改完 YAML，推上去前先驗格式**（印出 OK 就沒問題，有錯會告訴妳第幾行）：
+
+```bash
+cd ~/Documents/GitHub/huwanlin && ruby -ryaml -e 'YAML.load_file("_data/notes.yml"); puts "OK"'
+```
+
+---
+
 ## 4. 研究領域標籤（彩色小圓標）
 
 全部定義在 **`_data/topics.yml`**：
