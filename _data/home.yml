@@ -36,31 +36,11 @@
 
 news:
 
-  - date: "Jun 2026"
-    title: "Postdoctoral Paper Award, NSTC Taiwan"
-    excerpt: "Awarded by the Division of Earth Sciences, National Science and Technology Council."
-    url: /cv/#awards--funding
-
   - date: "May 2026"
     title: "Fieldwork at the Vajont Dam, Italy"
     excerpt: "Visited the Monte Toc slide surface and Longarone for a piece in the Geology quarterly."
     url: /travel/#vajont-dam
     image: /images/travel/vajont/20260516_152714_monte-toc.jpg
-
-  - date: "Apr 2026"
-    title: "EGU 2026 — slab–slab interaction beneath Taiwan"
-    excerpt: "Presented geodynamic models of the Manila–Taiwan–Ryukyu double subduction system and the seismic anisotropy they predict."
-    url: /publications/#inprep
-
-  - date: "2026"
-    title: "New paper in Tectonophysics"
-    excerpt: "Thermal-mechanical finite-element models separate the structural from the lithological control on surface deformation in the mudstone belt of southwestern Taiwan."
-    url: /publications/#manuscripts
-
-  - date: "2025"
-    title: "New paper in Communications Earth & Environment"
-    excerpt: "The 2006 Pingtung earthquake doublet shows that thinned continental lithospheric mantle is still strong enough to host earthquakes."
-    url: /publications/#manuscripts
 
 
 guides:
