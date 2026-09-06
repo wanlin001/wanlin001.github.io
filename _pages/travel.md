@@ -52,6 +52,32 @@ Nepal — Himalaya
 {% raw %}{% include photos.html dir="/images/travel/nepal" files="1.jpg, 2.jpg, 3.jpg" captions="Kali Gandaki, Mustang, MFT outcrop" %}{% endraw %}
 -->
 
+Vajont Dam
+======
+
+Erto e Casso, Friuli-Venezia Giulia／Longarone, Veneto, Italy · 2026 年 5 月
+
+<!-- ↓↓↓ 描述寫在這裡（刪掉這兩行註解就好）↓↓↓
+
+
+↑↑↑ 描述寫在這裡 ↑↑↑ -->
+
+{% include place-map.html lat="46.2672" lon="12.3293" span="0.055" caption="Diga del Vajont，兩張照片分別拍於壩體上游的 Monte Toc 側與下游的 Longarone" %}
+
+Monte Toc 滑動面
+------
+
+{% include photos.html dir="/images/travel/vajont" files="monte-toc-scar.jpg" size="tall" %}
+
+<!-- 描述寫在這裡 -->
+
+Longarone
+------
+
+{% include photos.html dir="/images/travel/vajont" files="longarone-gorge.jpg" size="tall" %}
+
+<!-- 描述寫在這裡 -->
+
 Sumatra — Aceh
 ======
 

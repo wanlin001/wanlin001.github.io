@@ -534,6 +534,28 @@ sips -Z 1600 ~/Documents/GitHub/huwanlin/images/travel/nepal/*.jpg
 
 ---
 
+### 匯入照片的完整流程
+
+```bash
+# 1. 建資料夾（一趟旅行一個）
+mkdir -p ~/Documents/GitHub/huwanlin/images/travel/新地方
+
+# 2. 把照片複製進去（Finder 拖曳也可以）
+cp ~/來源資料夾/*.jpg ~/Documents/GitHub/huwanlin/images/travel/新地方/
+
+# 3. 縮圖 + 壓縮（macOS 內建，不用裝東西）
+sips -Z 1600 -s format jpeg -s formatOptions 55 \
+     ~/Documents/GitHub/huwanlin/images/travel/新地方/*.jpg
+
+# 4. 檢查大小，每張最好在 500 KB 上下
+ls -lh ~/Documents/GitHub/huwanlin/images/travel/新地方/
+```
+
+然後在頁面裡加一行 `{% raw %}{% include photos.html dir="/images/travel/新地方" files="a.jpg, b.jpg" %}{% endraw %}`，
+最後 `git add -A && git commit -m "add photos" && git push`。
+
+**只放一張照片時**版面會自動變寬（最高 560px），直式照片也會保持正確比例，不會被拉扁。
+
 ## 12. Google My Maps
 
 `_pages/fieldwork.md` 裡嵌的是 **embed** 網址（不是 edit 網址）：
@@ -548,6 +570,28 @@ MID 在 My Maps 的網址列裡（`...&mid=182NqsK3rnf...`）。
 換一張地圖只要換 `mid=` 後面那串。
 
 ---
+
+### 只是想標一個地點？用 place-map
+
+My Maps 適合「一整趟行程的許多點」。如果只是想在文章裡標**一個地方**，用這個比較快 ——
+**不用 API key、不用設定分享，貼上經緯度就會出現**（背景圖是 OpenStreetMap）：
+
+```liquid
+{% raw %}{% include place-map.html lat="46.2672" lon="12.3293" %}
+{% include place-map.html lat="46.2672" lon="12.3293" span="0.055" caption="Diga del Vajont" %}{% endraw %}
+```
+
+| 參數 | 說明 |
+|---|---|
+| `lat` / `lon` | 要標記的點 |
+| `span` | 顯示範圍，單位是度。`0.01` ≈ 一個村莊，`0.05` ≈ 一條山谷，`0.2` ≈ 一個區域。預設 `0.05` |
+| `height` | 高度佔寬度的百分比，預設 55 |
+| `caption` | 底下那行說明，可省略 |
+
+經緯度哪裡來：Google Maps 上對著地點按右鍵，第一列就是；或用
+`https://nominatim.openstreetmap.org/search?q=地名&format=json`。
+
+底下會自動附一個「在 OpenStreetMap 開啟」的連結。
 
 ## 13. 把外部文章放進網站
 
