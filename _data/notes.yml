@@ -58,7 +58,7 @@ notes:
 
   - title: "兩日以上登山裝備清單"
     url: "https://hackmd.io/@HuWanLin/H1qQUcWX1l"
-    category: hiking
+    #category: hiking
     source: "HackMD"
     date: "Feb 2024"
     excerpt: "Packing list for trips of two days or more, with tick boxes you can click on the page. Written in Mandarin."
@@ -66,14 +66,14 @@ notes:
 
   - title: "一日登山裝備清單"
     url: "https://hackmd.io/@HuWanLin/H1TIhHTt-x"
-    category: hiking
+    #category: hiking
     source: "HackMD"
     excerpt: "The short version, for single-day trips. Written in Mandarin."
     topics: [checklist]
 
   - title: "時空對位與軌跡影像誌"
     url: "https://hackmd.io/@HuWanLin/BkT1kOTF-x"
-    category: fieldwork
+    #category: fieldwork
     date: "Mar 2026"
     source: "HackMD"
     excerpt: "Ties .gpx tracks to photographs and video: timestamps are aligned so each file lands on the right waypoint, an elevation profile is drawn, and the result exports as .kml / .kmz for Google Earth. Written in Mandarin."
