@@ -19,6 +19,7 @@
 
 - [5. 加一篇論文](#5-加一篇論文) — front matter 欄位、按鈕怎麼自動長出來、metric 圈圈
 - [5b. PDF 與研討會清單](#5b-pdf-與研討會清單) — PDF 放哪、怎麼壓縮；研討會發表寫在哪
+- [5c. CV 的機構連結與圖示](#5c-cv-的機構連結與圖示) — link 和 icon 掛在哪一行、怎麼暫時隱藏
 - [6. 標籤的名稱與顏色](#6-標籤的名稱與顏色) — 論文和 Notes 共用一份標籤；點標籤篩選
 - [7. 加一個新分區](#7-加一個新分區) — 論文頁的新區塊，或頁面裡的新章節
 - [8. 加一個新頁面與選單按鈕](#8-加一個新頁面與選單按鈕) — 兩步：建 .md、加進 navigation.yml
@@ -201,6 +202,7 @@ cd ~/Documents/GitHub/huwanlin && bundle exec jekyll serve --port 4321
 | Fieldwork 野外地圖 | `_pages/fieldwork.md` |
 | Resources | `_pages/resources.md` |
 | CV **內容** | `_data/cv.yml` ← 純 YAML，不用碰 HTML |
+| CV 機構連結、小圖示 | `_data/cv.yml` 每一筆加 `link:` 和 `icon:`（見下）|
 | 論文 PDF、投影片 | 丟進 `files/`，在論文 front matter 寫 `paperurl:` |
 | CV **版型** | `_pages/cv.html` |
 | 論文清單**版型** | `_pages/publications.html` |
@@ -469,6 +471,52 @@ conferences:
 [Google Scholar](https://scholar.google.com/citations?user=UTmGp2YAAAAJ&hl=zh-TW)
 上找得到網址，填進 `url:` 即可。頁面上也放了一行指向妳的 Scholar。
 
+
+---
+
+## 5c. CV 的機構連結與圖示
+
+`_data/cv.yml` 每一筆都可以加兩個選用欄位：
+
+```yaml
+  - when: "2024/4 – present"
+    what: "Postdoctoral Fellow"
+    where: "Institute of Earth Sciences, Academia Sinica, Taipei, Taiwan"
+    link: "https://www.earth.sinica.edu.tw/en/"
+    icon: "fas fa-building-columns"
+```
+
+### 連結會掛在「機構名稱」那一行
+
+| 區塊 | 粗體大字（`what`） | 斜體小字（`where`） | 連結掛在 |
+|---|---|---|---|
+| **Education** | 校系名稱 | 研究領域 | **大字**（校系）|
+| Employment / 其他 | 職稱 | 單位名稱 | **小字**（單位）|
+
+因為 Education 的主角是學校、Employment 的主角是職稱 —— 這是模板自動判斷的，
+妳只要照上表把內容填在對的欄位就好。
+
+### 圖示
+
+到 <https://fontawesome.com/search?o=r&m=free> 找，挑 **Free** 的，複製 class 名稱。常用：
+
+| 圖示 | class |
+|---|---|
+| 研究機構 | `fas fa-building-columns` |
+| 學校 | `fas fa-graduation-cap` |
+| 業界 | `fas fa-helmet-safety` |
+| 獎項 | `fas fa-award` |
+| 合作 | `fas fa-users` |
+
+### 想暫時隱藏某一行
+
+在行首加 `#` 就好，例如 `#note: "..."`、`#link: "..."`。
+注意 **`note` 一則一則獨立** —— 只註解 Employment 的不會影響 Education 的。
+要一次列出還有哪些沒註解：
+
+```bash
+grep -n "^    note:" ~/Documents/GitHub/huwanlin/_data/cv.yml
+```
 
 ---
 

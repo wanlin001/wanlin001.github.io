@@ -39,12 +39,13 @@ redirect_from:
 {% if cv.education.size > 0 %}
 <h2>Education</h2>
 <div class="tl">
+{% comment %} in Education the institution is the headline, so the link sits on `what` {% endcomment %}
 {% for e in cv.education %}
   <div class="tl-item">
     <div class="tl-when">{{ e.when }}</div>
     <div class="tl-what">
-      <strong>{{ e.what }}</strong>
-      <span class="tl-where">{% if e.icon %}<i class="{{ e.icon }} tl-icon" aria-hidden="true"></i>{% endif %}{% if e.link %}<a href="{{ e.link }}" target="_blank" rel="noopener">{{ e.where }}</a>{% else %}{{ e.where }}{% endif %}</span>
+      <strong>{% if e.icon %}<i class="{{ e.icon }} tl-icon" aria-hidden="true"></i>{% endif %}{% if e.link %}<a href="{{ e.link }}" target="_blank" rel="noopener">{{ e.what }}</a>{% else %}{{ e.what }}{% endif %}</strong>
+      <span class="tl-where">{{ e.where }}</span>
       {% if e.note %}<div class="tl-note">{{ e.note }}</div>{% endif %}
     </div>
   </div>

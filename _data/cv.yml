@@ -6,7 +6,9 @@
 career_break: "Career break 2018/10 – 2019/7: independent travel for personal development, immediately followed by the start of doctoral studies."
 
 # 每一筆都可以再加兩個選用欄位：
-#   link: "https://…"        單位或機構的網頁，標題會變成可以點的連結
+#   link: "https://…"        機構網頁。連結會掛在「機構名稱」那一行：
+#                            Education → 掛在 what（校系，粗體大字那行）
+#                            其他區塊  → 掛在 where（單位，斜體小字那行）
 #   icon: "fas fa-building-columns"   小圖示，到 fontawesome.com/search 找 Free 的
 #        常用：fa-building-columns 研究機構 / fa-graduation-cap 學校
 #              fa-helmet-safety 業界 / fa-award 獎項 / fa-users 合作
@@ -34,25 +36,25 @@ employment:
 
 education:
   - when: "Ph.D. 2023"
-    what: "Active tectonics, structural geology and observational seismology"
-    where: "Asian School of the Environment, Nanyang Technological University, Singapore"
+    what: "Asian School of the Environment, Nanyang Technological University, Singapore"
+    where: "Active tectonics, structural geology and observational seismology"
     link: "https://www.ntu.edu.sg/ase"
     icon: "fas fa-graduation-cap"
     note: "Waveform inversion, seismic interpretation and uncertainty quantification, combining model development with tectonic analysis."
   - when: "M.Sc. 2015"
-    what: "Active tectonics and surface deformation"
-    where: "Department of Geosciences, National Taiwan University, Taipei, Taiwan"
+    what: "Department of Geosciences, National Taiwan University, Taipei, Taiwan"
+    where: "Active tectonics and surface deformation"
     link: "http://www.gl.ntu.edu.tw/"
     icon: "fas fa-graduation-cap"
     note: "InSAR observations of crustal movement for regional seismic hazard assessment."
   - when: "Exchange 2012"
-    what: "Year-4 exchange student"
-    where: "Faculty of Science, Masaryk University, Brno, Czech Republic"
+    what: "Faculty of Science, Masaryk University, Brno, Czech Republic"
+    where: "Year-4 exchange student"
     link: "https://www.sci.muni.cz/en"
     icon: "fas fa-graduation-cap"
   - when: "B.Sc. 2013"
-    what: "B.Sc. in Geosciences"
-    where: "Department of Geosciences, National Taiwan University, Taipei, Taiwan"
+    what: "Department of Geosciences, National Taiwan University, Taipei, Taiwan"
+    where: "B.Sc. in Geosciences"
     link: "http://www.gl.ntu.edu.tw/"
     icon: "fas fa-graduation-cap"
 
