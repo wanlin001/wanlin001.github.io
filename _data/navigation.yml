@@ -1,5 +1,19 @@
-# Order of the links in the site header.
-# Removing a link hides it from the header but does not delete the page.
+# Top navigation.
+#
+# Plain item:
+#   - title: "Research"
+#     url: /research/
+#
+# Dropdown (submenu). Add `children:` and indent the sub-items under it.
+# Give the parent a `url:` if it should also be a clickable page of its own;
+# leave `url:` out and it becomes a label that only opens the menu.
+#
+#   - title: "Others"
+#     children:
+#       - title: "Fieldwork"
+#         url: /fieldwork/
+#
+# Removing a line only hides the button — the page itself still exists.
 
 main:
   - title: "Research"
@@ -8,11 +22,12 @@ main:
   - title: "Publications"
     url: /publications/
 
-  - title: "Fieldwork"
-    url: /fieldwork/
-
-  - title: "Resources"
-    url: /resources/
-
   - title: "CV"
     url: /cv/
+
+  - title: "Others"
+    children:
+      - title: "Fieldwork & travel"
+        url: /fieldwork/
+      - title: "Resources"
+        url: /resources/

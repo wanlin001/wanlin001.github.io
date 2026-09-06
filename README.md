@@ -208,37 +208,63 @@ main:
 
 ---
 
-## 7. 改結構：把 Fieldwork 收到 Others 底下
+## 7. 下拉選單（submenu）
 
-上方選單**只支援單層，沒有下拉選單**（這是 Minimal Mistakes masthead 的限制）。所以做法是「Others 當入口頁」：
+**已經做好了**，直接在 `_data/navigation.yml` 用 `children:` 就會產生下拉選單：
 
-1. 建 `_pages/others.md`（照上面第 6 節），內容放通往子頁的連結：
+```yaml
+main:
+  - title: "Research"
+    url: /research/
 
-   ```markdown
-   ---
-   layout: single
-   title: "Others"
-   permalink: /others/
-   author_profile: true
-   ---
+  - title: "Others"          # 只是一個群組標籤，本身沒有頁面
+    children:
+      - title: "Fieldwork & travel"
+        url: /fieldwork/
+      - title: "Resources"
+        url: /resources/
+```
 
-   - [Fieldwork & travel](/others/fieldwork/) — 野外與旅行地圖
-   - [Photography](/others/photos/)
-   ```
+行為：
 
-2. 把 `_pages/fieldwork.md` 的 `permalink` 改成子路徑，並加上舊網址轉址：
+- **桌機** — 滑鼠移上去自動展開
+- **手機／觸控** — 點一下展開，點外面或按 Esc 收起
+- 群組本身也想是一個頁面的話，給它 `url:`（例如 `url: /others/`），它就變成可以點的連結，滑過去一樣會展開
+- 目前在哪一頁，選單裡對應的那一項會變綠色
+- 視窗變窄時整組會自動收進右上角的漢堡選單，並且變成縮排的清單
 
-   ```yaml
-   permalink: /others/fieldwork/
-   redirect_from:
-     - /fieldwork/
-   ```
+**想改回單層** —— 把 `children:` 那幾行拿掉、每項各自寫 `url:` 就好，例如：
 
-   （`redirect_from` 很重要 —— 別人存的舊連結才不會壞。）
+```yaml
+  - title: "Fieldwork"
+    url: /fieldwork/
+  - title: "Resources"
+    url: /resources/
+```
 
-3. 在 `_data/navigation.yml` 把 `Fieldwork` 那項換成 `Others`。
+**相關檔案**（一般不用碰）：
 
-如果**真的**想要下拉選單，得改 `_includes/masthead.html` 並寫 CSS，工程比較大，不建議。
+| 檔案 | 作用 |
+|---|---|
+| `_includes/masthead.html` | 選單的 HTML，判斷有沒有 `children:` |
+| `assets/css/custom.css` 最下面 | 下拉選單的樣式（寬度、陰影、位置） |
+| `_includes/footer/custom.html` 最下面 | 觸控裝置的點擊展開 / 點外面收起 |
+
+> 選單只支援**一層**下拉（`children` 裡面再放 `children` 不會生效）。學術網站幾乎不需要更多層。
+
+### 順便把頁面網址也搬進子路徑（選用）
+
+上面只是把選單分組，網址還是 `/fieldwork/`。如果想連網址也變成 `/others/fieldwork/`：
+
+在 `_pages/fieldwork.md` 的 front matter 改：
+
+```yaml
+permalink: /others/fieldwork/
+redirect_from:
+  - /fieldwork/          # 舊網址自動轉址，別人存的連結才不會壞
+```
+
+然後把 `navigation.yml` 裡的 `url:` 一起改成 `/others/fieldwork/`。
 
 ---
 
@@ -257,6 +283,85 @@ main:
 
 > 如果因故一定要留 `master` 當發布分支，替代做法是每次把 main 推過去：
 > `git push origin main:master`
+
+---
+
+## 8b. 自訂網域（Custom domain）
+
+想從 `wanlinhu.com` 之類的網址連到這個網站時才需要做。**不做也完全沒關係**，`wanlin001.github.io` 本來就是正式網址。
+
+### 前提：要先去買一個網域
+
+GitHub 不賣網域。一年大約 US$10–15。常用註冊商：Cloudflare Registrar（成本價、最便宜）、Namecheap、Gandi、Porkbun。
+
+### 步驟
+
+**1. 決定用哪一種**
+
+| 型式 | 例子 | DNS 設定 | 備註 |
+|---|---|---|---|
+| **子網域（推薦）** | `www.wanlinhu.com` | 一筆 CNAME | 最穩、GitHub 官方推薦 |
+| 頂層網域（apex） | `wanlinhu.com` | 四筆 A + 四筆 AAAA | 要手動維護 IP |
+
+**2. 在註冊商的 DNS 面板加記錄**
+
+子網域（`www`）：
+
+```
+類型: CNAME    名稱: www    值: wanlin001.github.io
+```
+
+頂層網域（apex）—— 四筆 A 全部都要加：
+
+```
+類型: A    名稱: @    值: 185.199.108.153
+類型: A    名稱: @    值: 185.199.109.153
+類型: A    名稱: @    值: 185.199.110.153
+類型: A    名稱: @    值: 185.199.111.153
+```
+
+要支援 IPv6 再加四筆 AAAA：`2606:50c0:8000::153`、`2606:50c0:8001::153`、`2606:50c0:8002::153`、`2606:50c0:8003::153`（名稱都是 `@`）。
+
+> ⚠️ 用 Cloudflare 當 DNS 的話，記錄的橘色雲朵要先切成 **DNS only（灰色）**，否則 GitHub 發不出憑證。憑證好了之後才可以開回代理。
+
+**3. 在 GitHub 設定**
+
+`Settings → Pages → Custom domain`，填入網域（例如 `www.wanlinhu.com`），按 **Save**。
+GitHub 會做 DNS 檢查，通過後才會生效（DNS 可能要 10 分鐘到幾小時才傳播完）。
+
+**4. 把 GitHub 自動產生的 CNAME 檔拉回本機** ← 很容易忘
+
+按下 Save 之後，GitHub 會自動在 `main` 分支根目錄 commit 一個叫 `CNAME` 的檔案（裡面就一行網域）。**一定要拉回來**，否則下次 push 會把它蓋掉、網域就失效：
+
+```bash
+git pull
+```
+
+**5. 改 `_config.yml`** ← 不改的話站內連結會全部指向舊網址
+
+```yaml
+url: "https://www.wanlinhu.com"
+```
+
+這個佈景的內部連結都是絕對路徑（用 `site.url` 組出來的），所以這步不能跳過。改完 commit + push。
+
+**6. 開啟 HTTPS**
+
+回 `Settings → Pages`，勾選 **Enforce HTTPS**。憑證簽發最久要等 24 小時，選項還沒出現就是還在跑，隔天再來。
+
+### 驗證
+
+```bash
+dig www.wanlinhu.com +short     # 子網域：應該看到 wanlin001.github.io
+dig wanlinhu.com +short         # apex：應該看到那四個 185.199.x.153
+```
+
+### 常見坑
+
+- **push 之後網域失效** → `CNAME` 檔被蓋掉了。重新在 Settings 填一次，然後 `git pull`。
+- **憑證一直發不出來** → Cloudflare 的橘色雲朵沒關掉，或 DNS 還沒傳播完。
+- **網址對了但 CSS / 圖片壞掉** → `_config.yml` 的 `url:` 忘了改。
+- **想改回去** → 把 Custom domain 清空、刪掉 repo 裡的 `CNAME` 檔、`_config.yml` 的 `url` 改回 `https://wanlin001.github.io`。
 
 ---
 

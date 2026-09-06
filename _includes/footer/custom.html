@@ -4,3 +4,56 @@
 <script id="MathJax-script" defer src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.js"></script>
 
 <!-- end custom footer snippets -->
+
+<!-- Dropdown navigation: click/tap toggle + close on outside click or Esc -->
+<script>
+(function () {
+  function ready(fn) {
+    if (document.readyState !== 'loading') { fn(); }
+    else { document.addEventListener('DOMContentLoaded', fn); }
+  }
+  ready(function () {
+    var nav = document.getElementById('site-nav');
+    if (!nav) return;
+
+    function closeAll(except) {
+      nav.querySelectorAll('.masthead__menu-item--has-children.is-open').forEach(function (li) {
+        if (li !== except) {
+          li.classList.remove('is-open');
+          var a = li.querySelector('.nav-parent');
+          if (a) a.setAttribute('aria-expanded', 'false');
+        }
+      });
+    }
+
+    nav.addEventListener('click', function (e) {
+      var parent = e.target.closest ? e.target.closest('.nav-parent') : null;
+      if (!parent || !nav.contains(parent)) return;
+      var li = parent.parentNode;
+      // A group label with no page of its own only ever toggles.
+      // A group that does have a page toggles on the first tap of a touch device,
+      // and follows the link on desktop.
+      var isTouch = window.matchMedia('(hover: none)').matches;
+      if (parent.classList.contains('nav-parent--nolink') || isTouch) {
+        if (!li.classList.contains('is-open')) {
+          e.preventDefault();
+          closeAll(li);
+          li.classList.add('is-open');
+          parent.setAttribute('aria-expanded', 'true');
+        } else if (parent.classList.contains('nav-parent--nolink')) {
+          e.preventDefault();
+          li.classList.remove('is-open');
+          parent.setAttribute('aria-expanded', 'false');
+        }
+      }
+    });
+
+    document.addEventListener('click', function (e) {
+      if (!nav.contains(e.target)) closeAll(null);
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeAll(null);
+    });
+  });
+})();
+</script>

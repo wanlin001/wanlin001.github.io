@@ -192,3 +192,70 @@
   padding: 1.2em 0 1.6em 0;
   margin: 0;
 }
+
+/* ==========================================================================
+   Dropdown submenu in the top navigation
+   Driven by `children:` in _data/navigation.yml — see README §6.
+   ========================================================================== */
+
+.masthead__menu-item--has-children { position: relative; }
+
+.nav-caret { font-size: .62em; margin-left: .4em; opacity: .65; vertical-align: middle; }
+
+.nav-submenu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0.6rem;          /* anchored to the item's right edge so it never
+                             runs off the screen on the last menu items */
+  left: auto;
+  z-index: 300;
+  min-width: 12em;
+  margin: 0;
+  padding: .3em 0;
+  list-style: none;
+  background: var(--global-bg-color);
+  border: 1px solid var(--global-border-color);
+  border-radius: 5px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, .16);
+}
+
+/* open on hover, on keyboard focus, and on click (JS adds .is-open) */
+.masthead__menu-item--has-children:hover      > .nav-submenu,
+.masthead__menu-item--has-children:focus-within > .nav-submenu,
+.masthead__menu-item--has-children.is-open    > .nav-submenu { display: block; }
+
+.nav-submenu li {
+  display: block !important;
+  border: 0;
+  font-weight: normal !important;
+}
+.nav-submenu a {
+  display: block;
+  margin: 0 !important;
+  padding: .45em 1.1em !important;
+  white-space: nowrap;
+  font-size: .95em;
+}
+.nav-submenu a:hover { background: var(--global-border-color); }
+.nav-submenu a:before { display: none !important; }   /* kill the underline sweep */
+.nav-submenu li.selected > a { color: var(--wl-accent); font-weight: 600; }
+
+/* keep a hover-gap so the menu doesn't close while the pointer travels down */
+.masthead__menu-item--has-children:hover > .nav-submenu { margin-top: 0; }
+.masthead__menu-item--has-children > .nav-parent { cursor: pointer; }
+
+/* when greedy-nav pushes the item into the overflow menu, show it inline */
+.hidden-links .nav-submenu {
+  display: block;
+  position: static;
+  min-width: 0;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 0;
+  background: transparent;
+}
+.hidden-links .nav-submenu a { padding-left: 2.4em !important; font-size: .9em; }
+.hidden-links .nav-caret { display: none; }
+.hidden-links .nav-parent--nolink { pointer-events: none; opacity: .65; font-size: .85em; text-transform: uppercase; letter-spacing: .04em; }

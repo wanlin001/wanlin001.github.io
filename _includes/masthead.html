@@ -8,16 +8,51 @@
           <li class="masthead__menu-item masthead__menu-item--lg persist {% if page.url == '/' or page.url == '/index.html' %}selected{% endif %}">
             <a href="{{ base_path }}/">{{ site.title }}</a>
           </li>
+
           {% for link in site.data.navigation.main %}
-            {% if link.url contains 'http' %}
-              {% assign domain = '' %}
+
+            {% comment %} ---------- dropdown item (has children) ---------- {% endcomment %}
+            {% if link.children %}
+
+              {% assign child_selected = false %}
+              {% for child in link.children %}
+                {% if page.url contains child.url and child.url != '/' %}{% assign child_selected = true %}{% endif %}
+              {% endfor %}
+
+              <li class="masthead__menu-item masthead__menu-item--has-children {% if child_selected %}selected{% endif %}">
+                {% if link.url %}
+                  {% if link.url contains 'http' %}{% assign domain = '' %}{% else %}{% assign domain = base_path %}{% endif %}
+                  <a href="{{ domain }}{{ link.url }}" class="nav-parent" aria-haspopup="true" aria-expanded="false">{{ link.title }}<i class="fas fa-chevron-down nav-caret" aria-hidden="true"></i></a>
+                {% else %}
+                  <a href="#" class="nav-parent nav-parent--nolink" role="button" tabindex="0" aria-haspopup="true" aria-expanded="false">{{ link.title }}<i class="fas fa-chevron-down nav-caret" aria-hidden="true"></i></a>
+                {% endif %}
+
+                <ul class="nav-submenu">
+                  {% for child in link.children %}
+                    {% if child.url contains 'http' %}{% assign cdomain = '' %}{% else %}{% assign cdomain = base_path %}{% endif %}
+                    <li{% if page.url contains child.url and child.url != '/' %} class="selected"{% endif %}>
+                      <a href="{{ cdomain }}{{ child.url }}">{{ child.title }}</a>
+                    </li>
+                  {% endfor %}
+                </ul>
+              </li>
+
+            {% comment %} ---------- plain item ---------- {% endcomment %}
             {% else %}
-              {% assign domain = base_path %}
+
+              {% if link.url contains 'http' %}
+                {% assign domain = '' %}
+              {% else %}
+                {% assign domain = base_path %}
+              {% endif %}
+              <li class="masthead__menu-item {% if page.url contains link.url and link.url != '/' %}selected{% endif %}">
+                <a href="{{ domain }}{{ link.url }}">{{ link.title }}</a>
+              </li>
+
             {% endif %}
-            <li class="masthead__menu-item {% if page.url contains link.url and link.url != '/' %}selected{% endif %}">
-              <a href="{{ domain }}{{ link.url }}">{{ link.title }}</a>
-            </li>
+
           {% endfor %}
+
           <li id="theme-toggle" class="masthead__menu-item persist tail">
             <a role="button" aria-labelledby="theme-icon"><i id="theme-icon" class="fa-solid fa-sun" aria-hidden="true" title="toggle theme"></i></a>
           </li>
