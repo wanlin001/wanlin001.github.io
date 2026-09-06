@@ -82,12 +82,14 @@ notes:
     source: "HackMD"
     date: "Feb 2024"
     excerpt: "多日行程的打包清單，可以直接在頁面上打勾。從隨身行李、營地裝備到緊急用品，出門前照著掃一遍。"
+    topics: checklist
 
   - title: "一日登山裝備清單"
     url: "https://hackmd.io/@HuWanLin/H1TIhHTt-x"
     category: hiking
     source: "HackMD"
     excerpt: "單日行程的精簡版。"
+    topics: checklist
 
   - title: "Commonly used Linux commands"
     url: "https://hackmd.io/@HuWanLin/linux_commands"
@@ -108,12 +110,12 @@ notes:
     date: "Mar 2026"
     source: "HackMD"
     excerpt: "把 .gpx 軌跡與手機／相機拍的照片和影片自動對位的工具：以時間校準演算法把多媒體定位到路徑點上，同時產生高度剖面圖，並輸出 .kml / .kmz 供 Google Earth 瀏覽。"
-
+    topics: tools
   - title: "Creating Perple_X lookup tables"
     url: "https://hackmd.io/@HuWanLin/H11Dob2ZZg"
     category: research
     source: "HackMD"
-    excerpt: "為 ASPECT 建立濕玄武岩到乾榴輝岩相變模型的流程筆記：build → vertex → werami，產生密度查找表以驅動 slab pull。"
+    excerpt: "建立濕玄武岩到乾榴輝岩相變模型的流程筆記：build → vertex → werami，產生密度查找表以驅動 slab pull。"
 
   - title: "Commonly used and basic commands in SAC"
     url: "https://hackmd.io/@HuWanLin/SAC"
@@ -125,7 +127,7 @@ notes:
     url: "https://hackmd.io/@HuWanLin/Hy1YjHJSbl"
     category: research
     source: "HackMD"
-    excerpt: "以 fork ASPECT 為例，整理多台機器之間的 Git 協作流程：upstream / origin / clone 的架構、初始設置、日常工作流程、分支管理與視覺化、GitHub Token 設定，附常用指令速查表。"
+    excerpt: "整理多台機器之間的 Git 協作流程：upstream / origin / clone 的架構、初始設置、日常工作流程、分支管理與視覺化、GitHub Token 設定，附常用指令速查表。"
 
 # 想再加一則，把下面這段複製出來、拿掉開頭的 # 就好：
 #
