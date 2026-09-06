@@ -12,10 +12,6 @@ employment:
     what: "Postdoctoral Fellow"
     where: "Institute of Earth Sciences, Academia Sinica, Taipei, Taiwan"
     note: "Develops geodynamic and numerical models; leads interdisciplinary work integrating seismic source analysis, seismic anisotropy and crustal tectonics."
-  - when: "2023/8"
-    what: "Visiting Researcher"
-    where: "Faculty of Life and Environmental Sciences, University of Tsukuba, Japan"
-    note: "With Prof. Ryo Okuwaki and Prof. Yuji Yagi — seismic source analysis and rupture dynamics."
   - when: "2016/8 – 2018/8"
     what: "Professional Geologist and Researcher"
     where: "Disaster Prevention Technology Research Center, Sinotech Engineering Consultants Inc., Taipei, Taiwan"
@@ -90,17 +86,14 @@ memberships:
   - "Geological Society of Taiwan"
 
 collaborations:
-  - when: "Himalayan tectonics"
-    what: "Victoria L. Stevens"
-    where: "University of Cape Town, South Africa"
   - when: "Rupture dynamics"
     what: "Shengji Wei"
     where: "Nanyang Technological University, Singapore"
   - when: "Seismic source analysis"
     what: "Ryo Okuwaki & Yuji Yagi"
     where: "University of Tsukuba, Japan"
-  - when: "Geodynamics & anisotropy"
-    what: "Eh Tan & Ban-Yuan Kuo"
+  - when: "Geodynamics"
+    what: "Eh Tan"
     where: "Institute of Earth Sciences, Academia Sinica, Taiwan"
 
 skills:
