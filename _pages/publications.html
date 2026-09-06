@@ -7,23 +7,44 @@ author_profile: true
 
 {% include base_path %}
 
-<p style="margin-bottom:1.4em;">
+<p style="margin-bottom:1em;">
   Also on
   {% if site.author.googlescholar %}<a href="{{ site.author.googlescholar }}">Google Scholar</a>{% endif %}
   {% if site.author.orcid %} · <a href="{{ site.author.orcid }}">ORCID</a>{% endif %}
   {% if site.author.researchgate %} · <a href="{{ site.author.researchgate }}">ResearchGate</a>{% endif %}.
 </p>
 
+<!-- Filter bar. Built from the topics actually used by the publications below. -->
+{% assign used = "" | split: "" %}
+{% for post in site.publications %}
+  {% for t in post.topics %}{% assign used = used | push: t %}{% endfor %}
+{% endfor %}
+{% assign used = used | uniq %}
+
+{% if used.size > 1 %}
+<div class="pub-filter" id="pub-filter">
+  <button type="button" class="topic-tag topic-tag--all is-active" data-topic="">All</button>
+  {% for key in site.data.topics %}
+    {% if used contains key[0] %}
+      <button type="button" class="topic-tag" data-topic="{{ key[0] }}" style="--tt: {{ key[1].color | default: '#888888' }};">{{ key[1].label | default: key[0] }}</button>
+    {% endif %}
+  {% endfor %}
+  <span class="pub-filter__count" id="pub-filter-count" aria-live="polite"></span>
+</div>
+{% endif %}
+
 {% for category in site.publication_category %}
   {% assign title_shown = false %}
   {% for post in site.publications reversed %}
     {% if post.category != category[0] %}{% continue %}{% endif %}
     {% unless title_shown %}
-      <h2 id="{{ category[0] }}">{{ category[1].title }}</h2>
+      {% if title_shown_once %}</section>{% endif %}
+      <section class="pub-section" id="{{ category[0] }}">
+      <h2>{{ category[1].title }}</h2>
       {% assign title_shown = true %}
     {% endunless %}
 
-    <div class="pub-card">
+    <div class="pub-card" data-topics="{{ post.topics | join: ' ' }}">
       <div class="pub-card__body">
         <div class="pub-card__main">
 
@@ -44,13 +65,9 @@ author_profile: true
           <p class="topic-tags">
             {% for t in post.topics %}
               {% assign td = site.data.topics[t] %}
-              <span class="topic-tag" style="--tt: {{ td.color | default: '#888888' }};">{{ td.label | default: t }}</span>
+              <button type="button" class="topic-tag" data-topic="{{ t }}" style="--tt: {{ td.color | default: '#888888' }};">{{ td.label | default: t }}</button>
             {% endfor %}
           </p>
-          {% endif %}
-
-          {% if post.excerpt %}
-            <p class="pub-card__excerpt">{{ post.excerpt | markdownify | remove: '<p>' | remove: '</p>' }}</p>
           {% endif %}
 
           <div class="pub-links">
@@ -65,9 +82,6 @@ author_profile: true
             {% endif %}
             {% if post.slidesurl %}
               <a class="pub-btn" href="{{ post.slidesurl }}"><i class="fas fa-desktop" aria-hidden="true"></i> Slides</a>
-            {% endif %}
-            {% if post.bibtexurl %}
-              <a class="pub-btn" href="{{ post.bibtexurl }}"><i class="fas fa-quote-right" aria-hidden="true"></i> BibTeX</a>
             {% endif %}
             <a class="pub-btn" href="{{ base_path }}{{ post.url }}"><i class="fas fa-expand-alt" aria-hidden="true"></i> Details</a>
           </div>
@@ -84,4 +98,7 @@ author_profile: true
       </div>
     </div>
   {% endfor %}
+  {% if title_shown %}</section>{% endif %}
 {% endfor %}
+
+<p class="pub-empty" id="pub-empty" hidden>No publications with that tag yet.</p>
