@@ -10,10 +10,14 @@ redirect_from:
 {% include base_path %}
 {% assign cv = site.data.cv %}
 
+<!-- Every section below is wrapped in a Liquid "if", so deleting a block
+     from _data/cv.yml removes its heading from the page too. -->
+
 {% if cv.pdf %}
 <p><a class="pub-btn" href="{{ base_path }}{{ cv.pdf }}"><i class="fas fa-file-pdf" aria-hidden="true"></i> Download CV (PDF)</a></p>
 {% endif %}
 
+{% if cv.employment.size > 0 %}
 <h2>Employment</h2>
 <div class="tl">
 {% for e in cv.employment %}
@@ -27,8 +31,12 @@ redirect_from:
   </div>
 {% endfor %}
 </div>
-<p style="font-size:.85em;color:var(--global-text-color-light);">Career break 2018/10 – 2019/7: independent travel for personal development, immediately followed by the start of doctoral studies.</p>
+{% if cv.career_break %}
+<p style="font-size:.85em;color:var(--global-text-color-light);">{{ cv.career_break }}</p>
+{% endif %}
+{% endif %}
 
+{% if cv.education.size > 0 %}
 <h2>Education</h2>
 <div class="tl">
 {% for e in cv.education %}
@@ -42,7 +50,9 @@ redirect_from:
   </div>
 {% endfor %}
 </div>
+{% endif %}
 
+{% if cv.awards.size > 0 %}
 <h2>Awards &amp; funding</h2>
 <div class="tl">
 {% for e in cv.awards %}
@@ -52,10 +62,12 @@ redirect_from:
   </div>
 {% endfor %}
 </div>
+{% endif %}
 
 <h2>Publications</h2>
 <p>See the <a href="{{ base_path }}/publications/">publications page</a> for the full list with DOIs and PDFs.</p>
 
+{% if cv.mentoring.size > 0 %}
 <h2>Supervising &amp; mentoring</h2>
 <div class="tl">
 {% for e in cv.mentoring %}
@@ -65,7 +77,9 @@ redirect_from:
   </div>
 {% endfor %}
 </div>
+{% endif %}
 
+{% if cv.teaching.size > 0 %}
 <h2>Teaching</h2>
 <div class="tl">
 {% for e in cv.teaching %}
@@ -75,7 +89,9 @@ redirect_from:
   </div>
 {% endfor %}
 </div>
+{% endif %}
 
+{% if cv.service.size > 0 %}
 <h2>Service &amp; outreach</h2>
 <div class="tl">
 {% for e in cv.service %}
@@ -89,7 +105,9 @@ redirect_from:
   </div>
 {% endfor %}
 </div>
+{% endif %}
 
+{% if cv.collaborations.size > 0 %}
 <h2>Major collaborations</h2>
 <div class="tl">
 {% for e in cv.collaborations %}
@@ -99,7 +117,9 @@ redirect_from:
   </div>
 {% endfor %}
 </div>
+{% endif %}
 
+{% if cv.skills.size > 0 %}
 <h2>Technical skills</h2>
 {% for s in cv.skills %}
   <p style="margin:0 0 .2em 0;"><strong>{{ s.group }}</strong></p>
@@ -107,8 +127,11 @@ redirect_from:
     {% for i in s.items %}<span class="chip">{{ i }}</span>{% endfor %}
   </div>
 {% endfor %}
+{% endif %}
 
+{% if cv.memberships.size > 0 %}
 <h2>Professional memberships</h2>
 <div class="chips">
   {% for m in cv.memberships %}<span class="chip">{{ m }}</span>{% endfor %}
 </div>
+{% endif %}
