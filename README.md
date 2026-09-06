@@ -24,6 +24,7 @@
 - [10. Notes 與 Travel 的積木](#10-notes-與-travel-的積木) — Notes 的分類與欄位；照片、地圖、連結卡三個 include
 - [11. 照片牆](#11-照片牆) — photo-grid 怎麼用
 - [11b. 照片牆](#11b-照片牆) — 一整頁的照片牆，滑過去顯示說明，點開看大圖
+- [11c. 圖片自動壓縮](#11c-圖片自動壓縮) — commit 時自動縮圖，不用再手動處理
 - [12. Google My Maps](#12-google-my-maps) — embed 網址怎麼組，為什麼地圖會是空白的
 - [13. 把外部文章放進網站](#13-把外部文章放進網站) — HackMD / Medium 三種做法，能不能直接嵌
 
@@ -609,6 +610,68 @@ captions:
 | `Esc` 或點背景 | 關閉 |
 
 程式在 `assets/js/photo-wall.js`，版面在 `custom.css` 的 `.wall` 和 `.lightbox` 區塊。
+
+---
+
+## 11c. 圖片自動壓縮
+
+**不用再手動跑 sips 了。** 只要 commit 含有 `images/` 底下的圖片，
+超過標準的會在 commit 當下自動壓縮並重新加入這次提交。
+
+看起來像這樣：
+
+```
+$ git commit -m "add photos"
+── 圖片自動壓縮 ───────────────────────────────
+  壓縮 images/gallery/20260516_152714.jpg  5498KB 4000x3000  →  555KB 1600x1200
+  共壓縮 1 個檔案。
+───────────────────────────────────────────────
+```
+
+### 標準
+
+| 項目 | 上限 |
+|---|---|
+| 最長邊 | 1600 px |
+| 檔案大小 | 600 KB |
+| JPEG 品質 | 55 |
+
+兩項都符合就完全不碰。**已經壓過的檔案再 commit 一百次也不會重壓**，
+所以不會有「越壓越糊」的問題。
+
+想改標準，編 `scripts/optimize_images.sh` 最上面那三行，或臨時覆寫：
+
+```bash
+MAX_EDGE=2000 MAX_KB=900 scripts/optimize_images.sh
+```
+
+### 手動整理整個資料夾
+
+```bash
+cd ~/Documents/GitHub/huwanlin && ./scripts/optimize_images.sh
+```
+
+不加參數就掃過 `images/` 底下所有圖片。已經達標的會列在「略過」，不會被動到。
+
+### 相關檔案
+
+| 檔案 | 作用 |
+|---|---|
+| `.githooks/pre-commit` | commit 時自動觸發 |
+| `scripts/optimize_images.sh` | 實際做壓縮的程式，也可以單獨執行 |
+
+hook 已經設定好了（`git config core.hooksPath .githooks`）。
+**如果哪天在另一台電腦重新 clone，要再跑一次那行指令**，否則 hook 不會生效。
+
+臨時想跳過壓縮：`git commit --no-verify`
+
+### HEIC
+
+iPhone 預設拍 `.heic`，瀏覽器支援不完整。commit 時如果偵測到會提醒妳，先轉成 JPG：
+
+```bash
+sips -s format jpeg -s formatOptions 55 檔名.heic --out 檔名.jpg
+```
 
 ---
 
