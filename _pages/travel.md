@@ -44,7 +44,7 @@ Trips, trails and the places the rocks took me.
 Nepal — Himalaya
 ======
 
-2022 · HKT Workshop in Pokhara，會後沿 Main Frontal Thrust 與 Kali Gandaki 河谷走了一趟 Mustang。
+2022 · The HKT Workshop in Pokhara, then a run along the Main Frontal Thrust and up the Kali Gandaki valley into Mustang.
 
 {% include map.html mid="182NqsK3rnf44xUX4dDm4nh-JwxQ-F40" caption="2022 Nov HKT workshop field trip" %}
 
@@ -55,16 +55,16 @@ Nepal — Himalaya
 Vajont Dam
 ======
 
-Erto e Casso, Friuli-Venezia Giulia／Longarone, Veneto, Italy · 2026 年 5 月
+Erto e Casso, Friuli-Venezia Giulia / Longarone, Veneto, Italy · May 2026
 
-<!-- ↓↓↓ 描述寫在這裡（刪掉這兩行註解就好）↓↓↓
+<!-- ↓↓↓ 描述寫在這裡，刪掉這兩行註解就好（頁面上的文字請用英文）↓↓↓
 
 
 ↑↑↑ 描述寫在這裡 ↑↑↑ -->
 
-{% include place-map.html lat="46.2672" lon="12.3293" span="0.055" caption="Diga del Vajont，兩張照片分別拍於壩體上游的 Monte Toc 側與下游的 Longarone" %}
+{% include place-map.html lat="46.2672" lon="12.3293" span="0.055" caption="Diga del Vajont — the two photographs were taken upstream on the Monte Toc side and downstream at Longarone" %}
 
-Monte Toc 滑動面
+The Monte Toc slide surface
 ------
 
 {% include photos.html dir="/images/travel/vajont" files="20260516_152714_monte-toc.jpg" size="tall" %}
@@ -81,14 +81,14 @@ Longarone
 Sumatra — Aceh
 ======
 
-Great Sumatran Fault 的 Aceh 段，順道走訪 2004 年海嘯二十年後的班達亞齊。
+The Aceh segment of the Great Sumatran Fault, and Banda Aceh twenty years after the 2004 tsunami.
 
 {% include link-card.html
-   title="災難之島 —— 北蘇門答臘的地質旅遊：班達亞齊"
+   title="Island of catastrophe — geotourism in northern Sumatra: Banda Aceh"
    url="https://twgeoref.gsmma.gov.tw/GeoWeb/cp.do?action=cp&kt=2748&xItem=312647&ctNode=217&mp=6"
-   source="地質 Ti-Chi"
+   source="Geology (Ti-Chi)"
    date="2024"
-   excerpt="寫成一篇科普文章：海嘯遺跡如何被保存、被觀光化，以及一個社會如何與災難共存。" %}
+   excerpt="Written up as a popular-science piece: how the wreckage was preserved and turned into a destination, and how a society lives alongside catastrophe. In Mandarin." %}
 
 <!-- {% raw %}
 ═══════════════════════════════════════════════════════════════════════════

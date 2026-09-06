@@ -21,6 +21,18 @@ rocks. Click a pin for photos and notes.
 Selected trips
 ======
 
+Sumatra, Indonesia
+------
+
+Great Sumatran Fault, Aceh segment — tremor search and post-2004 geotourism in Banda Aceh
+(written up for *Geology [Ti-Chi]*, see [Resources](/resources/)).
+
+Taiwan
+------
+
+Multi-hazard field investigations (seismic, landslide, debris flow) across Taiwan during my time 
+at Sinotech, and continuing work in the southwestern mudstone belt.
+
 Nepal — Himalaya (2022)
 ------
 
@@ -35,15 +47,4 @@ Kali Gandaki valley in Mustang.
 </div>
 -->
 
-Sumatra, Indonesia
-------
-
-Great Sumatran Fault, Aceh segment — tremor search and post-2004 geotourism in Banda Aceh
-(written up for *Geology [Ti-Chi]*, see [Resources](/resources/)).
-
-Taiwan
-------
-
-Multi-hazard field investigations (seismic, landslide, debris flow) across Taiwan during my time
-at Sinotech, and continuing work in the southwestern mudstone belt.
 

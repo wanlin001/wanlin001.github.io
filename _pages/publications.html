@@ -35,7 +35,7 @@ author_profile: true
   {% comment %} then anything used but not defined, so a typo is visible rather than silently missing {% endcomment %}
   {% for t in used %}
     {% unless listed contains t %}
-      <button type="button" class="topic-tag" data-topic="{{ t }}" style="--tt: #888888;" title="這個標籤還沒定義在 _data/topics.yml">{{ t }}</button>
+      <button type="button" class="topic-tag" data-topic="{{ t }}" style="--tt: #888888;" title="This tag is not defined in _data/topics.yml yet">{{ t }}</button>
     {% endunless %}
   {% endfor %}
   <span class="pub-filter__count" id="pub-filter-count" aria-live="polite"></span>

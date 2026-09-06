@@ -1,58 +1,65 @@
 # ═══════════════════════════════════════════════════════════════════════════
-#  首頁的「News」與「Guides」  →  https://wanlin001.github.io/
+#  首頁的 News 與 Guides  →  https://wanlin001.github.io/
 # ═══════════════════════════════════════════════════════════════════════════
 #
 #  ┌─ 想改什麼 ──────────────────┬─ 去哪改 ────────────────────────────────┐
-#  │ News 一則消息               │ 這個檔案，下面的 news:                  │
-#  │ Guides 一個頁面介紹         │ 這個檔案，下面的 guides:                │
+#  │ 一則消息                    │ 這個檔案，底下的 news 清單              │
+#  │ 一個頁面介紹                │ 這個檔案，底下的 guides 清單            │
 #  │ 首頁最上面那幾段自我介紹    │ _pages/about.md                         │
 #  │ 版面                        │ _pages/about.md 的 Liquid 迴圈（不用碰）│
 #  └─────────────────────────────┴─────────────────────────────────────────┘
 #
-#  ⚠️ 「news:」和「guides:」各自整個檔案只能出現一次。
-#     加第二則是在底下多一組「  - title:」，不是再寫一次 news:。
+#  ⚠️ 兩個清單的開頭關鍵字各自整個檔案只能出現一次。
+#     加第二則是在底下多一組「  - title:」，不是再寫一次開頭關鍵字。
 #
 #  ── 欄位（只有 title 必填）─────────────────────────────────────────────
-#     - title    標題                    ← 必填。中文英文都可以
-#       date     日期，格式隨意，可省略。News 建議寫，Guides 通常不用
-#       url      點下去要去哪。站內寫 /research/，站外寫 https://…
+#     - title    標題
+#       date     日期，格式隨意。消息建議寫，頁面介紹通常不用
+#       url      點下去要去哪。站內寫 /research/，站外寫 https://…（開新分頁）
 #       excerpt  一兩句說明
-#       image    小圖，例如 /images/gallery/20221108_144202.jpg
+#       image    小圖（只有消息用），例如 /images/gallery/20221108_144202.jpg
 #                或外部網址。不寫就沒有圖，版面會自己補齊
+#       icon     圖示（只有頁面介紹用），Font Awesome 的名稱，
+#                例如 "fas fa-images"。到 fontawesome.com/search 找，
+#                挑 Free 的。不寫就用預設的箭頭
 #
-#  刪掉一整組「- title: ...」就會從首頁消失。
-#  news: 底下留空（寫成 news: []）整個 News 區塊會自動隱藏，guides: 也一樣。
+#  · url 不寫 → 那則變成純文字、不能點（適合單純公告）
+#  · 順序就是顯示順序，新的寫最上面
+#  · 刪掉一整組「- title: ...」就會從首頁消失
+#  · 寫成空清單（[]）整個區塊會自動隱藏
 #
 #  改完記得驗一下格式：
 #      ruby -ryaml -e 'YAML.load_file("_data/home.yml"); puts "OK"'
+#
+#  ⚠️ 網站上顯示的文字一律用英文。
 # ═══════════════════════════════════════════════════════════════════════════
 
 news:
 
   - date: "Jun 2026"
     title: "Postdoctoral Paper Award, NSTC Taiwan"
-    excerpt: "國科會地球科學研究推動中心博士後研究論文獎。"
+    excerpt: "Awarded by the Division of Earth Sciences, National Science and Technology Council."
     url: /cv/#awards--funding
 
   - date: "May 2026"
     title: "Fieldwork at the Vajont Dam, Italy"
-    excerpt: "為《地質》季刊的稿件走訪 Monte Toc 滑動面與 Longarone。"
+    excerpt: "Visited the Monte Toc slide surface and Longarone for a piece in the Geology quarterly."
     url: /travel/#vajont-dam
     image: /images/travel/vajont/20260516_152714_monte-toc.jpg
 
   - date: "Apr 2026"
     title: "EGU 2026 — slab–slab interaction beneath Taiwan"
-    excerpt: "在維也納報告 Manila–Taiwan–Ryukyu 雙隱沒系統的地動力模擬與地震異向性。"
+    excerpt: "Presented geodynamic models of the Manila–Taiwan–Ryukyu double subduction system and the seismic anisotropy they predict."
     url: /publications/#inprep
 
   - date: "2026"
     title: "New paper in Tectonophysics"
-    excerpt: "以熱力學-力學有限元素模型拆解台灣西南泥岩帶地表變形的構造與岩性控制。"
+    excerpt: "Thermal-mechanical finite-element models separate the structural from the lithological control on surface deformation in the mudstone belt of southwestern Taiwan."
     url: /publications/#manuscripts
 
   - date: "2025"
     title: "New paper in Communications Earth & Environment"
-    excerpt: "2006 年恆春外海地震對揭示減薄大陸岩石圈地函仍能孕育地震。"
+    excerpt: "The 2006 Pingtung earthquake doublet shows that thinned continental lithospheric mantle is still strong enough to host earthquakes."
     url: /publications/#manuscripts
 
 
@@ -60,32 +67,40 @@ guides:
 
   - title: "Research"
     url: /research/
-    excerpt: "目前在做的四條線：台灣底下的板塊交互作用與地函流動、大陸岩石圈地函的強度、地表變形的構造與岩性控制、以及斷層弱化與非均質性。附常用的方法與工具。"
+    icon: "fas fa-globe-asia"
+    excerpt: "What I work on, and the tools I use."
 
   - title: "Publications"
     url: /publications/
-    excerpt: "期刊論文、準備中的稿件與中文科普寫作。每一篇都有 DOI、PDF 或程式碼連結；點彩色標籤可以只看同一個領域的。"
+    icon: "fas fa-file-lines"
+    excerpt: "Papers, preprints and science writing. Filter by field."
 
   - title: "CV"
     url: /cv/
-    excerpt: "學經歷、獎項、指導過的學生、教學、審稿與科普活動、技術能力。"
+    icon: "fas fa-user"
+    excerpt: "Positions, education, awards, teaching, service."
 
   - title: "Fieldwork"
     url: /fieldwork/
-    excerpt: "野外工作的地圖與紀錄 —— 尼泊爾喜馬拉雅、蘇門答臘、台灣，以及規劃中的挪威 Western Gneiss Region。"
+    icon: "fas fa-map-location-dot"
+    excerpt: "Field campaigns, on a map."
 
   - title: "Travel"
     url: /travel/
-    excerpt: "旅行與山行，照片和地圖為主。"
+    icon: "fas fa-person-hiking"
+    excerpt: "Trips and trails, in photographs."
 
   - title: "Photos"
     url: /photos/
-    excerpt: "所有照片攤在一頁上，滑鼠移過去顯示日期，點下去看大圖。"
+    icon: "fas fa-images"
+    excerpt: "Every photograph on one page."
 
   - title: "Notes"
     url: /notes/
-    excerpt: "寫給自己的工作筆記與檢查表：Linux 與 SAC 指令、Git 多機協作、Perple_X 查找表、地震相位挑選工具，還有登山裝備清單。"
+    icon: "fas fa-terminal"
+    excerpt: "Working notes and checklists."
 
   - title: "Resources"
     url: /resources/
-    excerpt: "論文用到的程式與資料、常用軟體連結，以及給學生的資源。"
+    icon: "fas fa-box-open"
+    excerpt: "Code, data and links worth keeping."

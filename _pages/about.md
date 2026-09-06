@@ -30,7 +30,7 @@ News
 <!-- 內容在 _data/home.yml 的 news:，不用改下面這幾行 -->
 
 {% if site.data.home.news.size > 0 %}
-<div class="post-list">
+<div class="post-list post-list--news">
 {% for n in site.data.home.news %}
   {% if n.url %}
   <a class="post-card" href="{{ n.url }}"{% if n.url contains '://' %} target="_blank" rel="noopener"{% endif %}>
@@ -51,17 +51,15 @@ News
 Guides
 ======
 
-<!-- 內容在 _data/home.yml 的 guides: -->
+<!-- 內容在 _data/home.yml 的 guides 清單 -->
 
 {% if site.data.home.guides.size > 0 %}
-<div class="post-list post-list--guides">
+<div class="guide-grid">
 {% for g in site.data.home.guides %}
-  <a class="post-card" href="{{ g.url }}"{% if g.url contains '://' %} target="_blank" rel="noopener"{% endif %}>
-    {% if g.image %}<span class="post-card__thumb" style="background-image:url('{{ g.image }}');"></span>{% endif %}
-    <span class="post-card__text">
-      <span class="post-card__title">{{ g.title }}{% if g.date %} <span class="post-card__meta post-card__meta--inline">{{ g.date }}</span>{% endif %}</span>
-      {% if g.excerpt %}<span class="post-card__excerpt">{{ g.excerpt }}</span>{% endif %}
-    </span>
+  <a class="guide" href="{{ g.url }}"{% if g.url contains '://' %} target="_blank" rel="noopener"{% endif %}>
+    <span class="guide__icon"><i class="{{ g.icon | default: 'fas fa-arrow-right' }}" aria-hidden="true"></i></span>
+    <span class="guide__title">{{ g.title }}</span>
+    {% if g.excerpt %}<span class="guide__text">{{ g.excerpt }}</span>{% endif %}
   </a>
 {% endfor %}
 </div>

@@ -592,3 +592,65 @@ body { padding-top: var(--masthead-h); }
   margin: 0 0 0 .5em;
   font-weight: 400;
 }
+
+/* --- home: News gets its own colour, distinct from the site green -------- */
+
+:root { --wl-news: #c2410c; }          /* burnt orange */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { --wl-news: #fb923c; }
+}
+:root[data-theme="dark"] { --wl-news: #fb923c; }
+
+.post-list--news .post-card { border-left-color: var(--wl-news); }
+.post-list--news .post-card__title { color: var(--wl-news); }
+
+/* --- home: Guides as a grid of tiles ------------------------------------ */
+
+.guide-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: .7em;
+  margin: 1.1em 0 2em 0;
+}
+
+.guide {
+  display: block;
+  padding: 1em .95em .9em;
+  border: 1px solid var(--global-border-color);
+  border-radius: 8px;
+  background: var(--wl-card-bg);
+  box-shadow: var(--wl-card-shadow);
+  text-decoration: none !important;
+  color: var(--global-text-color) !important;
+  transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+}
+.guide:hover {
+  transform: translateY(-2px);
+  border-color: var(--wl-accent);
+  box-shadow: 0 2px 4px rgba(0,0,0,.08), 0 10px 24px rgba(0,0,0,.09);
+}
+
+.guide__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.1em;
+  height: 2.1em;
+  margin-bottom: .55em;
+  border-radius: 7px;
+  background: var(--wl-accent-soft);
+  color: var(--wl-accent);
+  font-size: 1.05em;
+}
+.guide__title {
+  display: block;
+  font-weight: 600;
+  line-height: 1.3;
+  margin-bottom: .2em;
+}
+.guide__text {
+  display: block;
+  font-size: .82em;
+  line-height: 1.45;
+  color: var(--global-text-color-light);
+}

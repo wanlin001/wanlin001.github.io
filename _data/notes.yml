@@ -1,63 +1,43 @@
 # ═══════════════════════════════════════════════════════════════════════════
-#  NOTES 頁的內容  →  https://wanlin001.github.io/notes/
+#  Notes 頁的內容  →  https://wanlin001.github.io/notes/
 # ═══════════════════════════════════════════════════════════════════════════
 #
 #  ┌─ 想改什麼 ──────────────────┬─ 去哪改 ────────────────────────────────┐
-#  │ 章節分類（新增/改名/排序）  │ 這個檔案，下面的 categories: 區塊       │
-#  │ 每一則筆記                  │ 這個檔案，下面的 notes: 區塊            │
+#  │ 章節分類（新增/改名/排序）  │ 這個檔案，下面的 categories 區塊        │
+#  │ 每一則筆記                  │ 這個檔案，下面的 notes 區塊             │
 #  │ 標籤的名稱和顏色            │ _data/topics.yml（跟論文共用）          │
 #  │ 頁面版型                    │ _pages/notes.html（一般不用碰）         │
 #  └─────────────────────────────┴─────────────────────────────────────────┘
 #
-#  想知道現在有哪些分類、哪些標籤、各被用了幾次：
+#  想知道現在有哪些分類、哪些標籤、各被用了幾次，順便檢查有沒有寫錯：
 #      ruby scripts/list_labels.rb
 #
-#  改完存檔前先驗一下格式（印出 OK 就沒問題）：
+#  改完存檔前先驗格式（印出 OK 就沒問題，有錯會說第幾行）：
 #      ruby -ryaml -e 'YAML.load_file("_data/notes.yml"); puts "OK"'
 #
-# ── 常犯的三個 YAML 錯誤 ──────────────────────────────────────────────────
-#   ❌ -title: "x"        ✅ - title: "x"     橫線後面要有空格
+# ── 常犯的四個錯誤 ────────────────────────────────────────────────────────
+#   ❌ -title: "x"        ✅ - title: "x"      橫線後面要有空格
 #   ❌ url:"https://…"    ✅ url: "https://…"  冒號後面要有空格
-#   ❌ category: Other    ✅ category: other   大小寫要跟 categories: 一致
+#   ❌ category: Other    ✅ category: other   大小寫要跟 categories 一致
+#   ❌ topics: tools      ✅ topics: [tools]   標籤一定要用方括號
 #
-#  「categories:」和「notes:」各自整個檔案只能出現一次。
-#  加第二則是在 notes: 底下多一組「  - title:」，不是再寫一次 notes:。
+#  兩個區塊的開頭關鍵字（categories、notes）各自整個檔案只能出現一次。
+#  加第二則是在底下多一組「  - title:」，不是再寫一次開頭關鍵字。
 #
 # ── 每一則的欄位（只有 title 和 url 必填）─────────────────────────────────
-#   - title     標題        中文英文都可以，妳自己決定
+#   - title     標題
 #     url       連結
-#     category  分類代號，填 categories: 裡的 key；沒填就掉到 Other
+#     category  分類代號，填 categories 裡的 key；沒填就掉到 Other 區
 #     source    來源，例如 HackMD / Medium / Notion
 #     date      日期，格式隨意
 #     excerpt   一兩句說明
 #     image     封面圖網址，或 /images/xxx.jpg
 #     topics    標籤，例如 [gear, checklist]。選用，一則一則決定：
 #               全部都不寫 → 頁面上方的篩選列整條自動消失
-#               只要有一則寫 → 篩選列自動出現，且只列出有被用到的標籤
+#               只要有一則寫 → 篩選列自動出現，只列出有被用到的標籤
+#
+#  ⚠️ 網站上顯示的文字一律用英文。
 # ═══════════════════════════════════════════════════════════════════════════
-
-categories:  分區。順序 = 頁面上的顯示順序
-#   notes:       每一則筆記
-#
-# ⚠️ 「categories:」和「notes:」各自整個檔案只能出現一次。
-#    加第二則是在 notes: 底下多一組「  - title:」，不是再寫一次 notes:。
-#
-# 欄位（除了 title 和 url，其他都可以不寫）：
-#   - title     標題          ← 必填。中文英文都可以，妳自己決定
-#     url       連結          ← 必填
-#     category  分區代號，填上面 categories 裡的 key；不填就歸到 Other
-#     source    來源，例如 HackMD / Medium / Notion
-#     date      日期，格式隨意
-#     excerpt   一兩句說明
-#     image     封面圖網址，或 /images/xxx.jpg
-#     topics    彩色標籤，例如 [gear, checklist]，顏色定義在 _data/topics.yml
-#
-# 關於 topics：完全是選用的，而且是「一則一則」決定的。
-#   · 不寫 → 那則就沒有標籤
-#   · 全部都不寫 → 頁面上方的篩選列會整條自動消失
-#   · 只有其中幾則寫 → 只有那幾則會顯示標籤，篩選列也只會列出有被用到的
-# 現在兩則都沒有用，所以頁面上是乾淨的分區清單。
-# ---------------------------------------------------------------------------
 
 categories:
 
@@ -76,59 +56,65 @@ categories:
 
 notes:
 
-  - title: "兩日以上登山裝備清單"
+  - title: "Multi-day hiking gear checklist"
     url: "https://hackmd.io/@HuWanLin/H1qQUcWX1l"
-    #category: hiking
+    category: hiking
     source: "HackMD"
     date: "Feb 2024"
-    excerpt: "多日行程的打包清單，可以直接在頁面上打勾。從隨身行李、營地裝備到緊急用品，出門前照著掃一遍。"
+    excerpt: "Packing list for trips of two days or more, with tick boxes you can click on the page. Written in Mandarin."
     topics: [checklist]
-  - title: "一日登山裝備清單"
+
+  - title: "Day hike gear checklist"
     url: "https://hackmd.io/@HuWanLin/H1TIhHTt-x"
-    #category: hiking
+    category: hiking
     source: "HackMD"
-    excerpt: "單日行程的精簡版。"
+    excerpt: "The short version, for single-day trips. Written in Mandarin."
     topics: [checklist]
+
+  - title: "Matching photographs to a GPS track"
+    url: "https://hackmd.io/@HuWanLin/BkT1kOTF-x"
+    category: fieldwork
+    date: "Mar 2026"
+    source: "HackMD"
+    excerpt: "Ties .gpx tracks to photographs and video: timestamps are aligned so each file lands on the right waypoint, an elevation profile is drawn, and the result exports as .kml / .kmz for Google Earth. Written in Mandarin."
+    topics: [tools]
+
   - title: "Commonly used Linux commands"
     url: "https://hackmd.io/@HuWanLin/linux_commands"
     category: research
     source: "HackMD"
-    excerpt: "備忘用的 Linux 指令表：目錄操作、檔案增刪搬移、文字擷取與 awk、壓縮、SSH 與 HPC 上常用的幾組指令。"
+    excerpt: "A crib sheet: moving around directories, creating and deleting files, pulling text apart with awk, archiving, and the SSH and HPC commands I keep forgetting."
     topics: [tools]
-  - title: "Seismic Phase Picker & Record Viewer"
-    url: "https://hackmd.io/@HuWanLin/r1Zfo5OL-l"
-    category: research
-    date: "Jan 2026"
-    source: "HackMD"
-    excerpt: "互動式 SAC 波形檢視與到時挑選工具的使用說明：可獨立標記多個震相、bandpass 濾波、STA/LTA、包絡線、排序與縮放，針對大型測網資料設計。"
-
-  - title: "時空對位與軌跡影像誌"
-    url: "https://hackmd.io/@HuWanLin/BkT1kOTF-x"
-    #category: fieldwork
-    date: "Mar 2026"
-    source: "HackMD"
-    excerpt: "把 .gpx 軌跡與手機／相機拍的照片和影片自動對位的工具：以時間校準演算法把多媒體定位到路徑點上，同時產生高度剖面圖，並輸出 .kml / .kmz 供 Google Earth 瀏覽。"
-    topics: [tools]
-  - title: "Creating Perple_X lookup tables"
-    url: "https://hackmd.io/@HuWanLin/H11Dob2ZZg"
-    category: research
-    source: "HackMD"
-    excerpt: "建立濕玄武岩到乾榴輝岩相變模型的流程筆記：build → vertex → werami，產生密度查找表以驅動 slab pull。"
-    topics: [geology, tools]
 
   - title: "Commonly used and basic commands in SAC"
     url: "https://hackmd.io/@HuWanLin/SAC"
     category: research
     source: "HackMD"
-    excerpt: "SAC 常用指令備忘：讀檔、排序、繪圖、標頭欄位操作，以及安裝與學習資源的連結整理。"
+    excerpt: "Reading, sorting and plotting traces, editing header fields, plus links to installation guides and tutorials."
     topics: [tools, seismology]
 
-  - title: "Git 多主機協作完整指南"
+  - title: "Seismic Phase Picker & Record Viewer"
+    url: "https://hackmd.io/@HuWanLin/r1Zfo5OL-l"
+    category: research
+    date: "Jan 2026"
+    source: "HackMD"
+    excerpt: "How to use a tool I wrote for viewing SAC waveforms and picking arrivals: several phases picked independently, bandpass filtering, STA/LTA, envelopes, sorting and zooming, built for large network datasets."
+    topics: [tools, seismology]
+
+  - title: "Creating Perple_X lookup tables"
+    url: "https://hackmd.io/@HuWanLin/H11Dob2ZZg"
+    category: research
+    source: "HackMD"
+    excerpt: "Workflow notes for building a wet basalt to dry eclogite phase transition model for ASPECT: build → vertex → werami, producing the density lookup table that drives slab pull."
+    topics: [geology, tools]
+
+  - title: "Working with Git across several machines"
     url: "https://hackmd.io/@HuWanLin/Hy1YjHJSbl"
     category: research
     source: "HackMD"
-    excerpt: "整理多台機器之間的 Git 協作流程：upstream / origin / clone 的架構、初始設置、日常工作流程、分支管理與視覺化、GitHub Token 設定，附常用指令速查表。"
+    excerpt: "The upstream / origin / clone layout, first-time setup, the day-to-day loop, branch management, GitHub tokens, and a command crib sheet. Written in Mandarin."
     topics: [tools]
+
 # 想再加一則，把下面這段複製出來、拿掉開頭的 # 就好：
 #
 #  - title: "Title"
@@ -137,6 +123,4 @@ notes:
 #    source: "HackMD"
 #    date: "2026"
 #    excerpt: "One or two sentences."
-#
-# 哪天想幫某一則加標籤，就在那一則底下加一行：
-#    topics: [gear, checklist]
+#    topics: [tools]
