@@ -65,14 +65,12 @@ Erto e Casso, Friuli-Venezia Giulia / Longarone, Veneto, Italy · May 2026
 {% include place-map.html lat="46.2672" lon="12.3293" span="0.055" caption="Diga del Vajont — the two photographs were taken upstream on the Monte Toc side and downstream at Longarone" %}
 
 The Monte Toc slide surface
-------
 
 {% include photos.html dir="/images/travel/vajont" files="20260516_152714_monte-toc.jpg" size="tall" %}
 
 <!-- 描述寫在這裡 -->
 
 Longarone
-------
 
 {% include photos.html dir="/images/travel/vajont" files="20260516_184330_longarone.jpg" size="tall" %}
 
