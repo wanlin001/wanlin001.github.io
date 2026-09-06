@@ -11,6 +11,7 @@ venue: 'Geology'
 volume: '50(10), 1161–1165'
 doi: '10.1130/G50229.1'
 openaccess: true
+topics: [structural, tectonics, hazard]
 excerpt: 'A structural-theoretical model resolves the long-standing geological–geodetic slip-rate discrepancy in the Himalaya, with implications for the seismic moment budget of orogens worldwide.'
 ---
 

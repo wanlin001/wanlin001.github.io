@@ -11,6 +11,7 @@ venue: 'Solid Earth'
 volume: '13, 1281–1290'
 doi: '10.5194/se-13-1281-2022'
 openaccess: true
+topics: [structural, uncertainty]
 excerpt: 'Sole-authored. Quantifies how much uncertainty subjective interpretation of seismic images introduces into geological slip-rate estimates.'
 ---
 

@@ -8,6 +8,7 @@ year: 2026
 authors: 'Hu, W.-L. & Tan, E.'
 first_author: true
 venue: 'Manuscript in preparation'
+topics: [geodynamics, anisotropy, modelling]
 excerpt: 'Couples 3-D geodynamic modelling with simulated seismic anisotropy, so that mantle circulation and tectonic evolution can be inferred directly from SKS splitting observations. Presented at EGU 2026 (EGU26-2911).'
 doi: '10.5194/egusphere-egu26-2911'
 ---

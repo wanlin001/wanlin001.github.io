@@ -11,6 +11,7 @@ venue: 'Communications Earth & Environment'
 volume: '6, 726'
 doi: '10.1038/s43247-025-02719-x'
 openaccess: true
+topics: [geodynamics, seismology, modelling]
 excerpt: 'Links seismological source observations to 800-km-scale subduction-zone thermal-mechanical models with nonlinear elasto-plastic-viscous rheology, showing that faulting occurs within thinned continental mantle.'
 ---
 

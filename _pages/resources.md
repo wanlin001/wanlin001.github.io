@@ -34,12 +34,8 @@ Software I use
 Writing for a general audience
 ======
 
-* Hu, W.-L. & Tan, E. (2026). *Continental lithospheric mantle strength revealed by the 2006
-  Pingtung offshore earthquake doublet.* Taiwan Earthquake Science Center Newsletter, (51).
-  [doi:10.30067/TECNL.202603_(51).0003](https://doi.org/10.30067/TECNL.202603_(51).0003) — in Mandarin
-* Hu, W.-L. (2024). *Island of catastrophe — geotourism in northern Sumatra: Banda Aceh.*
-  Geology [Ti-Chi], 43(4), 72–78.
-  [Repository](https://twgeoref.gsmma.gov.tw/GeoWeb/cp.do?action=cp&kt=2748&xItem=312647&ctNode=217&mp=6) — in Mandarin
+My Mandarin-language science writing is listed on the
+[publications page](/publications/#outreach).
 
 Talks & outreach
 ======

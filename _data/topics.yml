@@ -1,0 +1,48 @@
+# ---------------------------------------------------------------------------
+# Research-field tags shown on the publications page.
+#
+# HOW TO ADD A TAG
+#   1. add a block below:            my-key:
+#                                      label: "Display name"
+#                                      color: "#2e9e6b"
+#   2. use it in a publication file: topics: [my-key, another-key]
+#
+# The key is what you type in the front matter; the label is what readers see.
+# Any hex colour works. Delete a block to remove the tag everywhere.
+# ---------------------------------------------------------------------------
+
+geodynamics:
+  label: "Geodynamics"
+  color: "#c0392b"
+
+modelling:
+  label: "Numerical modelling"
+  color: "#d35400"
+
+seismology:
+  label: "Seismology"
+  color: "#8e44ad"
+
+structural:
+  label: "Structural geology"
+  color: "#2e9e6b"
+
+tectonics:
+  label: "Active tectonics"
+  color: "#16a085"
+
+uncertainty:
+  label: "Uncertainty"
+  color: "#2980b9"
+
+anisotropy:
+  label: "Seismic anisotropy"
+  color: "#7f8c8d"
+
+hazard:
+  label: "Seismic hazard"
+  color: "#b7791f"
+
+outreach:
+  label: "科普"
+  color: "#e0407a"

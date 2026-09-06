@@ -40,6 +40,15 @@ author_profile: true
             {% if post.openaccess %} <span class="pub-tag pub-tag--oa">Open access</span>{% endif %}
           </p>
 
+          {% if post.topics %}
+          <p class="topic-tags">
+            {% for t in post.topics %}
+              {% assign td = site.data.topics[t] %}
+              <span class="topic-tag" style="--tt: {{ td.color | default: '#888888' }};">{{ td.label | default: t }}</span>
+            {% endfor %}
+          </p>
+          {% endif %}
+
           {% if post.excerpt %}
             <p class="pub-card__excerpt">{{ post.excerpt | markdownify | remove: '<p>' | remove: '</p>' }}</p>
           {% endif %}

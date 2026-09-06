@@ -10,6 +10,7 @@ venue: 'Geophysical Research Letters'
 volume: '49, e2022GL100283'
 doi: '10.1029/2022GL100283'
 openaccess: true
+topics: [seismology, tectonics]
 excerpt: 'Contributed the tectonic interpretation linking the observed fault bifurcation to the regional structural framework.'
 ---
 

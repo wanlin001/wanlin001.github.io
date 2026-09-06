@@ -26,7 +26,9 @@ layout: compress
       </div>
     </div>
 
-    <!-- Site footer removed. Scripts that used to live in the footer are kept below. -->
+    <!-- Site footer removed; only a one-line "last updated" stamp remains. -->
+    <p class="site-stamp">Last updated {{ site.time | date: '%d %b %Y' }}</p>
+
     {% include footer/custom.html %}
 
     {% include scripts.html %}
