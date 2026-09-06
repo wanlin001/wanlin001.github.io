@@ -27,6 +27,9 @@
 #   · 改完這個檔，本機預覽要按 Ctrl+C 重開才會生效
 # ═══════════════════════════════════════════════════════════════════════════
 
+
+
+
 geodynamics:
   label: "Geodynamics"
   color: "#c0392b"
@@ -80,3 +83,8 @@ tools:
 geology:
   label: "Geology"
   color: "#8b5a2b"
+
+
+seismology:
+  label: "Seismology"
+  color: "#f0f70f"
