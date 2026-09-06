@@ -168,7 +168,27 @@ excerpt: '一兩句話的摘要，顯示在卡片上。'
 ```
 
 **按鈕是自動長出來的**：有 `doi` 就出現 DOI 鈕、有 `paperurl` 就出現 PDF 鈕、有 `codeurl` 就出現 Code & data 鈕，沒填就不顯示。
-有 `doi` 的話，Altmetric 甜甜圈和 Dimensions 引用圈也會自動出現（還沒有被引用/提及時會自己隱藏）。
+
+### 為什麼有些論文沒有 metric 圖示
+
+右上角那兩個圈圈是外部服務即時抓的，**沒有資料時會自己隱藏**（這是刻意設定的，不是壞掉）：
+
+| 圖示 | 顯示條件 | 控制它的設定 |
+|---|---|---|
+| Altmetric 甜甜圈 | 有新聞／社群／政策文件提及過 | `data-hide-no-mentions="true"` |
+| Dimensions 彩色圈 | 被引用次數 > 0 | `data-hide-zero-citations="true"` |
+
+所以沒出現通常是這三種情況之一：
+
+1. **沒有 DOI** —— 那則根本沒辦法查（例如只有 repository 連結的科普文章）
+2. **DOI 有，但資料庫沒收錄** —— 例如台灣的電子報、EGU 的會議摘要
+3. **太新，還沒被引用／提及** —— 過一陣子會自己冒出來，不用做任何事
+
+想改成「就算是 0 也要顯示」：編 `_pages/publications.html`，把那兩個
+`data-hide-no-mentions="true"` 和 `data-hide-zero-citations="true"` 刪掉即可。
+
+要查某一篇現在有沒有資料，在瀏覽器開：
+`https://metrics-api.dimensions.ai/doi/你的DOI`
 
 ---
 
