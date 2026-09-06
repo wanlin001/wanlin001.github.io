@@ -55,6 +55,28 @@ notes:
     source: "HackMD"
     excerpt: "單日行程的精簡版。"
 
+  - title: "Commonly used Linux commands"
+    url: "https://hackmd.io/@HuWanLin/linux_commands"
+    category: research
+    source: "HackMD"
+    excerpt: "備忘用的 Linux 指令表：目錄操作、檔案增刪搬移、文字擷取與 awk、壓縮、SSH 與 HPC 上常用的幾組指令。"
+
+  - title: "Seismic Phase Picker & Record Viewer"
+    url: "https://hackmd.io/@HuWanLin/r1Zfo5OL-l"
+    category: research
+    date: "Jan 2026"
+    source: "HackMD"
+    excerpt: "自己寫的互動式 SAC 波形檢視與到時挑選工具的使用說明：可獨立標記多個震相、bandpass 濾波、STA/LTA、包絡線、排序與縮放，針對大型測網資料設計。"
+
+# ⚠️ 下面這則的 HackMD 筆記目前是「非公開」，貼上去讀者會看到 403。
+#    到 HackMD 把它改成「知道連結的人可以閱讀」之後，把 # 拿掉就會出現。
+#
+#  - title: "Git 常用指令"
+#    url: "https://hackmd.io/@HuWanLin/Hy1YjHJSbl"
+#    category: research
+#    source: "HackMD"
+#    excerpt: "（等筆記公開後補上說明）"
+
 # 想再加一則，把下面這段複製出來、拿掉開頭的 # 就好：
 #
 #  - title: "Title"
