@@ -32,6 +32,7 @@ huwanlin/
 │       ├── navigation.yml          上方選單（含下拉選單）
 │       ├── cv.yml                  CV 的實際內容
 │       ├── topics.yml              研究領域標籤的名稱與顏色
+│       ├── notes.yml               外部文章清單（HackMD/Medium…，手寫）
 │       └── posts.yml               自動抓的部落格文章（程式產生，別手改）
 │
 ├── 🎨 外觀 —— 想調樣式才改
@@ -57,6 +58,7 @@ huwanlin/
 | 改 CV | `_data/cv.yml` |
 | 改選單 | `_data/navigation.yml` |
 | 改顏色 | `assets/css/custom.css` 最上面的 `--wl-accent` |
+| 加 HackMD / 部落格文章 | `_data/notes.yml` |
 
 ### 檔案有兩種寫法
 
@@ -118,6 +120,7 @@ cd ~/Documents/GitHub/huwanlin && bundle exec jekyll serve --port 4321
 | 論文清單**版型** | `_pages/publications.html` |
 | 單篇論文 | `_publications/*.md` |
 | **研究領域標籤（顏色/名稱）** | `_data/topics.yml` |
+| **HackMD / 部落格文章連結** | `_data/notes.yml` |
 | 論文分區（Journal / In prep / 科普…） | `_config.yml` 的 `publication_category` |
 | 上方選單 | `_data/navigation.yml` |
 | 側欄個人資料、社群連結、網站標題 | `_config.yml` 的 `author:` 區塊 |
@@ -482,49 +485,64 @@ MID 在 My Maps 的網址列裡（`...&mid=182NqsK3rnf...`）。
 
 ---
 
-## 14. 把 Medium 文章拉進網站
+## 14. 把外部文章（HackMD / Medium / Notion）放進網站
 
-**能不能直接嵌 Medium 文章？不能。** 兩個技術限制：
+### 最簡單、也最推薦：手寫清單
 
-- Medium 的 RSS **沒有 CORS 標頭** → 網頁用 JavaScript 直接抓會被瀏覽器擋掉
-- Medium 頁面回 `X-Frame-Options: SAMEORIGIN` → **不能用 iframe 嵌進來**
-
-所以做法是「**build 的時候先抓下來**」：GitHub Action 定時讀 RSS → 寫進 `_data/posts.yml` → Jekyll 產生靜態卡片。已經做好了，妳只要填一行設定。
-
-### 開啟
-
-在 `_config.yml` 找到 `external_feeds:`，把註解拿掉、換成自己的帳號：
+編 **`_data/notes.yml`**，一則文章一個區塊：
 
 ```yaml
-external_feeds:
-  - name: Medium
-    url: https://medium.com/feed/@你的帳號
-    limit: 6
+notes:
+  - title: "兩日以上登山裝備清單"
+    url: "https://hackmd.io/@HuWanLin/H1qQUcWX1l"
+    source: "HackMD"
+    date: "26 Feb 2024"
+    excerpt: "多日行程的打包清單，可以直接在頁面上打勾。"
+    image:                      # 可省略
 ```
 
-然後跑一次（之後每週一 GitHub Action 會自動更新）：
+存檔就會在 Resources 頁的「Notes & writing」變成一張卡片。刪掉區塊就消失。
+HackMD、Medium、Notion、Google Doc、任何有網址的東西都能放。**不會壞、不依賴外部服務、一則一分鐘。**
+
+### 可以直接把 HackMD 嵌進頁面嗎？可以
+
+HackMD 沒有擋 iframe（沒有 `X-Frame-Options`，CSP 裡也沒有 `frame-ancestors`），所以可以直接嵌：
+
+```html
+<div class="map-embed">
+  <iframe src="https://hackmd.io/@HuWanLin/H1qQUcWX1l" loading="lazy"></iframe>
+</div>
+```
+
+（`.map-embed` 就是 Fieldwork 地圖用的那個自適應外框，直接借用。）
+
+好處是 HackMD 改了網站就跟著改；壞處是被外框框住、樣式跟網站不一致、Google 也搜不到內容。**建議只在少數幾篇真的想讓人直接讀的內容用**，其他用上面的卡片連結。
+
+> ⚠️ Medium 不行 —— 它回 `X-Frame-Options: SAMEORIGIN`，嵌不進來。
+
+### 想變成網站上真正的頁面？
+
+HackMD 的公開筆記在網址後面加 `/download` 會回傳原始 Markdown：
+
+```bash
+curl -L "https://hackmd.io/@HuWanLin/H1qQUcWX1l/download" -o _pages/gear-list.md
+```
+
+下載後在檔案最上面補一段 front matter（`---` 包住 `title:` 和 `permalink:`），它就變成網站上的一頁，樣式一致、Google 也搜得到。缺點是 HackMD 之後改了不會自動同步，要重跑一次指令。需要自動化再說。
+
+### Medium 自動抓（選用，預設關閉）
+
+Medium 的 RSS **沒有 CORS 標頭**，網頁用 JavaScript 直接抓會被瀏覽器擋，所以只能在 build 的時候抓。
+`_config.yml` 裡的 `external_feeds:` 拿掉註解、填帳號，然後跑：
 
 ```bash
 python3 scripts/fetch_feeds.py
 ```
 
-文章卡片會出現在 Resources 頁的「Blog posts」區。沒設定的話那一區會自動隱藏。
+抓到的文章會寫進 `_data/posts.yml`，接在手寫清單後面一起顯示。沒設定的話完全不影響。
+Substack、WordPress 也通用。
 
-Substack、WordPress、任何有 RSS 的網站都能用，`external_feeds:` 底下可以列好幾個。
-
-### 想手動控制就好
-
-其實最省事的做法是**直接在 `_pages/resources.md` 寫連結**：
-
-```markdown
-* [文章標題](https://medium.com/@你的帳號/xxx) — 一句話說明
-```
-
-一篇文章一分鐘，不會壞、不依賴外部服務。文章不多的話推薦這個。
-
-### 注意
-
-不建議把 Medium 全文複製過來 —— 一來 SEO 會被判定重複內容，二來以後改稿要改兩個地方。放標題＋摘要＋連結就好，這也是這個功能的做法。
+> 不建議把全文複製過來：SEO 會判定重複內容，而且以後改稿要改兩個地方。
 
 ---
 

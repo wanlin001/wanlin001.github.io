@@ -45,12 +45,23 @@ Talks & outreach
   *"Fallen into a rabbit hole — navigating challenges as an international student"*
 * 2021 — First place, Three Minute Thesis (3MT), Asian School of the Environment, NTU Singapore
 
-Blog posts
+Notes & writing
 ======
 
-{% if site.data.posts.posts and site.data.posts.posts.size > 0 %}
+{% assign feed_posts = site.data.posts.posts %}
+{% if site.data.notes.notes.size > 0 or feed_posts.size > 0 %}
 <div class="post-list">
-{% for post in site.data.posts.posts limit: 6 %}
+{% for note in site.data.notes.notes %}
+  <a class="post-card" href="{{ note.url }}" target="_blank" rel="noopener">
+    {% if note.image %}<span class="post-card__thumb" style="background-image:url('{{ note.image }}');"></span>{% endif %}
+    <span class="post-card__text">
+      <span class="post-card__title">{{ note.title }}</span>
+      <span class="post-card__meta">{{ note.source }}{% if note.date %} · {{ note.date }}{% endif %}</span>
+      {% if note.excerpt %}<span class="post-card__excerpt">{{ note.excerpt }}</span>{% endif %}
+    </span>
+  </a>
+{% endfor %}
+{% for post in feed_posts limit: 6 %}
   <a class="post-card" href="{{ post.url }}" target="_blank" rel="noopener">
     {% if post.image %}<span class="post-card__thumb" style="background-image:url('{{ post.image }}');"></span>{% endif %}
     <span class="post-card__text">
@@ -61,8 +72,6 @@ Blog posts
   </a>
 {% endfor %}
 </div>
-{% else %}
-*Nothing here yet — see [README §14](https://github.com/wanlin001/wanlin001.github.io#14-把-medium-文章拉進網站) for how to pull in a Medium or Substack feed.*
 {% endif %}
 
 For students
