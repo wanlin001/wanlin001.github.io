@@ -116,12 +116,23 @@ author_profile: true
 {% if talks.size > 0 %}
 <section class="pub-section" id="conferences">
   <h2>Conference presentations</h2>
+  {% if site.author.googlescholar %}<p class="talks-note">Abstracts are also indexed on <a href="{{ site.author.googlescholar }}">Google Scholar</a>.</p>{% endif %}
   <ol class="talks">
   {% for t in talks %}
     <li class="talk">
       <span class="talk__year">{{ t.year }}</span>
       <span class="talk__body">
-        <span class="talk__title">{% if t.doi %}<a href="https://doi.org/{{ t.doi }}">{{ t.title }}</a>{% else %}{{ t.title }}{% endif %}{% if t.invited %} <span class="talk__invited">Invited</span>{% endif %}</span>
+        {%- comment -%} anything in [square brackets] at the start becomes a small boxed label {%- endcomment -%}
+        {%- assign parts = t.title | split: "]" -%}
+        {%- if t.title contains "[" and parts.size > 1 -%}
+          {%- assign label = parts[0] | remove: "[" | strip -%}
+          {%- assign plain = parts[1] | strip -%}
+        {%- else -%}
+          {%- assign label = "" -%}
+          {%- assign plain = t.title -%}
+        {%- endif -%}
+        {%- if t.doi -%}{%- assign href = t.doi | prepend: "https://doi.org/" -%}{%- else -%}{%- assign href = t.url -%}{%- endif -%}
+        <span class="talk__title">{% if label != "" %}<span class="talk__label">{{ label }}</span> {% endif %}{% if href %}<a href="{{ href }}" target="_blank" rel="noopener">{{ plain }}</a>{% else %}{{ plain }}{% endif %}</span>
         <span class="talk__meta">{{ t.authors }} · {{ t.venue }}{% if t.place %}, {{ t.place }}{% endif %}</span>
       </span>
     </li>

@@ -111,13 +111,7 @@ huwanlin/
 
 ## 1. 發布前一定要知道的兩件事
 
-**（1）發布分支**
-
-網站是從 GitHub 上的某一個分支自動 build 的。本機工作分支是 `main`。
-到 `Settings → Pages → Build and deployment → Branch` 確認選的是 **`main`**。
-（細節見 [15. 分支設定](#15-分支設定)。）
-
-**（2）改完要 push，網站才會變**
+### （1）改完要 push，網站才會變
 
 ```bash
 cd ~/Documents/GitHub/huwanlin
@@ -126,7 +120,58 @@ git commit -m "說明改了什麼"
 git push
 ```
 
-push 後等 1–3 分鐘，GitHub 自動重新 build。進度看 repo 的 **Actions** 分頁。
+push 後等 **1–3 分鐘**，GitHub 自動重新 build。進度看 repo 的 **Actions** 分頁。
+
+**這個環境會自動幫妳 commit，但不會自動 push。** 所以線上沒變的話，先跑 `git push`。
+想確認有沒有東西卡著：
+
+```bash
+git log --oneline origin/main..main      # 有列出東西 = 還沒 push
+```
+
+### （2）⚠️ 為什麼「我自己改都不會更新」
+
+這個 repo 有 **兩個分支**：
+
+| 分支 | 用途 |
+|---|---|
+| `main` | 妳工作的分支，`git push` 預設推這裡 |
+| `master` | **GitHub Pages 實際發布的分支** |
+
+**推到 `main` 網站不會變** —— 一定要 `master` 也更新。這就是為什麼妳改了半天線上沒動。
+
+**已經幫妳設定好了**，現在 `git push` 會同時推兩個分支：
+
+```bash
+git config --get-all remote.origin.push
+#   refs/heads/main:refs/heads/main
+#   refs/heads/main:refs/heads/master
+```
+
+⚠️ **換電腦或重新 clone 之後，這兩行要再跑一次**（跟圖片壓縮的 hook 一樣，設定不會跟著 git 走）：
+
+```bash
+cd ~/Documents/GitHub/huwanlin
+git config --add remote.origin.push refs/heads/main:refs/heads/main
+git config --add remote.origin.push refs/heads/main:refs/heads/master
+```
+
+**更乾淨的一勞永逸解法**（做一次就不用管上面那些）：
+
+1. GitHub → `Settings` → `Pages` → `Build and deployment` → Branch 改成 **`main`** → Save
+2. `Settings` → `General` → Default branch 改成 **`main`**
+3. 確認網站正常後，把 `master` 分支刪掉，再把上面那兩行 config 清掉：
+   `git config --unset-all remote.origin.push`
+
+### 怎麼確認到底哪裡卡住
+
+```bash
+git fetch origin
+git log --oneline origin/main..main       # 空的 = main 已同步
+git rev-parse --short main origin/main origin/master   # 三個一樣 = 都同步了
+```
+
+三個 hash 一樣，網站又沒變，那才是 build 出錯 —— 去 Actions 分頁看紅字。
 
 ---
 
@@ -277,6 +322,9 @@ image: /images/travel/vajont/20260516_152714_monte-toc.jpg
 | `image` | 左邊改放小圖（會蓋掉 icon）。建議用現成的照片 |
 | `link` | 有寫 → 標題連到這裡，內文不會產生頁面<br>沒寫 → 標題連到自己的頁面 |
 
+**超過 5 則會自動收起來**，底下出現一個「See N more」按鈕，點了在同一頁展開，
+再點一次收合。不用做任何設定。
+
 ### Guides —— 網站導覽的方塊
 
 在 **`_data/home.yml`** 的 guides 清單：
@@ -285,11 +333,10 @@ image: /images/travel/vajont/20260516_152714_monte-toc.jpg
   - title: "Research"
     url: /research/
     icon: "fas fa-globe-asia"
-    excerpt: "What I work on, and the tools I use."
 ```
 
-說明**寫一行就好**，方塊會自動排成網格。圖示到
-<https://fontawesome.com/search?o=r&m=free> 找，挑 Free 的，複製它的 class 名稱。
+**只有圖示和標題，沒有說明文字** —— 方塊小而整齊，自動排成網格。
+圖示到 <https://fontawesome.com/search?o=r&m=free> 找，挑 Free 的，複製它的 class 名稱。
 
 ---
 
@@ -361,15 +408,30 @@ paperurl: '/files/Hu-Tan-2026-Tectonophysics.pdf'
 
 卡片上就會多一個 **PDF** 按鈕。檔名用 `作者-年-期刊.pdf` 最好認，**不要有空格和中文**。
 
-> ⚠️ **期刊 PDF 通常很大，先壓再放。** 22 MB 的原檔壓到 3.7 MB 完全看不出差別：
->
-> ```bash
-> gs -sDEVICE=pdfwrite -dPDFSETTINGS=/ebook -dNOPAUSE -dQUIET -dBATCH \
->    -dColorImageResolution=200 -dGrayImageResolution=200 \
->    -sOutputFile=小的.pdf 原本的.pdf
-> ```
->
-> （圖片會自動壓縮，PDF 不會 —— 這個要手動跑。）
+### ⚠️ PDF 不會自動壓縮，要手動跑
+
+`images/` 底下的圖片 commit 時會自動壓縮，**PDF 不會** —— 期刊 PDF 動輒二三十 MB，
+直接放進 git 會永久留在歷史裡，repo 越拖越慢。
+
+```bash
+gs -sDEVICE=pdfwrite -dPDFSETTINGS=/ebook -dNOPAUSE -dQUIET -dBATCH \
+   -dColorImageResolution=200 -dGrayImageResolution=200 \
+   -sOutputFile=小的.pdf 原本的.pdf
+```
+
+Tectonophysics 那篇實測：**22 MB → 3.7 MB**，16 頁完整、畫質看不出差別。
+
+需要的話先裝 Ghostscript（只要裝一次）：
+
+```bash
+brew install ghostscript
+```
+
+檢查頁數有沒有掉：
+
+```bash
+python3 -c "import re,sys; d=open(sys.argv[1],'rb').read(); print(len(re.findall(rb'/Type\s*/Page[^s]', d)), '頁')" 小的.pdf
+```
 
 ⚠️ 出版社的版權規定不一。多數期刊允許放 **accepted manuscript**，不見得允許放
 **published PDF**。不確定就查 <https://openpolicyfinder.jisc.ac.uk/>，或只留 DOI。
@@ -387,11 +449,26 @@ conferences:
     title: "Geodynamic modelling of slab–slab interactions…"
     venue: "EGU General Assembly"
     place: "Vienna, Austria"
-    doi: "10.5194/egusphere-egu26-2911"  # 可省略，有就變成連結
-    invited: true                        # 可省略，受邀演講才寫
+    doi: "10.5194/egusphere-egu26-2911"   # 可省略，有就變成連結
+    url: "https://..."                    # 沒有 DOI 但有網址就用這個
 ```
 
 新的寫最上面。
+
+**想標註什麼，就用方括號寫在標題開頭：**
+
+```yaml
+    title: "[Invited] How do differences in interpreting seismic images…"
+    title: "[Poster] Blind fault branching beneath Central Myanmar Basin"
+    title: "[Keynote] …"
+```
+
+方括號裡的字會自動變成一個**框起來的小標籤**，內容隨妳寫，**不用先定義任何分類**。
+
+摘要連結：有 DOI 就填 `doi:`；沒有的話，多數摘要在
+[Google Scholar](https://scholar.google.com/citations?user=UTmGp2YAAAAJ&hl=zh-TW)
+上找得到網址，填進 `url:` 即可。頁面上也放了一行指向妳的 Scholar。
+
 
 ---
 
@@ -1120,6 +1197,10 @@ dig wanlinhu.com +short         # apex：應該看到那四個 185.199.x.153
 - **深色模式先套用**（`_includes/head/custom.html` 最上面那段內嵌 script）。原本主題是等
   `main.min.js` 載完才套，深色模式使用者會先看到一閃的白底。那段 script 必須留在 `<head>`、
   必須是同步的、而且**不能有 `//` 註解**。
+- **深色模式只換底色，不換強調色**（`custom.css` 最上面）。原本深色模式會把綠色和橘色
+  換成比較亮的版本，結果同一張卡片在手機（深色）和筆電（淺色）看起來顏色不一樣。
+  現在強調色、標籤色在兩種模式下**完全相同**，只有背景和陰影會變。
+  改配色時請一起維持這個原則。
 - **移除的東西**：Talks、Teaching、Portfolio、Blog posts、talkmap、markdown_generator、範例文章與圖檔。要救回來的話：`git log` 找得到，或去原始模板 repo 抓。
 
 ---

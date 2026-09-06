@@ -4,17 +4,20 @@
    ========================================================================== */
 
 :root {
-  --wl-accent:        #2e9e6b;   /* primary accent (buttons, chips, rules)  */
+  --wl-accent:        #1f7a51;   /* primary accent (buttons, chips, rules)  */
   --wl-accent-soft:   #e8f5ee;   /* tinted background for chips/cards       */
   --wl-accent-dark:   #22795220;
-  --wl-badge-journal: #2e9e6b;
-  --wl-badge-prep:    #f0932b;
-  --wl-badge-conf:    #3b82c4;
-  --wl-badge-outreach:#8e6bc4;
+  --wl-badge-journal: #1f7a51;   /* darker so it reads the same on a phone */
+  --wl-badge-prep:    #b45309;
+  --wl-badge-conf:    #1d4ed8;
+  --wl-badge-outreach:#6d28d9;
   --wl-card-bg:       #ffffff;
   --wl-card-shadow:   0 1px 2px rgba(0,0,0,.06), 0 4px 14px rgba(0,0,0,.05);
 }
 
+/* Dark mode changes the paper, never the ink: the accent and the tag colours
+   stay identical, so a card looks the same on a phone in dark mode as it does
+   on a laptop in light mode. */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     --wl-accent-soft: #17352a;
@@ -595,11 +598,7 @@ body { padding-top: var(--masthead-h); }
 
 /* --- home: News gets its own colour, distinct from the site green -------- */
 
-:root { --wl-news: #c2410c; }          /* burnt orange */
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) { --wl-news: #fb923c; }
-}
-:root[data-theme="dark"] { --wl-news: #fb923c; }
+:root { --wl-news: #b8430f; }   /* burnt orange, same in light and dark */
 
 .post-list--news .post-card { border-left-color: var(--wl-news); }
 .post-list--news .post-card__title { color: var(--wl-news); }
@@ -608,14 +607,17 @@ body { padding-top: var(--masthead-h); }
 
 .guide-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
-  gap: .7em;
+  grid-template-columns: repeat(auto-fill, minmax(122px, 1fr));
+  gap: .6em;
   margin: 1.1em 0 2em 0;
 }
 
 .guide {
-  display: block;
-  padding: 1em .95em .9em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 1.05em .7em .9em;
   border: 1px solid var(--global-border-color);
   border-radius: 8px;
   background: var(--wl-card-bg);
@@ -634,9 +636,9 @@ body { padding-top: var(--masthead-h); }
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 2.1em;
-  height: 2.1em;
-  margin-bottom: .55em;
+  width: 2.3em;
+  height: 2.3em;
+  margin-bottom: .5em;
   border-radius: 7px;
   background: var(--wl-accent-soft);
   color: var(--wl-accent);
@@ -645,8 +647,8 @@ body { padding-top: var(--masthead-h); }
 .guide__title {
   display: block;
   font-weight: 600;
+  font-size: .92em;
   line-height: 1.3;
-  margin-bottom: .2em;
 }
 .guide__text {
   display: block;
@@ -682,15 +684,20 @@ body { padding-top: var(--masthead-h); }
   color: var(--global-text-color-light);
   margin-top: .1em;
 }
-.talk__invited {
+.talk__label {
+  display: inline-block;
   font-size: .72em;
   font-weight: 600;
+  letter-spacing: .02em;
   color: var(--wl-accent);
   border: 1px solid var(--wl-accent);
   border-radius: 3px;
-  padding: 0 .35em;
+  padding: .05em .4em;
+  margin-right: .15em;
   vertical-align: 1px;
+  white-space: nowrap;
 }
+.talks-note { font-size: .82em; color: var(--global-text-color-light); margin: 0 0 .4em 0; }
 
 /* language note on a publication card, e.g. "in Mandarin" */
 .pub-lang {
@@ -778,3 +785,23 @@ body { padding-top: var(--masthead-h); }
 }
 .trip-meta i { margin-right: .3em; opacity: .8; }
 .trip-meta__sep { margin: 0 .55em; opacity: .5; }
+
+/* "See more" under the home page news list */
+.news-more {
+  display: inline-flex;
+  align-items: center;
+  gap: .4em;
+  margin: -1.4em 0 2.2em 0;
+  padding: .3em .9em;
+  font-family: inherit;
+  font-size: .8em;
+  border: 1px solid var(--global-border-color);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--global-text-color-light);
+  cursor: pointer;
+  transition: border-color .15s ease, color .15s ease;
+}
+.news-more:hover { border-color: var(--wl-news); color: var(--wl-news); }
+.news-more::after { content: "▾"; font-size: .9em; }
+.news-more.is-open::after { content: "▴"; }

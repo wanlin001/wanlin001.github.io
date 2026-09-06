@@ -31,25 +31,28 @@ News
 
 {% assign items = site.news | sort: "date" | reverse %}
 {% if items.size > 0 %}
-<ul class="news">
+<ul class="news" id="news-list">
 {% for n in items %}
   {% assign target = n.link | default: n.url %}
-  {% assign has_page = false %}
-  {% if n.content != blank %}{% assign has_page = true %}{% endif %}
-  {% if n.link %}{% assign has_page = false %}{% endif %}
-  <li class="news__item">
+  {% assign clickable = true %}
+  {% unless n.link %}{% if n.content == blank %}{% assign clickable = false %}{% endif %}{% endunless %}
+  <li class="news__item{% if forloop.index > 5 %} news__item--extra{% endif %}"{% if forloop.index > 5 %} hidden{% endif %}>
     <span class="news__mark">
       {% if n.image %}<span class="news__thumb" style="background-image:url('{{ n.image }}');"></span>
       {% else %}<i class="{{ n.icon | default: 'fas fa-circle-dot' }}" aria-hidden="true"></i>{% endif %}
     </span>
     <time class="news__date" datetime="{{ n.date | date: '%Y-%m-%d' }}">{{ n.date | date: "%d %b %Y" }}</time>
     <span class="news__title">
-      {% if has_page or n.link %}<a href="{{ target }}"{% if target contains '://' %} target="_blank" rel="noopener"{% endif %}>{{ n.title }}</a>
+      {% if clickable %}<a href="{{ target }}"{% if target contains '://' %} target="_blank" rel="noopener"{% endif %}>{{ n.title }}</a>
       {% else %}{{ n.title }}{% endif %}
     </span>
   </li>
 {% endfor %}
 </ul>
+{% if items.size > 5 %}
+<button type="button" class="news-more" id="news-more"
+        data-more="See {{ items.size | minus: 5 }} more" data-less="Show less">See {{ items.size | minus: 5 }} more</button>
+{% endif %}
 {% endif %}
 
 Guides
@@ -63,7 +66,6 @@ Guides
   <a class="guide" href="{{ g.url }}"{% if g.url contains '://' %} target="_blank" rel="noopener"{% endif %}>
     <span class="guide__icon"><i class="{{ g.icon | default: 'fas fa-arrow-right' }}" aria-hidden="true"></i></span>
     <span class="guide__title">{{ g.title }}</span>
-    {% if g.excerpt %}<span class="guide__text">{{ g.excerpt }}</span>{% endif %}
   </a>
 {% endfor %}
 </div>

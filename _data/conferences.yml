@@ -8,8 +8,13 @@
 #       title    講題
 #       venue    會議名稱
 #       place    地點
-#       doi      有摘要 DOI 就填，會變成可以點的連結（可省略）
-#       invited  受邀演講寫 true，會標一個 Invited（可省略）
+#       doi      有摘要 DOI 就填，標題會變成連結（可省略）
+#       url      沒有 DOI 但有網址（例如 Google Scholar 上的摘要）就填這個（可省略）
+#
+#  ── 想標註什麼就用方括號寫在 title 開頭 ──────────────────────────────────
+#     title: "[Invited] How do differences in…"
+#     title: "[Poster] Blind fault branching…"
+#     方括號裡的字會自動變成一個框起來的小標籤，內容隨妳寫，不用先定義。
 #
 #  順序：新的寫最上面。
 #  改完驗一下：ruby -ryaml -e 'YAML.load_file("_data/conferences.yml"); puts "OK"'
@@ -32,10 +37,9 @@ conferences:
 
   - authors: "Hu, W.-L."
     year: 2023
-    title: "How do differences in interpreting seismic images affect estimates of geological slip rates?"
+    title: "[Invited] How do differences in interpreting seismic images affect estimates of geological slip rates?"
     venue: "EGU General Assembly"
     place: "Vienna, Austria"
-    invited: true
 
   - authors: "Hu, W.-L., et al."
     year: 2023

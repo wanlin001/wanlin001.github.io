@@ -58,19 +58,6 @@ station the gorge frames the dam wall almost exactly.
 Written up in more detail in [this note](/news/2026-05-16-vajont/).
 
 
-{% include trip.html title="Nepal — Himalaya" when="Nov 2022"
-                     place="Pokhara, Mustang and the Kali Gandaki valley"
-                     mid="182NqsK3rnf44xUX4dDm4nh-JwxQ-F40"
-                     caption="2022 HKT workshop field trip" %}
-
-The HKT Workshop in Pokhara, then a run along the Main Frontal Thrust and up the Kali Gandaki
-valley into Mustang.
-
-<!-- 照片放進 images/travel/nepal/ 之後，把這一行的註解符號拿掉就會出現
-{% raw %}{% include photos.html dir="/images/travel/nepal" files="1.jpg, 2.jpg, 3.jpg" %}{% endraw %}
--->
-
-
 {% include trip.html title="Sumatra — Aceh" when="2022"
                      place="Banda Aceh, Indonesia"
                      lat="5.5483" lon="95.3238" span="0.35" %}
