@@ -24,7 +24,7 @@
 - [10. Notes 與 Travel 的積木](#10-notes-與-travel-的積木) — Notes 的分類與欄位；照片、地圖、連結卡三個 include
 - [11. 照片牆](#11-照片牆) — photo-grid 怎麼用
 - [11b. 照片牆](#11b-照片牆) — 一整頁的照片牆，滑過去顯示說明，點開看大圖
-- [11c. 圖片自動壓縮](#11c-圖片自動壓縮) — commit 時自動縮圖，不用再手動處理
+- [11c. 圖片自動壓縮](#11c-圖片自動壓縮) — commit 時自動縮圖；**換電腦要重跑一行設定**
 - [12. Google My Maps](#12-google-my-maps) — embed 網址怎麼組，為什麼地圖會是空白的
 - [13. 把外部文章放進網站](#13-把外部文章放進網站) — HackMD / Medium 三種做法，能不能直接嵌
 
@@ -615,10 +615,8 @@ captions:
 
 ## 11c. 圖片自動壓縮
 
-**不用再手動跑 sips 了。** 只要 commit 含有 `images/` 底下的圖片，
-超過標準的會在 commit 當下自動壓縮並重新加入這次提交。
-
-看起來像這樣：
+**不用再手動跑 sips 了。** 只要 commit 的內容含有 `images/` 底下的圖片，
+超過標準的會在 commit 當下自動壓縮，並重新加入這次提交。
 
 ```
 $ git commit -m "add photos"
@@ -628,6 +626,41 @@ $ git commit -m "add photos"
 ───────────────────────────────────────────────
 ```
 
+### ⚠️ 三件要記得的事
+
+**1. 換電腦、或重新 clone 之後，要再跑一次這行**
+
+```bash
+cd ~/Documents/GitHub/huwanlin && git config core.hooksPath .githooks
+```
+
+git 不會把 `.git/hooks/` 存進版本控制，所以 hook 放在 `.githooks/`（這個有進 git），
+再用上面這行把 git 指過去。**只有這行設定要重跑，hook 本身不用重裝。**
+忘了跑的話不會報錯，只是壓縮不會發生 —— 原尺寸照片會直接被推上去。
+
+想確認現在有沒有生效：
+
+```bash
+git config core.hooksPath        # 印出 .githooks 就是好的
+```
+
+**2. 臨時想跳過壓縮**
+
+```bash
+git commit --no-verify -m "訊息"
+```
+
+**3. HEIC 不會自動轉**
+
+iPhone 預設拍 `.heic`，瀏覽器支援不完整。commit 時偵測到會出現提醒，但**不會自動處理** ——
+因為轉檔會改副檔名，可能默默弄壞頁面裡既有的引用。手動轉：
+
+```bash
+sips -s format jpeg -s formatOptions 55 檔名.heic --out 檔名.jpg
+```
+
+轉完記得把原本的 `.heic` 刪掉。
+
 ### 標準
 
 | 項目 | 上限 |
@@ -636,13 +669,13 @@ $ git commit -m "add photos"
 | 檔案大小 | 600 KB |
 | JPEG 品質 | 55 |
 
-兩項都符合就完全不碰。**已經壓過的檔案再 commit 一百次也不會重壓**，
-所以不會有「越壓越糊」的問題。
+兩項都符合就完全不碰。**已經壓過的檔案再 commit 一百次也不會重壓** ——
+壓縮是先在暫存檔試做、確認真的變小才採用，所以不會有「越壓越糊」的問題。
 
 想改標準，編 `scripts/optimize_images.sh` 最上面那三行，或臨時覆寫：
 
 ```bash
-MAX_EDGE=2000 MAX_KB=900 scripts/optimize_images.sh
+MAX_EDGE=2000 MAX_KB=900 ./scripts/optimize_images.sh
 ```
 
 ### 手動整理整個資料夾
@@ -659,19 +692,6 @@ cd ~/Documents/GitHub/huwanlin && ./scripts/optimize_images.sh
 |---|---|
 | `.githooks/pre-commit` | commit 時自動觸發 |
 | `scripts/optimize_images.sh` | 實際做壓縮的程式，也可以單獨執行 |
-
-hook 已經設定好了（`git config core.hooksPath .githooks`）。
-**如果哪天在另一台電腦重新 clone，要再跑一次那行指令**，否則 hook 不會生效。
-
-臨時想跳過壓縮：`git commit --no-verify`
-
-### HEIC
-
-iPhone 預設拍 `.heic`，瀏覽器支援不完整。commit 時如果偵測到會提醒妳，先轉成 JPG：
-
-```bash
-sips -s format jpeg -s formatOptions 55 檔名.heic --out 檔名.jpg
-```
 
 ---
 
