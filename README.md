@@ -23,6 +23,7 @@
 - [9. 下拉選單](#9-下拉選單) — 用 children: 做子選單，怎麼改回單層
 - [10. Notes 與 Travel 的積木](#10-notes-與-travel-的積木) — Notes 的分類與欄位；照片、地圖、連結卡三個 include
 - [11. 照片牆](#11-照片牆) — photo-grid 怎麼用
+- [11b. 照片牆](#11b-照片牆) — 一整頁的照片牆，滑過去顯示說明，點開看大圖
 - [12. Google My Maps](#12-google-my-maps) — embed 網址怎麼組，為什麼地圖會是空白的
 - [13. 把外部文章放進網站](#13-把外部文章放進網站) — HackMD / Medium 三種做法，能不能直接嵌
 
@@ -555,6 +556,51 @@ ls -lh ~/Documents/GitHub/huwanlin/images/travel/新地方/
 最後 `git add -A && git commit -m "add photos" && git push`。
 
 **只放一張照片時**版面會自動變寬（最高 560px），直式照片也會保持正確比例，不會被拉扁。
+
+## 11b. 照片牆
+
+一頁把所有照片攤開來看：<https://wanlin001.github.io/photos/>（選單 → Others → Photos）
+
+### 加照片 = 把檔案丟進資料夾，沒了
+
+```bash
+sips -Z 1600 -s format jpeg -s formatOptions 55 ~/來源/*.jpg
+cp ~/來源/*.jpg ~/Documents/GitHub/huwanlin/images/gallery/
+```
+
+`images/gallery/` 底下的圖片會**自動出現**在照片牆上，不用登記在任何檔案裡。
+`images/travel/` 底下的照片也會一起出現，所以旅行頁放過的照片不用再複製一份。
+
+支援 `.jpg` / `.jpeg` / `.png` / `.webp`，依檔名反序排列（新的在前，所以檔名用日期開頭最順）。
+
+### 說明文字：滑鼠移過去才出現
+
+平常照片是乾乾淨淨的，**滑鼠指到才會從底部浮出說明**，不佔版面。
+手機沒有 hover，所以會直接顯示。
+
+說明寫在 `_data/gallery.yml`，**完全是選用的**：
+
+```yaml
+captions:
+  monte-toc-scar.jpg: "Monte Toc 的滑動面"
+  20260516_longarone.jpg: "從車站望向峽谷"
+```
+
+只寫**檔名**，不用寫資料夾。沒登記的照片就沒有說明，滑過去不會有東西跳出來。
+
+### 點下去看大圖
+
+點任何一張會開全螢幕檢視：
+
+| 操作 | 效果 |
+|---|---|
+| 點照片 | 開啟大圖 |
+| `←` `→` 或畫面兩側的箭頭 | 上一張／下一張 |
+| `Esc` 或點背景 | 關閉 |
+
+程式在 `assets/js/photo-wall.js`，版面在 `custom.css` 的 `.wall` 和 `.lightbox` 區塊。
+
+---
 
 ## 12. Google My Maps
 
