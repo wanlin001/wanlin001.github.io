@@ -100,6 +100,16 @@ publication_category:
     title: 'Conference presentations'
     label: 'Conference'
 
+# External blog feeds (Medium, Substack, WordPress, ...)
+# Pulled at build time by scripts/fetch_feeds.py into _data/posts.yml and
+# rendered on the Resources page. Medium's RSS sends no CORS header and its
+# pages refuse to be framed, so fetching in the browser is not an option.
+# Uncomment and put your own handle in, then run:  python3 scripts/fetch_feeds.py
+external_feeds:
+#  - name: Medium
+#    url: https://medium.com/feed/@your-handle
+#    limit: 6
+
 # Site Settings
 teaser                   :  # filename of teaser fallback teaser image placed in /images/ for social media previews
 breadcrumbs              : false # true, false (default)

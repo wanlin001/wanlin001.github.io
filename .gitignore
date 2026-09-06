@@ -24,3 +24,4 @@ package-lock.json
 
 # local editor/agent config
 .claude/
+.jekyll-cache/

@@ -4,6 +4,69 @@
 
 ---
 
+## 網站架構 — 一張圖看懂
+
+網站的原理只有一句話：**妳寫內容 → Jekyll 套版 → 變成 HTML → GitHub 幫妳放到網路上。**
+所以檔案分成三堆：**內容**（常改）、**設定**（偶爾改）、**引擎**（不要碰）。
+
+```
+huwanlin/
+│
+├── ✏️ 內容 —— 平常就是改這些
+│   ├── _pages/                  一個檔 = 一個頁面
+│   │   ├── about.md                首頁（About me）
+│   │   ├── research.md             Research
+│   │   ├── fieldwork.md            Fieldwork（含 Google 地圖）
+│   │   ├── resources.md            Resources
+│   │   ├── publications.html       論文列表（版型，內容在 _publications/）
+│   │   ├── cv.html                 CV（版型，內容在 _data/cv.yml）
+│   │   └── 404.md / sitemap.md     很少動
+│   │
+│   ├── _publications/           一個檔 = 一篇論文（含中文科普）
+│   ├── images/                  所有圖片
+│   └── files/                   PDF、投影片、CV
+│
+├── ⚙️ 設定 —— 偶爾改
+│   ├── _config.yml              網站標題、側欄資料、論文分區
+│   └── _data/
+│       ├── navigation.yml          上方選單（含下拉選單）
+│       ├── cv.yml                  CV 的實際內容
+│       ├── topics.yml              研究領域標籤的名稱與顏色
+│       └── posts.yml               自動抓的部落格文章（程式產生，別手改）
+│
+├── 🎨 外觀 —— 想調樣式才改
+│   └── assets/css/custom.css    所有客製樣式（配色、卡片、標籤、下拉選單）
+│
+└── 🔒 引擎 —— 不要碰
+    ├── _includes/  _layouts/  _sass/     佈景的內部零件
+    ├── assets/（custom.css 以外）        佈景的 CSS/JS/字型
+    ├── Gemfile / Dockerfile / .devcontainer/   環境設定
+    ├── .github/workflows/                自動化（build 檢查、抓 RSS）
+    └── scripts/                          小工具程式
+```
+
+> 三個例外：`_includes/masthead.html`（下拉選單）、`_includes/head/custom.html`（載入 custom.css）、
+> `_layouts/default.html`（頁尾那行 Last updated）——這三個已經改過了，除非要動選單或頁尾，否則別碰。
+
+### 90% 的情況只會用到這五個地方
+
+| 我想… | 改這個 |
+|---|---|
+| 改文字 | `_pages/` 裡對應的 `.md` |
+| 加論文 | `_publications/` 新增一個 `.md` |
+| 改 CV | `_data/cv.yml` |
+| 改選單 | `_data/navigation.yml` |
+| 改顏色 | `assets/css/custom.css` 最上面的 `--wl-accent` |
+
+### 檔案有兩種寫法
+
+- **`.md`（Markdown）** —— 純文字，`**粗體**`、`[連結](網址)`、`* 清單`。**大部分頁面都是這種。**
+- **`.html`** —— 需要「自動列出一堆東西」時才用（論文列表、CV timeline）。這種頁面的**內容**都被抽到 `_data/` 的 YAML 裡了，所以妳還是不用寫 HTML。
+
+每個檔案最上面用 `---` 包起來的那幾行叫 **front matter**，是給 Jekyll 看的設定（標題、網址、分類）。`---` 底下才是正文。
+
+---
+
 ## 0. 最重要的兩件事
 
 **（1）發布分支**
@@ -419,7 +482,53 @@ MID 在 My Maps 的網址列裡（`...&mid=182NqsK3rnf...`）。
 
 ---
 
-## 13. 出事了怎麼辦
+## 14. 把 Medium 文章拉進網站
+
+**能不能直接嵌 Medium 文章？不能。** 兩個技術限制：
+
+- Medium 的 RSS **沒有 CORS 標頭** → 網頁用 JavaScript 直接抓會被瀏覽器擋掉
+- Medium 頁面回 `X-Frame-Options: SAMEORIGIN` → **不能用 iframe 嵌進來**
+
+所以做法是「**build 的時候先抓下來**」：GitHub Action 定時讀 RSS → 寫進 `_data/posts.yml` → Jekyll 產生靜態卡片。已經做好了，妳只要填一行設定。
+
+### 開啟
+
+在 `_config.yml` 找到 `external_feeds:`，把註解拿掉、換成自己的帳號：
+
+```yaml
+external_feeds:
+  - name: Medium
+    url: https://medium.com/feed/@你的帳號
+    limit: 6
+```
+
+然後跑一次（之後每週一 GitHub Action 會自動更新）：
+
+```bash
+python3 scripts/fetch_feeds.py
+```
+
+文章卡片會出現在 Resources 頁的「Blog posts」區。沒設定的話那一區會自動隱藏。
+
+Substack、WordPress、任何有 RSS 的網站都能用，`external_feeds:` 底下可以列好幾個。
+
+### 想手動控制就好
+
+其實最省事的做法是**直接在 `_pages/resources.md` 寫連結**：
+
+```markdown
+* [文章標題](https://medium.com/@你的帳號/xxx) — 一句話說明
+```
+
+一篇文章一分鐘，不會壞、不依賴外部服務。文章不多的話推薦這個。
+
+### 注意
+
+不建議把 Medium 全文複製過來 —— 一來 SEO 會被判定重複內容，二來以後改稿要改兩個地方。放標題＋摘要＋連結就好，這也是這個功能的做法。
+
+---
+
+## 15. 出事了怎麼辦
 
 ```bash
 # 看改了什麼
