@@ -94,7 +94,7 @@ notes:
     category: research
     source: "HackMD"
     excerpt: "備忘用的 Linux 指令表：目錄操作、檔案增刪搬移、文字擷取與 awk、壓縮、SSH 與 HPC 上常用的幾組指令。"
-
+    topics: [tools]
   - title: "Seismic Phase Picker & Record Viewer"
     url: "https://hackmd.io/@HuWanLin/r1Zfo5OL-l"
     category: research
@@ -121,13 +121,14 @@ notes:
     category: research
     source: "HackMD"
     excerpt: "SAC 常用指令備忘：讀檔、排序、繪圖、標頭欄位操作，以及安裝與學習資源的連結整理。"
+    topics: [tools, seismology]
 
   - title: "Git 多主機協作完整指南"
     url: "https://hackmd.io/@HuWanLin/Hy1YjHJSbl"
     category: research
     source: "HackMD"
     excerpt: "整理多台機器之間的 Git 協作流程：upstream / origin / clone 的架構、初始設置、日常工作流程、分支管理與視覺化、GitHub Token 設定，附常用指令速查表。"
-
+    topics: [tools]
 # 想再加一則，把下面這段複製出來、拿掉開頭的 # 就好：
 #
 #  - title: "Title"
