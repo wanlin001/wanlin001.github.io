@@ -100,7 +100,7 @@ notes:
     category: research
     date: "Jan 2026"
     source: "HackMD"
-    excerpt: "自己寫的互動式 SAC 波形檢視與到時挑選工具的使用說明：可獨立標記多個震相、bandpass 濾波、STA/LTA、包絡線、排序與縮放，針對大型測網資料設計。"
+    excerpt: "互動式 SAC 波形檢視與到時挑選工具的使用說明：可獨立標記多個震相、bandpass 濾波、STA/LTA、包絡線、排序與縮放，針對大型測網資料設計。"
 
   - title: "時空對位與軌跡影像誌"
     url: "https://hackmd.io/@HuWanLin/BkT1kOTF-x"
