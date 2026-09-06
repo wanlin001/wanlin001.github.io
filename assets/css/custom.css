@@ -405,3 +405,26 @@ body { padding-top: var(--masthead-h); }
     transition-duration: .01ms !important;
   }
 }
+
+/* --- notes page ---------------------------------------------------------- */
+
+/* `hidden` must win over the flex display the cards declare, otherwise the
+   topic filter cannot hide them */
+[hidden] { display: none !important; }
+
+/* tags printed on a note card are labels, not buttons (the card itself is a
+   link, so a button inside it would be invalid and would swallow the click) */
+.topic-tag--static { cursor: inherit; }
+.topic-tag--static:hover { background: transparent; color: var(--tt); }
+
+.post-card .topic-tags { margin: .3em 0 .35em 0; }
+.note-section { margin-bottom: 2em; }
+
+/* --- building blocks used by the Travel page ----------------------------- */
+
+.photo-grid--tall img { height: 320px; }
+.grid-caption {
+  font-size: .8em;
+  color: var(--global-text-color-light);
+  margin: -.6em 0 1.4em 0;
+}

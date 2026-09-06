@@ -10,13 +10,13 @@
   }
 
   ready(function () {
-    var cards = [].slice.call(document.querySelectorAll('.pub-card[data-topics]'));
+    var cards = [].slice.call(document.querySelectorAll('[data-topics]'));
     if (!cards.length) { return; }
 
     var bar      = document.getElementById('pub-filter');
     var countEl  = document.getElementById('pub-filter-count');
     var emptyEl  = document.getElementById('pub-empty');
-    var sections = [].slice.call(document.querySelectorAll('.pub-section'));
+    var sections = [].slice.call(document.querySelectorAll('.pub-section, .note-section'));
     var active   = '';
 
     function apply(topic) {
@@ -32,7 +32,7 @@
 
       /* hide a section heading when nothing under it survives the filter */
       sections.forEach(function (sec) {
-        var visible = sec.querySelector('.pub-card:not([hidden])');
+        var visible = sec.querySelector('[data-topics]:not([hidden])');
         sec.hidden = !visible;
       });
 
@@ -52,7 +52,7 @@
 
     document.addEventListener('click', function (e) {
       var btn = e.target.closest && e.target.closest('.topic-tag');
-      if (!btn) { return; }
+      if (!btn || btn.classList.contains('topic-tag--static')) { return; }
       e.preventDefault();
       var topic = btn.getAttribute('data-topic') || '';
       apply(topic === active ? '' : topic);

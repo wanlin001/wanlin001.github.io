@@ -7,7 +7,8 @@ toc: true
 toc_label: "On this page"
 ---
 
-Code, data and links I keep coming back to — plus things I have written for a general audience.
+Code, data and links I keep coming back to. Working notes and checklists live on the
+[Notes page](/notes/).
 
 Code & data from my papers
 ======
@@ -37,34 +38,6 @@ Writing for a general audience
 My Mandarin-language science writing is listed on the
 [publications page](/publications/#outreach).
 
-Notes
-======
-
-{% assign feed_posts = site.data.posts.posts %}
-{% if site.data.notes.notes.size > 0 or feed_posts.size > 0 %}
-<div class="post-list">
-{% for note in site.data.notes.notes %}
-  <a class="post-card" href="{{ note.url }}" target="_blank" rel="noopener">
-    {% if note.image %}<span class="post-card__thumb" style="background-image:url('{{ note.image }}');"></span>{% endif %}
-    <span class="post-card__text">
-      <span class="post-card__title">{{ note.title }}</span>
-      <span class="post-card__meta">{{ note.source }}{% if note.date %} · {{ note.date }}{% endif %}</span>
-      {% if note.excerpt %}<span class="post-card__excerpt">{{ note.excerpt }}</span>{% endif %}
-    </span>
-  </a>
-{% endfor %}
-{% for post in feed_posts limit: 6 %}
-  <a class="post-card" href="{{ post.url }}" target="_blank" rel="noopener">
-    {% if post.image %}<span class="post-card__thumb" style="background-image:url('{{ post.image }}');"></span>{% endif %}
-    <span class="post-card__text">
-      <span class="post-card__title">{{ post.title }}</span>
-      <span class="post-card__meta">{{ post.source }}{% if post.date_display %} · {{ post.date_display }}{% endif %}</span>
-      {% if post.excerpt %}<span class="post-card__excerpt">{{ post.excerpt }}</span>{% endif %}
-    </span>
-  </a>
-{% endfor %}
-</div>
-{% endif %}
 
 For students
 ======

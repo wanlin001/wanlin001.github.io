@@ -1,0 +1,19 @@
+{% comment %}
+  Google My Maps embed.
+
+  {% include map.html mid="182NqsK3rnf44xUX4dDm4nh-JwxQ-F40" %}
+  {% include map.html mid="..." caption="2022 HKT field trip" height="55" %}
+
+  mid      the id from the My Maps URL (the bit after "mid=")
+  height   optional, height as a % of the width. default 68
+  caption  optional line underneath
+
+  The map must be shared publicly (My Maps -> Share -> anyone with the link
+  can view), otherwise the frame stays blank.
+{% endcomment %}
+
+<div class="map-embed" style="padding-bottom: {{ include.height | default: 68 }}%;">
+  <iframe src="https://www.google.com/maps/d/embed?mid={{ include.mid }}&hl=en"
+          loading="lazy" allowfullscreen title="{{ include.caption | default: 'Map' }}"></iframe>
+</div>
+{% if include.caption %}<p class="grid-caption">{{ include.caption }}</p>{% endif %}

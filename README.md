@@ -342,6 +342,74 @@ redirect_from:
 
 ---
 
+## 7b. Notes 頁與 Travel 頁的積木
+
+### Notes（`/notes/`）
+
+內容全在 **`_data/notes.yml`**，分成兩塊：
+
+```yaml
+categories:              # 分區，順序 = 頁面上的顯示順序
+  hiking:
+    title: "登山 · Hiking"
+
+notes:                   # 每一則筆記
+  - title: "兩日以上登山裝備清單"
+    url: "https://hackmd.io/@HuWanLin/H1qQUcWX1l"
+    category: hiking     # 對應上面的代號
+    topics: [gear, checklist]   # 彩色標籤，定義在 _data/topics.yml
+    source: "HackMD"
+    date: "26 Feb 2024"
+    excerpt: "一兩句說明。"
+```
+
+- **`categories:` 和 `notes:` 各自只能出現一次**（YAML 重複的 key 會蓋掉前面的）
+- 加一則 = 在 `notes:` 底下多一組 `- title:`
+- 沒有筆記的分區標題會自動隱藏
+- 上方有篩選列，點標籤只顯示同標籤的筆記 —— 跟論文頁同一套機制
+- 標籤顏色跟論文共用 `_data/topics.yml`，加在那裡就好
+
+### Travel（`/travel/`）
+
+這一頁是純 Markdown，但備好了三個「積木」，複製貼上就好：
+
+```liquid
+{% raw %}照片：
+{% include photos.html dir="/images/travel/nepal" files="1.jpg, 2.jpg" %}
+{% include photos.html dir="/images/travel/nepal" files="1.jpg, 2.jpg"
+                       captions="第一張, 第二張" caption="整組的說明" %}
+
+地圖：
+{% include map.html mid="182NqsK3rnf..." caption="說明" %}
+
+連結卡（Medium / HackMD / 任何網址）：
+{% include link-card.html title="標題" url="https://..." source="Medium"
+                          date="2026" excerpt="一句說明" %}{% endraw %}
+```
+
+其他就是一般 Markdown：`======` 是大標題（一趟旅行）、`------` 是小標題、
+`**粗體**`、`[連結](網址)`。
+
+`_pages/travel.md` 最上面有一段註解寫著全部用法，直接照抄。
+
+> ⚠️ **在註解裡寫 Liquid 範例要包 `{% raw %}...{% endraw %}`** ——
+> HTML 註解 `<!-- -->` 只是「不顯示」，Liquid 還是會執行裡面的 `{% include %}`，
+> 結果就是頁面上冒出一張空的地圖或卡片。
+
+### 照片怎麼放
+
+1. 檔案丟進 `images/travel/`，建議一趟旅行開一個資料夾（`images/travel/nepal/`）
+2. 網頁上的路徑就是 `/images/travel/nepal/1.jpg`
+3. `git add -A && git commit -m "add photos" && git push`
+
+建議：JPEG、長邊 ≤1600 px、每張 ≤500 KB。批次縮圖（macOS 內建，不用裝東西）：
+
+```bash
+sips -Z 1600 ~/Documents/GitHub/huwanlin/images/travel/nepal/*.jpg
+```
+
+---
+
 ## 8. 分支問題（`main already existed`）
 
 狀況：這個 repo 同時有 `main` 和 `master` 兩個分支。所有工作都在 `main`，但 GitHub Pages 一開始是從 `master` 發布 —— 所以 push 到 `main` 網站不會變。

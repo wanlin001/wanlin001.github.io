@@ -31,5 +31,7 @@ main:
         url: /fieldwork/
       - title: "Travel"
         url: /travel/        
+      - title: "Notes"
+        url: /notes/
       - title: "Resources"
         url: /resources/
