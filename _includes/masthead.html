@@ -24,7 +24,7 @@
                   {% if link.url contains 'http' %}{% assign domain = '' %}{% else %}{% assign domain = base_path %}{% endif %}
                   <a href="{{ domain }}{{ link.url }}" class="nav-parent" aria-haspopup="true" aria-expanded="false">{{ link.title }}<i class="fas fa-chevron-down nav-caret" aria-hidden="true"></i></a>
                 {% else %}
-                  <a href="#" class="nav-parent nav-parent--nolink" role="button" tabindex="0" aria-haspopup="true" aria-expanded="false">{{ link.title }}<i class="fas fa-chevron-down nav-caret" aria-hidden="true"></i></a>
+                  <a class="nav-parent nav-parent--nolink" role="button" tabindex="0" aria-haspopup="true" aria-expanded="false">{{ link.title }}<i class="fas fa-chevron-down nav-caret" aria-hidden="true"></i></a>
                 {% endif %}
 
                 <ul class="nav-submenu">

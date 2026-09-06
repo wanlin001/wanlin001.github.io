@@ -469,6 +469,11 @@ MID 在 My Maps 的網址列裡（`...&mid=182NqsK3rnf...`）。
 - **關掉 Share on 按鈕**：`_config.yml` 的 `defaults` 裡 `share: false`。
 - **關掉 RSS**：`_config.yml` 的 `atom_feed.hide: true`。
 - **刪掉 `_data/cv.json`**：模板附的範例資料會**蓋掉** `_data/cv.yml`，害 CV 整頁空白。別把它加回來。
+- **下拉選單的 JS 一定要放外部檔** (`assets/js/nav-dropdown.js`)。
+  `_layouts/compress.html` 會把 HTML 的換行全部拿掉，所以寫在 `<script>` 裡的 `//` 註解
+  會把後面整段程式一起註解掉，造成語法錯誤、整支腳本失效。**內嵌 script 千萬不要用 `//` 註解**
+  （要註解就用 `/* */`）。同理，`_includes/` 底下的 analytics / comments 範本也有這個問題，
+  但那些預設關閉所以沒事 —— 哪天要開 Google Analytics 或留言功能，記得先檢查。
 - **移除的東西**：Talks、Teaching、Portfolio、Blog posts、talkmap、markdown_generator、範例文章與圖檔。要救回來的話：`git log` 找得到，或去原始模板 repo 抓。
 
 ---

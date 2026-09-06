@@ -57,19 +57,6 @@ awards:
     what: "NTU Scholarship for Excellent Exchange Students"
     where: "National Taiwan University"
 
-mentoring:
-  - when: "2026 – present"
-    what: "Chun-Ling Wang (BSc, Year 3)"
-    where: "National Taiwan University — geodynamic modelling"
-  - when: "2023 – 2024"
-    what: "Bo-Han Tsao (PhD candidate)"
-    where: "National Taiwan University — scientific writing, structural geology"
-  - when: "2023 – 2024"
-    what: "Yi-An Chen (MSc candidate)"
-    where: "National Taiwan University — scientific writing, scientific programming"
-  - when: "2021 – 2022"
-    what: "Win Shwe Sin Oo (PhD, Year 1)"
-    where: "Nanyang Technological University — seismology; co-author on Oo et al. (2022)"
 
 teaching:
   - when: "2022"
