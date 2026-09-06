@@ -4,7 +4,43 @@
 
 ---
 
-## 網站架構 — 一張圖看懂
+## 目錄
+
+**開始之前**
+
+- [網站架構](#網站架構) — 檔案分成哪三堆、哪些能碰哪些不能
+- [1. 發布前一定要知道的兩件事](#1-發布前一定要知道的兩件事) — commit 不等於 push；網站從哪個分支發布
+- [2. 本機預覽](#2-本機預覽) — 改完先在自己電腦上看，別直接推上去
+- [3. 檔案速查表](#3-檔案速查表) — 想改 X → 改哪個檔；圖片和 PDF 放哪
+- [4. 列出目前的分類與標籤](#4-列出目前的分類與標籤) — 一行指令印出全部，還有 YAML 格式檢查
+
+**加內容**
+
+- [5. 加一篇論文](#5-加一篇論文) — front matter 欄位、按鈕怎麼自動長出來、metric 圈圈
+- [6. 標籤的名稱與顏色](#6-標籤的名稱與顏色) — 論文和 Notes 共用一份標籤；點標籤篩選
+- [7. 加一個新分區](#7-加一個新分區) — 論文頁的新區塊，或頁面裡的新章節
+- [8. 加一個新頁面與選單按鈕](#8-加一個新頁面與選單按鈕) — 兩步：建 .md、加進 navigation.yml
+- [9. 下拉選單](#9-下拉選單) — 用 children: 做子選單，怎麼改回單層
+- [10. Notes 與 Travel 的積木](#10-notes-與-travel-的積木) — Notes 的分類與欄位；照片、地圖、連結卡三個 include
+- [11. 照片牆](#11-照片牆) — photo-grid 怎麼用
+- [12. Google My Maps](#12-google-my-maps) — embed 網址怎麼組，為什麼地圖會是空白的
+- [13. 把外部文章放進網站](#13-把外部文章放進網站) — HackMD / Medium 三種做法，能不能直接嵌
+
+**設定**
+
+- [14. 訪客統計](#14-訪客統計) — GoatCounter / Cloudflare / GA4，本機預覽不列入
+- [15. 分支設定](#15-分支設定) — main 和 master 的坑，main already existed 怎麼辦
+- [16. 自訂網域](#16-自訂網域) — 買網域之後的 DNS 設定與四個常見坑
+
+**維護**
+
+- [17. 已經做過的客製](#17-已經做過的客製) — 動過哪些佈景檔案、為什麼，別不小心改回去
+- [18. 待辦清單](#18-待辦清單) — 還沒補的東西
+- [19. 出事了怎麼辦](#19-出事了怎麼辦) — 改壞了怎麼還原、怎麼救回刪掉的檔案
+
+---
+
+## 網站架構
 
 網站的原理只有一句話：**妳寫內容 → Jekyll 套版 → 變成 HTML → GitHub 幫妳放到網路上。**
 所以檔案分成三堆：**內容**（常改）、**設定**（偶爾改）、**引擎**（不要碰）。
@@ -69,13 +105,13 @@ huwanlin/
 
 ---
 
-## 0. 最重要的兩件事
+## 1. 發布前一定要知道的兩件事
 
 **（1）發布分支**
 
 網站是從 GitHub 上的某一個分支自動 build 的。本機工作分支是 `main`。
 到 `Settings → Pages → Build and deployment → Branch` 確認選的是 **`main`**。
-（詳見下面第 8 節「分支問題」。）
+（細節見 [15. 分支設定](#15-分支設定)。）
 
 **（2）改完要 push，網站才會變**
 
@@ -90,7 +126,7 @@ push 後等 1–3 分鐘，GitHub 自動重新 build。進度看 repo 的 **Acti
 
 ---
 
-## 1. 本機預覽（強烈建議每次改完先看）
+## 2. 本機預覽
 
 ```bash
 cd ~/Documents/GitHub/huwanlin && bundle exec jekyll serve --port 4321
@@ -105,7 +141,7 @@ cd ~/Documents/GitHub/huwanlin && bundle exec jekyll serve --port 4321
 
 ---
 
-## 2. 檔案在哪 — 速查表
+## 3. 檔案速查表
 
 | 我想改… | 改這個檔 |
 |---|---|
@@ -140,7 +176,43 @@ cd ~/Documents/GitHub/huwanlin && bundle exec jekyll serve --port 4321
 
 ---
 
-## 3. 加一篇論文
+## 4. 列出目前的分類與標籤
+
+跑這行，會把所有標籤、Notes 的章節分類、論文的分區全部列出來，
+連「各被用了幾次」「定義了但沒用到」都會標出來：
+
+```bash
+cd ~/Documents/GitHub/huwanlin && ruby scripts/list_labels.rb
+```
+
+輸出長這樣：
+
+```
+TAGS  ── edit _data/topics.yml ──────────────────────────
+  code           label                  colour    used_by
+  geodynamics    Geodynamics            #c0392b   3 pub
+  gear           Gear                   #0d9488   — (unused)
+
+NOTES SECTIONS  ── edit `categories:` in _data/notes.yml ─
+  hiking         Hiking                 2 note(s)
+  research       Research notes         5 note(s)
+
+PUBLICATION SECTIONS  ── edit `publication_category:` in _config.yml ─
+  manuscripts    Peer-reviewed journal articles   5 item(s)
+```
+
+`_data/notes.yml`、`_data/topics.yml`、`_config.yml` 三個檔的最上面也都寫了
+「想改什麼 → 去哪改」的對照表，打開檔案第一眼就看得到。
+
+**改完 YAML，推上去前先驗格式**（印出 OK 就沒問題，有錯會告訴妳第幾行）：
+
+```bash
+cd ~/Documents/GitHub/huwanlin && ruby -ryaml -e 'YAML.load_file("_data/notes.yml"); puts "OK"'
+```
+
+---
+
+## 5. 加一篇論文
 
 在 `_publications/` 新增一個 `.md`（檔名隨意，建議 `年-作者-期刊.md`）：
 
@@ -192,43 +264,7 @@ excerpt: '一兩句話的摘要，顯示在卡片上。'
 
 ---
 
-## 3b. 想知道現在有哪些分類和標籤
-
-跑這行，會把所有標籤、Notes 的章節分類、論文的分區全部列出來，
-連「各被用了幾次」「定義了但沒用到」都會標出來：
-
-```bash
-cd ~/Documents/GitHub/huwanlin && ruby scripts/list_labels.rb
-```
-
-輸出長這樣：
-
-```
-TAGS  ── edit _data/topics.yml ──────────────────────────
-  code           label                  colour    used_by
-  geodynamics    Geodynamics            #c0392b   3 pub
-  gear           Gear                   #0d9488   — (unused)
-
-NOTES SECTIONS  ── edit `categories:` in _data/notes.yml ─
-  hiking         Hiking                 2 note(s)
-  research       Research notes         5 note(s)
-
-PUBLICATION SECTIONS  ── edit `publication_category:` in _config.yml ─
-  manuscripts    Peer-reviewed journal articles   5 item(s)
-```
-
-`_data/notes.yml`、`_data/topics.yml`、`_config.yml` 三個檔的最上面也都寫了
-「想改什麼 → 去哪改」的對照表，打開檔案第一眼就看得到。
-
-**改完 YAML，推上去前先驗格式**（印出 OK 就沒問題，有錯會告訴妳第幾行）：
-
-```bash
-cd ~/Documents/GitHub/huwanlin && ruby -ryaml -e 'YAML.load_file("_data/notes.yml"); puts "OK"'
-```
-
----
-
-## 4. 研究領域標籤（彩色小圓標）
+## 6. 標籤的名稱與顏色
 
 全部定義在 **`_data/topics.yml`**：
 
@@ -261,7 +297,7 @@ geodynamics:
 
 ---
 
-## 5. 加一個新分區（section）
+## 7. 加一個新分區
 
 **（a）論文頁裡的新分區**（例如「Book chapters」）：
 
@@ -304,7 +340,7 @@ publication_category:
 
 ---
 
-## 6. 加一個新頁面 + 選單按鈕
+## 8. 加一個新頁面與選單按鈕
 
 **兩步。**
 
@@ -341,7 +377,7 @@ main:
 
 ---
 
-## 7. 下拉選單（submenu）
+## 9. 下拉選單
 
 **已經做好了**，直接在 `_data/navigation.yml` 用 `children:` 就會產生下拉選單：
 
@@ -401,7 +437,7 @@ redirect_from:
 
 ---
 
-## 7b. Notes 頁與 Travel 頁的積木
+## 10. Notes 與 Travel 的積木
 
 ### Notes（`/notes/`）
 
@@ -462,7 +498,7 @@ notes:                   # 每一則筆記
 其他就是一般 Markdown：`======` 是大標題（一趟旅行）、`------` 是小標題、
 `**粗體**`、`[連結](網址)`。
 
-`_pages/travel.md` 最上面有一段註解寫著全部用法，直接照抄。
+`_pages/travel.md` 最上面有一段註解寫著全部用法，直接照抄。照片怎麼放見 [11. 照片牆](#11-照片牆)。
 
 > ⚠️ **在註解裡寫 Liquid 範例要包 `{% raw %}...{% endraw %}`** ——
 > HTML 註解 `<!-- -->` 只是「不顯示」，Liquid 還是會執行裡面的 `{% include %}`，
@@ -482,7 +518,116 @@ sips -Z 1600 ~/Documents/GitHub/huwanlin/images/travel/nepal/*.jpg
 
 ---
 
-## 7c. 訪客統計（人流）
+## 11. 照片牆
+
+`about.md` 和 `fieldwork.md` 裡都有現成的照片牆 HTML，但目前**用 `<!-- -->` 註解起來**了。
+把照片放進對應資料夾後，刪掉 `<!--` 和 `-->` 就會出現自動排版的網格：
+
+```html
+<div class="photo-grid">
+  <figure><img src="/images/fieldwork/nepal-1.jpg" alt=""><figcaption>說明文字</figcaption></figure>
+  <figure><img src="/images/fieldwork/nepal-2.jpg" alt=""><figcaption>說明文字</figcaption></figure>
+</div>
+```
+
+要幾張就寫幾個 `<figure>`，會自動換行。
+
+---
+
+## 12. Google My Maps
+
+`_pages/fieldwork.md` 裡嵌的是 **embed** 網址（不是 edit 網址）：
+
+```
+https://www.google.com/maps/d/embed?mid=<你的 MID>&hl=en
+```
+
+MID 在 My Maps 的網址列裡（`...&mid=182NqsK3rnf...`）。
+
+⚠️ **地圖必須設成公開分享**（My Maps → 分享 → 「知道連結的任何人都可以檢視」），否則網頁上會是一片空白。
+換一張地圖只要換 `mid=` 後面那串。
+
+---
+
+## 13. 把外部文章放進網站
+
+### 最簡單、也最推薦：手寫清單
+
+編 **`_data/notes.yml`**，一則文章一個區塊。
+
+> ⚠️ **`notes:` 整個檔案只能出現一次**，寫在最上面。要加第二則是在它底下多一組 `- title:`，
+> **不是再寫一次 `notes:`** —— YAML 遇到重複的 key 會直接蓋掉前面的，寫兩次只會剩最後一則。
+
+```yaml
+notes:
+
+  - title: "第一則"
+    url: "https://..."
+    source: "HackMD"
+
+  - title: "第二則"          # ← 就是這樣往下加，不用再寫 notes:
+    url: "https://..."
+    source: "Medium"
+```
+
+完整欄位：
+
+```yaml
+notes:
+  - title: "兩日以上登山裝備清單"
+    url: "https://hackmd.io/@HuWanLin/H1qQUcWX1l"
+    source: "HackMD"
+    date: "26 Feb 2024"
+    excerpt: "多日行程的打包清單，可以直接在頁面上打勾。"
+    image:                      # 可省略
+```
+
+存檔就會在 Resources 頁的「Notes & writing」變成一張卡片。刪掉區塊就消失。
+HackMD、Medium、Notion、Google Doc、任何有網址的東西都能放。**不會壞、不依賴外部服務、一則一分鐘。**
+
+### 可以直接把 HackMD 嵌進頁面嗎？可以
+
+HackMD 沒有擋 iframe（沒有 `X-Frame-Options`，CSP 裡也沒有 `frame-ancestors`），所以可以直接嵌：
+
+```html
+<div class="map-embed">
+  <iframe src="https://hackmd.io/@HuWanLin/H1qQUcWX1l" loading="lazy"></iframe>
+</div>
+```
+
+（`.map-embed` 就是 Fieldwork 地圖用的那個自適應外框，直接借用。）
+
+好處是 HackMD 改了網站就跟著改；壞處是被外框框住、樣式跟網站不一致、Google 也搜不到內容。**建議只在少數幾篇真的想讓人直接讀的內容用**，其他用上面的卡片連結。
+
+> ⚠️ Medium 不行 —— 它回 `X-Frame-Options: SAMEORIGIN`，嵌不進來。
+
+### 想變成網站上真正的頁面？
+
+HackMD 的公開筆記在網址後面加 `/download` 會回傳原始 Markdown：
+
+```bash
+curl -L "https://hackmd.io/@HuWanLin/H1qQUcWX1l/download" -o _pages/gear-list.md
+```
+
+下載後在檔案最上面補一段 front matter（`---` 包住 `title:` 和 `permalink:`），它就變成網站上的一頁，樣式一致、Google 也搜得到。缺點是 HackMD 之後改了不會自動同步，要重跑一次指令。需要自動化再說。
+
+### Medium 自動抓（選用，預設關閉）
+
+Medium 的 RSS **沒有 CORS 標頭**，網頁用 JavaScript 直接抓會被瀏覽器擋，所以只能在 build 的時候抓。
+`_config.yml` 裡的 `external_feeds:` 拿掉註解、填帳號，然後跑：
+
+```bash
+python3 scripts/fetch_feeds.py
+```
+
+抓到的文章會寫進 `_data/posts.yml`，接在手寫清單後面一起顯示。沒設定的話完全不影響。
+Substack、WordPress 也通用。
+
+> 不建議把全文複製過來：SEO 會判定重複內容，而且以後改稿要改兩個地方。
+
+---
+
+## 14. 訪客統計
 
 **目前是關閉的** —— `_config.yml` 的 `analytics:` 兩個代號都留空，網站不會載入任何追蹤程式。
 填其中一個就會開始計算。
@@ -529,7 +674,7 @@ analytics:
 
 ---
 
-## 8. 分支問題（`main already existed`）
+## 15. 分支設定
 
 狀況：這個 repo 同時有 `main` 和 `master` 兩個分支。所有工作都在 `main`，但 GitHub Pages 一開始是從 `master` 發布 —— 所以 push 到 `main` 網站不會變。
 想把 `master` 改名成 `main` 時，GitHub 會說 **`main already existed`**（因為 `main` 已經存在了）。
@@ -547,7 +692,7 @@ analytics:
 
 ---
 
-## 8b. 自訂網域（Custom domain）
+## 16. 自訂網域
 
 想從 `wanlinhu.com` 之類的網址連到這個網站時才需要做。**不做也完全沒關係**，`wanlin001.github.io` 本來就是正式網址。
 
@@ -626,38 +771,7 @@ dig wanlinhu.com +short         # apex：應該看到那四個 185.199.x.153
 
 ---
 
-## 9. Google My Maps
-
-`_pages/fieldwork.md` 裡嵌的是 **embed** 網址（不是 edit 網址）：
-
-```
-https://www.google.com/maps/d/embed?mid=<你的 MID>&hl=en
-```
-
-MID 在 My Maps 的網址列裡（`...&mid=182NqsK3rnf...`）。
-
-⚠️ **地圖必須設成公開分享**（My Maps → 分享 → 「知道連結的任何人都可以檢視」），否則網頁上會是一片空白。
-換一張地圖只要換 `mid=` 後面那串。
-
----
-
-## 10. 照片牆
-
-`about.md` 和 `fieldwork.md` 裡都有現成的照片牆 HTML，但目前**用 `<!-- -->` 註解起來**了。
-把照片放進對應資料夾後，刪掉 `<!--` 和 `-->` 就會出現自動排版的網格：
-
-```html
-<div class="photo-grid">
-  <figure><img src="/images/fieldwork/nepal-1.jpg" alt=""><figcaption>說明文字</figcaption></figure>
-  <figure><img src="/images/fieldwork/nepal-2.jpg" alt=""><figcaption>說明文字</figcaption></figure>
-</div>
-```
-
-要幾張就寫幾個 `<figure>`，會自動換行。
-
----
-
-## 11. 已經做過的客製（別不小心改回去）
+## 17. 已經做過的客製
 
 - **刪掉頁尾**：`_layouts/default.html` 和 `_layouts/cv-layout.html` 移除了 `page__footer` 區塊，只留一行 `Last updated`。
   ⚠️ `{% include footer/custom.html %}` **不能刪** —— 裡面是 MathJax，刪了數學式會壞。
@@ -687,7 +801,7 @@ MID 在 My Maps 的網址列裡（`...&mid=182NqsK3rnf...`）。
 
 ---
 
-## 12. 還沒補的東西
+## 18. 待辦清單
 
 - [ ] `images/profile.png` 換成自己的照片（現在是預設灰人像）
 - [ ] Google My Maps 設成公開分享
@@ -699,85 +813,7 @@ MID 在 My Maps 的網址列裡（`...&mid=182NqsK3rnf...`）。
 
 ---
 
-## 14. 把外部文章（HackMD / Medium / Notion）放進網站
-
-### 最簡單、也最推薦：手寫清單
-
-編 **`_data/notes.yml`**，一則文章一個區塊。
-
-> ⚠️ **`notes:` 整個檔案只能出現一次**，寫在最上面。要加第二則是在它底下多一組 `- title:`，
-> **不是再寫一次 `notes:`** —— YAML 遇到重複的 key 會直接蓋掉前面的，寫兩次只會剩最後一則。
-
-```yaml
-notes:
-
-  - title: "第一則"
-    url: "https://..."
-    source: "HackMD"
-
-  - title: "第二則"          # ← 就是這樣往下加，不用再寫 notes:
-    url: "https://..."
-    source: "Medium"
-```
-
-完整欄位：
-
-```yaml
-notes:
-  - title: "兩日以上登山裝備清單"
-    url: "https://hackmd.io/@HuWanLin/H1qQUcWX1l"
-    source: "HackMD"
-    date: "26 Feb 2024"
-    excerpt: "多日行程的打包清單，可以直接在頁面上打勾。"
-    image:                      # 可省略
-```
-
-存檔就會在 Resources 頁的「Notes & writing」變成一張卡片。刪掉區塊就消失。
-HackMD、Medium、Notion、Google Doc、任何有網址的東西都能放。**不會壞、不依賴外部服務、一則一分鐘。**
-
-### 可以直接把 HackMD 嵌進頁面嗎？可以
-
-HackMD 沒有擋 iframe（沒有 `X-Frame-Options`，CSP 裡也沒有 `frame-ancestors`），所以可以直接嵌：
-
-```html
-<div class="map-embed">
-  <iframe src="https://hackmd.io/@HuWanLin/H1qQUcWX1l" loading="lazy"></iframe>
-</div>
-```
-
-（`.map-embed` 就是 Fieldwork 地圖用的那個自適應外框，直接借用。）
-
-好處是 HackMD 改了網站就跟著改；壞處是被外框框住、樣式跟網站不一致、Google 也搜不到內容。**建議只在少數幾篇真的想讓人直接讀的內容用**，其他用上面的卡片連結。
-
-> ⚠️ Medium 不行 —— 它回 `X-Frame-Options: SAMEORIGIN`，嵌不進來。
-
-### 想變成網站上真正的頁面？
-
-HackMD 的公開筆記在網址後面加 `/download` 會回傳原始 Markdown：
-
-```bash
-curl -L "https://hackmd.io/@HuWanLin/H1qQUcWX1l/download" -o _pages/gear-list.md
-```
-
-下載後在檔案最上面補一段 front matter（`---` 包住 `title:` 和 `permalink:`），它就變成網站上的一頁，樣式一致、Google 也搜得到。缺點是 HackMD 之後改了不會自動同步，要重跑一次指令。需要自動化再說。
-
-### Medium 自動抓（選用，預設關閉）
-
-Medium 的 RSS **沒有 CORS 標頭**，網頁用 JavaScript 直接抓會被瀏覽器擋，所以只能在 build 的時候抓。
-`_config.yml` 裡的 `external_feeds:` 拿掉註解、填帳號，然後跑：
-
-```bash
-python3 scripts/fetch_feeds.py
-```
-
-抓到的文章會寫進 `_data/posts.yml`，接在手寫清單後面一起顯示。沒設定的話完全不影響。
-Substack、WordPress 也通用。
-
-> 不建議把全文複製過來：SEO 會判定重複內容，而且以後改稿要改兩個地方。
-
----
-
-## 15. 出事了怎麼辦
+## 19. 出事了怎麼辦
 
 ```bash
 # 看改了什麼
@@ -796,3 +832,6 @@ git checkout <commit> -- 路徑/檔名
 
 已經 push 上去的錯誤：`git revert <commit>` 然後 push。
 本機 build 就報錯的話，錯誤訊息會直接印在 `jekyll serve` 的終端機上 —— 通常是 YAML 縮排或漏了引號。
+
+---
+
