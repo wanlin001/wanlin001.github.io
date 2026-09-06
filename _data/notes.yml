@@ -1,66 +1,68 @@
 # ---------------------------------------------------------------------------
-# Notes 頁的內容（網址 /notes/，在選單的 Others 底下）。
+# Notes 頁的內容（/notes/，在選單 Others 底下）。
 #
-# 這個檔案有兩個部分：
-#   categories:  分區，順序就是頁面上的顯示順序
+# 兩個部分：
+#   categories:  分區。順序 = 頁面上的顯示順序
 #   notes:       每一則筆記
 #
 # ⚠️ 「categories:」和「notes:」各自整個檔案只能出現一次。
-#    要加第二則筆記，是在 notes: 底下多一組「  - title:」，
-#    不是再寫一次 notes:（YAML 遇到重複的 key 會蓋掉前面的）。
+#    加第二則是在 notes: 底下多一組「  - title:」，不是再寫一次 notes:。
 #
-# 每一則的欄位：
-#   - title     標題（必填）
-#     url       連結（必填）
-#     category  屬於哪一個分區，填上面 categories 的代號；沒填就歸到「其他」
-#     topics    主題標籤，可以多個，顏色定義在 _data/topics.yml
-#     source    來源標籤，例如 HackMD / Medium / Notion
-#     date      日期，格式隨意，可省略
-#     excerpt   一兩句說明，可省略
-#     image     封面圖網址或 /images/xxx.jpg，可省略
+# 欄位（除了 title 和 url，其他都可以不寫）：
+#   - title     標題          ← 必填
+#     url       連結          ← 必填
+#     category  分區代號，填上面 categories 裡的 key；不填就歸到 Other
+#     source    來源，例如 HackMD / Medium / Notion
+#     date      日期，格式隨意
+#     excerpt   一兩句說明
+#     image     封面圖網址，或 /images/xxx.jpg
+#     topics    彩色標籤，例如 [gear, checklist]，顏色定義在 _data/topics.yml
+#
+# 關於 topics：完全是選用的，而且是「一則一則」決定的。
+#   · 不寫 → 那則就沒有標籤
+#   · 全部都不寫 → 頁面上方的篩選列會整條自動消失
+#   · 只有其中幾則寫 → 只有那幾則會顯示標籤，篩選列也只會列出有被用到的
+# 現在兩則都沒有用，所以頁面上是乾淨的分區清單。
 # ---------------------------------------------------------------------------
 
 categories:
 
   hiking:
-    title: "登山 · Hiking"
-    label: "登山"
+    title: "Hiking"
 
   fieldwork:
-    title: "野外工作 · Fieldwork"
-    label: "野外"
+    title: "Fieldwork"
 
   research:
-    title: "研究與工具 · Research notes"
-    label: "研究"
+    title: "Research notes"
 
   other:
-    title: "其他 · Other"
-    label: "其他"
+    title: "Other"
 
 
 notes:
 
-  - title: "兩日以上登山裝備清單"
+  - title: "Multi-day hiking gear checklist"
     url: "https://hackmd.io/@HuWanLin/H1qQUcWX1l"
     category: hiking
-    topics: [gear, checklist]
     source: "HackMD"
-    date: "26 Feb 2024"
-    excerpt: "多日行程的打包清單，可以直接在頁面上打勾。從隨身行李、營地裝備到緊急用品，出門前照著掃一遍。"
+    date: "Feb 2024"
+    excerpt: "Packing list for trips of two days or more, with tick boxes you can click straight on the page. Written in Mandarin."
 
-  - title: "一日登山裝備清單"
+  - title: "Day hike gear checklist"
     url: "https://hackmd.io/@HuWanLin/H1TIhHTt-x"
     category: hiking
-    topics: [gear, checklist]
     source: "HackMD"
+    excerpt: "The short version, for single-day trips. Written in Mandarin."
 
 # 想再加一則，把下面這段複製出來、拿掉開頭的 # 就好：
 #
-#  - title: "標題"
+#  - title: "Title"
 #    url: "https://..."
 #    category: research
-#    topics: [tools]
 #    source: "HackMD"
 #    date: "2026"
-#    excerpt: "一兩句說明。"
+#    excerpt: "One or two sentences."
+#
+# 哪天想幫某一則加標籤，就在那一則底下加一行：
+#    topics: [gear, checklist]

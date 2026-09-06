@@ -351,23 +351,35 @@ redirect_from:
 ```yaml
 categories:              # 分區，順序 = 頁面上的顯示順序
   hiking:
-    title: "登山 · Hiking"
+    title: "Hiking"
 
 notes:                   # 每一則筆記
-  - title: "兩日以上登山裝備清單"
+  - title: "Multi-day hiking gear checklist"
     url: "https://hackmd.io/@HuWanLin/H1qQUcWX1l"
     category: hiking     # 對應上面的代號
-    topics: [gear, checklist]   # 彩色標籤，定義在 _data/topics.yml
     source: "HackMD"
-    date: "26 Feb 2024"
-    excerpt: "一兩句說明。"
+    date: "Feb 2024"
+    excerpt: "One or two sentences."
 ```
 
+- 只有 `title` 和 `url` 是必填，其他全部可以不寫
 - **`categories:` 和 `notes:` 各自只能出現一次**（YAML 重複的 key 會蓋掉前面的）
 - 加一則 = 在 `notes:` 底下多一組 `- title:`
-- 沒有筆記的分區標題會自動隱藏
-- 上方有篩選列，點標籤只顯示同標籤的筆記 —— 跟論文頁同一套機制
-- 標籤顏色跟論文共用 `_data/topics.yml`，加在那裡就好
+- `category:` 沒填或填了不存在的代號 → 自動歸到最後的 Other 區
+- 沒有筆記的分區標題會自動隱藏，所以分區可以先定義好放著
+
+**標籤是選用的，而且是一則一則決定。** 哪天想幫某一則加，就在那一則底下加一行：
+
+```yaml
+    topics: [gear, checklist]
+```
+
+- 不寫 → 那則就沒有標籤
+- 全部都不寫 → 頁面上方的篩選列**整條自動消失**（目前就是這樣）
+- 只有幾則寫 → 只有那幾則顯示標籤，篩選列也只列出有被用到的
+
+標籤的名稱和顏色跟論文共用 `_data/topics.yml`。已經定義好但目前沒用到的
+（`gear` / `checklist` / `tools` / `safety`）留在那裡不會有任何影響，要用再用。
 
 ### Travel（`/travel/`）
 
