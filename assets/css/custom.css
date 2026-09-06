@@ -30,10 +30,18 @@
 
 /* --------------------------------------------------------------- headings */
 
-.page__content h2 {
+/* Section headings get the accent rule. In Markdown pages "====" produces an
+   <h1> (section) and "----" an <h2> (sub-section), so the rule belongs on h1
+   there; the Publications and CV pages use the archive layout with real <h2>. */
+
+.page__content h1:not(.page__title),
+.archive h2 {
   border-bottom: 2px solid var(--wl-accent);
   padding-bottom: .25em;
 }
+
+/* sub-headings stay plain, so the hierarchy still reads */
+.page__content h2 { border-bottom: 0; }
 
 /* ------------------------------------------------------- publication card */
 

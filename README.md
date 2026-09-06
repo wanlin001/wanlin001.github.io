@@ -488,6 +488,14 @@ MID 在 My Maps 的網址列裡（`...&mid=182NqsK3rnf...`）。
   （例如 /fieldwork/），被標成 `.selected` 的是父層的「Others」，於是這條規則會把
   **父層標籤和整個下拉選單裡的每一個連結全部變成不能點**。custom.css 最後那段就是把點擊權還回去，
   不要刪。
+- **關掉進場動畫**（`custom.css` 最下面）。佈景原本會把 masthead → 選單 → 側欄 → 內容
+  依序淡入（`intro` 動畫，延遲 0.15s 到 0.45s，定義在 `_sass/layout/` 各檔）。因為選單和側欄
+  每一頁都一樣，每次換頁重新淡入就變成「閃動」，所以整組關掉了。
+  同時把 `body` 的 `padding-top` 固定成 65px —— 佈景 CSS 原本預留 70px，JS 載入後量到實際是
+  65px 再改寫，造成內容每次載入都往上跳 5px。
+- **深色模式先套用**（`_includes/head/custom.html` 最上面那段內嵌 script）。原本主題是等
+  `main.min.js` 載完才套，深色模式使用者會先看到一閃的白底。那段 script 必須留在 `<head>`、
+  必須是同步的、而且**不能有 `//` 註解**。
 - **移除的東西**：Talks、Teaching、Portfolio、Blog posts、talkmap、markdown_generator、範例文章與圖檔。要救回來的話：`git log` 找得到，或去原始模板 repo 抓。
 
 ---
