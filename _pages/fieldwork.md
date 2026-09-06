@@ -8,10 +8,9 @@ author_profile: true
 A running map of the outcrops, field campaigns and mountain trips that shape how I think about
 rocks. Click a pin for photos and notes.
 
-<div style="position:relative;padding-bottom:70%;height:0;overflow:hidden;max-width:100%;margin:1.5em 0;">
+<div class="map-embed">
   <iframe
     src="https://www.google.com/maps/d/embed?mid=182NqsK3rnf44xUX4dDm4nh-JwxQ-F40&hl=en"
-    style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;"
     loading="lazy"
     allowfullscreen
     title="Fieldwork map"></iframe>
@@ -28,12 +27,12 @@ Nepal — Himalaya (2022)
 HKT Workshop in Pokhara, followed by fieldwork along the Main Frontal Thrust and the
 Kali Gandaki valley in Mustang.
 
-<!-- PHOTOS: put files in images/fieldwork/ and uncomment
-<figure class="half">
-  <img src="/images/fieldwork/nepal-1.jpg" alt="">
-  <img src="/images/fieldwork/nepal-2.jpg" alt="">
-  <figcaption>Mustang, Nepal.</figcaption>
-</figure>
+<!-- PHOTOS: drop files into images/fieldwork/ then uncomment this block
+<div class="photo-grid">
+  <figure><img src="/images/fieldwork/nepal-1.jpg" alt=""><figcaption>Kali Gandaki valley</figcaption></figure>
+  <figure><img src="/images/fieldwork/nepal-2.jpg" alt=""><figcaption>Mustang</figcaption></figure>
+  <figure><img src="/images/fieldwork/nepal-3.jpg" alt=""><figcaption>MFT outcrop</figcaption></figure>
+</div>
 -->
 
 Sumatra, Indonesia

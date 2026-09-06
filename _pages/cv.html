@@ -1,0 +1,114 @@
+---
+layout: archive
+title: "CV"
+permalink: /cv/
+author_profile: true
+redirect_from:
+  - /resume
+---
+
+{% include base_path %}
+{% assign cv = site.data.cv %}
+
+{% if cv.pdf %}
+<p><a class="pub-btn" href="{{ base_path }}{{ cv.pdf }}"><i class="fas fa-file-pdf" aria-hidden="true"></i> Download CV (PDF)</a></p>
+{% endif %}
+
+<h2>Employment</h2>
+<div class="tl">
+{% for e in cv.employment %}
+  <div class="tl-item">
+    <div class="tl-when">{{ e.when }}</div>
+    <div class="tl-what">
+      <strong>{{ e.what }}</strong>
+      <span class="tl-where">{{ e.where }}</span>
+      {% if e.note %}<div class="tl-note">{{ e.note }}</div>{% endif %}
+    </div>
+  </div>
+{% endfor %}
+</div>
+<p style="font-size:.85em;color:var(--global-text-color-light);">Career break 2018/10 – 2019/7: independent travel for personal development, immediately followed by the start of doctoral studies.</p>
+
+<h2>Education</h2>
+<div class="tl">
+{% for e in cv.education %}
+  <div class="tl-item">
+    <div class="tl-when">{{ e.when }}</div>
+    <div class="tl-what">
+      <strong>{{ e.what }}</strong>
+      <span class="tl-where">{{ e.where }}</span>
+      {% if e.note %}<div class="tl-note">{{ e.note }}</div>{% endif %}
+    </div>
+  </div>
+{% endfor %}
+</div>
+
+<h2>Awards &amp; funding</h2>
+<div class="tl">
+{% for e in cv.awards %}
+  <div class="tl-item">
+    <div class="tl-when tl-when--muted">{{ e.when }}</div>
+    <div class="tl-what"><strong>{{ e.what }}</strong><span class="tl-where">{{ e.where }}</span></div>
+  </div>
+{% endfor %}
+</div>
+
+<h2>Publications</h2>
+<p>See the <a href="{{ base_path }}/publications/">publications page</a> for the full list with DOIs and PDFs.</p>
+
+<h2>Supervising &amp; mentoring</h2>
+<div class="tl">
+{% for e in cv.mentoring %}
+  <div class="tl-item">
+    <div class="tl-when tl-when--muted">{{ e.when }}</div>
+    <div class="tl-what"><strong>{{ e.what }}</strong><span class="tl-where">{{ e.where }}</span></div>
+  </div>
+{% endfor %}
+</div>
+
+<h2>Teaching</h2>
+<div class="tl">
+{% for e in cv.teaching %}
+  <div class="tl-item">
+    <div class="tl-when tl-when--muted">{{ e.when }}</div>
+    <div class="tl-what"><strong>{{ e.what }}</strong><span class="tl-where">{{ e.where }}</span></div>
+  </div>
+{% endfor %}
+</div>
+
+<h2>Service &amp; outreach</h2>
+<div class="tl">
+{% for e in cv.service %}
+  <div class="tl-item">
+    <div class="tl-when tl-when--muted">{{ e.when }}</div>
+    <div class="tl-what">
+      <strong>{{ e.what }}</strong>
+      <span class="tl-where">{{ e.where }}</span>
+      {% if e.note %}<div class="tl-note">{{ e.note }}</div>{% endif %}
+    </div>
+  </div>
+{% endfor %}
+</div>
+
+<h2>Major collaborations</h2>
+<div class="tl">
+{% for e in cv.collaborations %}
+  <div class="tl-item">
+    <div class="tl-when tl-when--muted">{{ e.when }}</div>
+    <div class="tl-what"><strong>{{ e.what }}</strong><span class="tl-where">{{ e.where }}</span></div>
+  </div>
+{% endfor %}
+</div>
+
+<h2>Technical skills</h2>
+{% for s in cv.skills %}
+  <p style="margin:0 0 .2em 0;"><strong>{{ s.group }}</strong></p>
+  <div class="chips">
+    {% for i in s.items %}<span class="chip">{{ i }}</span>{% endfor %}
+  </div>
+{% endfor %}
+
+<h2>Professional memberships</h2>
+<div class="chips">
+  {% for m in cv.memberships %}<span class="chip">{{ m }}</span>{% endfor %}
+</div>

@@ -39,16 +39,13 @@ Elsewhere
 Outside the office I am usually on a trail, in an outcrop, or somewhere between the two — see
 [Fieldwork & travel](/fieldwork/) for the map.
 
-<!--
-  PHOTOS — drop your images into  images/about/  and uncomment the block below.
-  Recommended: JPEG, long edge ≤ 1600 px, ≤ 500 KB each.
-
-<figure class="third">
-  <img src="/images/about/photo-1.jpg" alt="">
-  <img src="/images/about/photo-2.jpg" alt="">
-  <img src="/images/about/photo-3.jpg" alt="">
-  <figcaption>Fieldwork in Taiwan, Nepal and Norway.</figcaption>
-</figure>
+<!-- PHOTOS — drop images into images/about/ then uncomment this block.
+     Recommended: JPEG, long edge <= 1600 px, <= 500 KB each.
+<div class="photo-grid">
+  <figure><img src="/images/about/photo-1.jpg" alt=""><figcaption>Fieldwork in Taiwan</figcaption></figure>
+  <figure><img src="/images/about/photo-2.jpg" alt=""><figcaption>Himalaya, Nepal</figcaption></figure>
+  <figure><img src="/images/about/photo-3.jpg" alt=""><figcaption>At the cluster</figcaption></figure>
+</div>
 -->
 
 Contact

@@ -1,0 +1,168 @@
+/* ==========================================================================
+   Custom styles for wanlin001.github.io
+   Layered on top of AcademicPages. Safe to edit — nothing here is generated.
+   ========================================================================== */
+
+:root {
+  --wl-accent:        #2e9e6b;   /* primary accent (buttons, chips, rules)  */
+  --wl-accent-soft:   #e8f5ee;   /* tinted background for chips/cards       */
+  --wl-accent-dark:   #22795220;
+  --wl-badge-journal: #2e9e6b;
+  --wl-badge-prep:    #f0932b;
+  --wl-badge-conf:    #3b82c4;
+  --wl-badge-outreach:#8e6bc4;
+  --wl-card-bg:       #ffffff;
+  --wl-card-shadow:   0 1px 2px rgba(0,0,0,.06), 0 4px 14px rgba(0,0,0,.05);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --wl-accent-soft: #17352a;
+    --wl-card-bg:     #1d1f21;
+    --wl-card-shadow: 0 1px 2px rgba(0,0,0,.5), 0 4px 14px rgba(0,0,0,.35);
+  }
+}
+:root[data-theme="dark"] {
+  --wl-accent-soft: #17352a;
+  --wl-card-bg:     #1d1f21;
+  --wl-card-shadow: 0 1px 2px rgba(0,0,0,.5), 0 4px 14px rgba(0,0,0,.35);
+}
+
+/* --------------------------------------------------------------- headings */
+
+.page__content h2 {
+  border-bottom: 2px solid var(--wl-accent);
+  padding-bottom: .25em;
+}
+
+/* ------------------------------------------------------- publication card */
+
+.pub-card {
+  background: var(--wl-card-bg);
+  border: 1px solid var(--global-border-color);
+  border-left: 4px solid var(--wl-accent);
+  border-radius: 6px;
+  box-shadow: var(--wl-card-shadow);
+  padding: 1em 1.2em;
+  margin-bottom: 1.1em;
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+.pub-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 2px 4px rgba(0,0,0,.08), 0 10px 24px rgba(0,0,0,.09);
+}
+.pub-card__title {
+  font-size: 1.05em;
+  line-height: 1.35;
+  font-weight: 600;
+  margin: 0 0 .35em 0;
+}
+.pub-card__title a { text-decoration: none; }
+.pub-card__authors { margin: 0 0 .3em 0; font-size: .88em; }
+.pub-card__authors .me { font-weight: 700; }
+.pub-card__meta { margin: 0 0 .55em 0; font-size: .82em; color: var(--global-text-color-light); }
+.pub-card__excerpt { margin: 0 0 .7em 0; font-size: .87em; }
+
+.pub-card__body { display: flex; gap: 1.2em; align-items: flex-start; flex-wrap: wrap; }
+.pub-card__main { flex: 1 1 320px; min-width: 0; }
+.pub-card__badges { flex: 0 0 auto; display: flex; gap: .5em; align-items: center; padding-top: .2em; }
+
+/* coloured type label */
+.pub-tag {
+  display: inline-block;
+  padding: .12em .6em;
+  border-radius: 3px;
+  font-size: .72em;
+  font-weight: 600;
+  letter-spacing: .02em;
+  color: #fff;
+  vertical-align: middle;
+  margin-right: .4em;
+}
+.pub-tag--manuscripts { background: var(--wl-badge-journal); }
+.pub-tag--inprep      { background: var(--wl-badge-prep); }
+.pub-tag--conferences { background: var(--wl-badge-conf); }
+.pub-tag--outreach    { background: var(--wl-badge-outreach); }
+.pub-tag--oa          { background: transparent; color: var(--wl-accent); border: 1px solid var(--wl-accent); }
+
+/* small pill buttons: DOI / PDF / code */
+.pub-links { display: flex; flex-wrap: wrap; gap: .45em; }
+.pub-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .4em;
+  padding: .25em .7em;
+  font-size: .78em;
+  border-radius: 999px;
+  border: 1px solid var(--global-border-color);
+  background: transparent;
+  color: var(--global-text-color) !important;
+  text-decoration: none !important;
+  transition: background .15s ease, border-color .15s ease, color .15s ease;
+}
+.pub-btn:hover {
+  background: var(--wl-accent);
+  border-color: var(--wl-accent);
+  color: #fff !important;
+}
+
+/* ------------------------------------------------------------- CV timeline */
+
+.tl { margin: 0 0 2em 0; }
+.tl-item { display: flex; gap: 1em; margin-bottom: 1.2em; align-items: flex-start; }
+.tl-when {
+  flex: 0 0 7.5em;
+  text-align: right;
+  font-size: .82em;
+  font-weight: 600;
+  line-height: 1.35;
+  color: #fff;
+  background: var(--wl-accent);
+  border-radius: 3px;
+  padding: .3em .6em;
+}
+.tl-when--muted { background: var(--global-text-color-light); }
+.tl-what { flex: 1 1 auto; min-width: 0; }
+.tl-what strong { display: block; line-height: 1.35; }
+.tl-where { font-style: italic; font-size: .9em; color: var(--global-text-color-light); }
+.tl-note  { font-size: .88em; margin-top: .25em; }
+
+@media (max-width: 600px) {
+  .tl-item { flex-direction: column; gap: .3em; }
+  .tl-when { flex: none; text-align: left; align-self: flex-start; }
+}
+
+/* ------------------------------------------------------------- skill chips */
+
+.chips { display: flex; flex-wrap: wrap; gap: .4em; margin: .4em 0 1.2em 0; }
+.chip {
+  font-size: .8em;
+  padding: .22em .7em;
+  border-radius: 999px;
+  background: var(--wl-accent-soft);
+  color: var(--global-text-color);
+  border: 1px solid var(--global-border-color);
+}
+
+/* ------------------------------------------------------------ photo grids */
+
+.photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: .8em; margin: 1.2em 0; }
+.photo-grid figure { margin: 0; }
+.photo-grid img { width: 100%; height: 200px; object-fit: cover; border-radius: 6px; display: block; }
+.photo-grid figcaption { font-size: .78em; color: var(--global-text-color-light); margin-top: .3em; }
+
+/* --------------------------------------------------------- research blocks */
+
+.rs-card {
+  border: 1px solid var(--global-border-color);
+  border-radius: 6px;
+  padding: 1em 1.2em;
+  margin-bottom: 1.1em;
+  background: var(--wl-card-bg);
+  box-shadow: var(--wl-card-shadow);
+}
+.rs-card h3 { margin-top: 0; }
+
+/* map embed */
+.map-embed { position: relative; padding-bottom: 68%; height: 0; overflow: hidden; border-radius: 6px; box-shadow: var(--wl-card-shadow); margin: 1.5em 0; }
+.map-embed iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }

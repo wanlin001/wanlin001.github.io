@@ -7,12 +7,11 @@ author_profile: true
 
 {% include base_path %}
 
-<p>
+<p style="margin-bottom:1.4em;">
   Also on
   {% if site.author.googlescholar %}<a href="{{ site.author.googlescholar }}">Google Scholar</a>{% endif %}
   {% if site.author.orcid %} · <a href="{{ site.author.orcid }}">ORCID</a>{% endif %}
   {% if site.author.researchgate %} · <a href="{{ site.author.researchgate }}">ResearchGate</a>{% endif %}.
-  <br />&#9733; denotes first-authored work.
 </p>
 
 {% for category in site.publication_category %}
@@ -20,35 +19,60 @@ author_profile: true
   {% for post in site.publications reversed %}
     {% if post.category != category[0] %}{% continue %}{% endif %}
     {% unless title_shown %}
-      <h2 id="{{ category[0] }}">{{ category[1].title }}</h2><hr />
+      <h2 id="{{ category[0] }}">{{ category[1].title }}</h2>
       {% assign title_shown = true %}
     {% endunless %}
 
-    <div class="list__item">
-      <article class="archive__item">
-        <h3 class="archive__item-title" style="margin-bottom:0.2em;">
-          {% if post.first_author %}&#9733; {% endif %}
-          <a href="{{ base_path }}{{ post.url }}" rel="permalink">{{ post.title }}</a>
-        </h3>
+    <div class="pub-card">
+      <div class="pub-card__body">
+        <div class="pub-card__main">
 
-        <p class="page__meta" style="margin:0 0 0.3em 0;">
-          {{ post.authors }}{% if post.year %} ({{ post.year }}){% endif %}.
-          {% if post.venue %}<i>{{ post.venue }}</i>{% endif %}{% if post.volume %}, {{ post.volume }}{% endif %}.
-          {% if post.openaccess %} <span title="Open access">&#128275; Open access</span>{% endif %}
-        </p>
+          <p class="pub-card__title">
+            <span class="pub-tag pub-tag--{{ post.category }}">{{ category[1].label | default: category[1].title }}</span>
+            <a href="{{ base_path }}{{ post.url }}" rel="permalink">{{ post.title }}</a>
+          </p>
 
-        {% if post.excerpt %}
-          <p class="archive__item-excerpt" style="margin:0 0 0.4em 0;">{{ post.excerpt | markdownify | remove: '<p>' | remove: '</p>' }}</p>
+          <p class="pub-card__authors">{{ post.authors }}</p>
+
+          <p class="pub-card__meta">
+            {% if post.venue %}<i>{{ post.venue }}</i>{% endif %}{% if post.volume %}, {{ post.volume }}{% endif %}
+            {% if post.year %} | {{ post.year }}{% endif %}
+            {% if post.openaccess %} <span class="pub-tag pub-tag--oa">Open access</span>{% endif %}
+          </p>
+
+          {% if post.excerpt %}
+            <p class="pub-card__excerpt">{{ post.excerpt | markdownify | remove: '<p>' | remove: '</p>' }}</p>
+          {% endif %}
+
+          <div class="pub-links">
+            {% if post.doi %}
+              <a class="pub-btn" href="https://doi.org/{{ post.doi }}"><i class="ai ai-doi" aria-hidden="true"></i> DOI</a>
+            {% endif %}
+            {% if post.paperurl %}
+              <a class="pub-btn" href="{% if post.paperurl contains '://' %}{{ post.paperurl }}{% else %}{{ base_path }}{{ post.paperurl }}{% endif %}"><i class="fas fa-file-pdf" aria-hidden="true"></i> PDF</a>
+            {% endif %}
+            {% if post.codeurl %}
+              <a class="pub-btn" href="{{ post.codeurl }}"><i class="fas fa-code" aria-hidden="true"></i> Code &amp; data</a>
+            {% endif %}
+            {% if post.slidesurl %}
+              <a class="pub-btn" href="{{ post.slidesurl }}"><i class="fas fa-desktop" aria-hidden="true"></i> Slides</a>
+            {% endif %}
+            {% if post.bibtexurl %}
+              <a class="pub-btn" href="{{ post.bibtexurl }}"><i class="fas fa-quote-right" aria-hidden="true"></i> BibTeX</a>
+            {% endif %}
+            <a class="pub-btn" href="{{ base_path }}{{ post.url }}"><i class="fas fa-expand-alt" aria-hidden="true"></i> Details</a>
+          </div>
+
+        </div>
+
+        {% if post.doi and post.badges != false %}
+        <div class="pub-card__badges">
+          <div data-badge-popover="left" data-badge-type="donut" data-doi="{{ post.doi }}" data-hide-no-mentions="true" class="altmetric-embed"></div>
+          <span class="__dimensions_badge_embed__" data-doi="{{ post.doi }}" data-hide-zero-citations="true" data-style="small_circle"></span>
+        </div>
         {% endif %}
 
-        <p style="margin:0 0 1.5em 0;">
-          {% if post.doi %}<a href="https://doi.org/{{ post.doi }}"><i class="ai ai-doi" aria-hidden="true"></i> doi:{{ post.doi }}</a>{% endif %}
-          {% if post.paperurl %} &nbsp;|&nbsp; <a href="{% if post.paperurl contains '://' %}{{ post.paperurl }}{% else %}{{ base_path }}{{ post.paperurl }}{% endif %}"><i class="fas fa-file-pdf" aria-hidden="true"></i> PDF</a>{% endif %}
-          {% if post.codeurl %} &nbsp;|&nbsp; <a href="{{ post.codeurl }}"><i class="fas fa-code" aria-hidden="true"></i> Code &amp; data</a>{% endif %}
-          {% if post.slidesurl %} &nbsp;|&nbsp; <a href="{{ post.slidesurl }}"><i class="fas fa-desktop" aria-hidden="true"></i> Slides</a>{% endif %}
-          {% if post.bibtexurl %} &nbsp;|&nbsp; <a href="{{ post.bibtexurl }}">BibTeX</a>{% endif %}
-        </p>
-      </article>
+      </div>
     </div>
   {% endfor %}
 {% endfor %}

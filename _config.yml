@@ -12,7 +12,7 @@ site_theme               : "default" # The available themes options are "default
 title                    : "Wan-Lin Hu"
 title_separator          : "-"
 name                     : &name "Wan-Lin Hu"
-description              : &description "Your Name's academic portfolio"   # Update this with a general description of your site, this is the default if not overridden by a page
+description              : &description "Wan-Lin Hu — postdoctoral fellow in earthquake science, geodynamic modelling and structural geology."   # Update this with a general description of your site, this is the default if not overridden by a page
 url: "https://wanlin001.github.io"
 #url                      : https://academicpages.github.io # The base hostname & protocol for your site e.g. "https://[your GitHub username].github.io",
                                                            # or if you already have some other page hosted on Github then use "https://[your GitHub username].github.io/[Your Repo Name]"
@@ -25,13 +25,13 @@ repository               : "wanlin001/wanlin001.github.io"
 author:
   # Biographic information
   avatar           : "profile.png"
-  name             : "Postdoc"
+  name             : "Wan-Lin Hu"
   pronouns         : "she/her"  
-  bio              : "Short biography for the left-hand sidebar"
-  location         : "Earth"
-  employer         : "IES, AS"
+  bio              : "Postdoctoral fellow, Institute of Earth Sciences, Academia Sinica. Earthquake science, geodynamic modelling, structural geology."
+  location         : "Taipei, Taiwan"
+  employer         : "Academia Sinica"
   uri              : # URL
-  email            : "huwanlin@gmail.com" 
+  email            : "huwanlin@earth.sinica.edu.tw"
 
   # Academic websites
   academia         : # URL
@@ -51,13 +51,13 @@ author:
   bitbucket        : # Username - Update with your username on the site
   codepen          : # Username
   dribbble         : # Username
-  github           : "https://github.com/wanlin001" #"academicpages"
+  github           : "wanlin001"
   #kaggle           : # Username  
   stackoverflow    : # User number or user number and name (i.e., use "1" or "1/jeff-atwood")    
 
   # Social media
   artstation       : # Username
-  bluesky          : "bsky.app" # Replace this with you Bluesky username
+  bluesky          : # Replace this with you Bluesky username
   facebook         : # Username
   flickr           : # Username
   foursquare       : # Username
@@ -84,12 +84,18 @@ author:
 
 # Publication Category - The following the list of publication categories and their headings
 publication_category:
-  books:
-    title: 'Books'
   manuscripts:
-    title: 'Journal Articles'    
+    title: 'Peer-reviewed journal articles'
+    label: 'Journal paper'
+  inprep:
+    title: 'In preparation'
+    label: 'In prep.'
   conferences:
-    title: 'Conference Papers'
+    title: 'Conference presentations'
+    label: 'Conference'
+  outreach:
+    title: 'Public engagement writing'
+    label: 'Outreach'
 
 # Site Settings
 teaser                   :  # filename of teaser fallback teaser image placed in /images/ for social media previews
@@ -125,7 +131,7 @@ staticman:
       options:
         format           : "iso8601" # "iso8601" (default), "timestamp-seconds", "timestamp-milliseconds"
 atom_feed:
-  hide                   : false     # change to true to hide the RSS feed in the footer
+  hide                   : true      # change to true to hide the RSS feed in the footer
   path                   : # blank (default) uses feed.xml
 
 
@@ -221,16 +227,7 @@ kramdown:
 
 # These settings control the types of collections used by the template
 collections:
-  teaching:
-    output: true
-    permalink: /:collection/:path/
   publications:
-    output: true
-    permalink: /:collection/:path/
-  portfolio:
-    output: true
-    permalink: /:collection/:path/
-  talks:
     output: true
     permalink: /:collection/:path/
 
@@ -244,15 +241,6 @@ defaults:
     values:
       layout: single
       author_profile: true
-  # _teaching
-  - scope:
-      path: ""
-      type: teaching
-    values:
-      layout: single
-      author_profile: true
-      share: true
-      comments: true
   # _publications
   - scope:
       path: ""
@@ -261,24 +249,7 @@ defaults:
       layout: single
       author_profile: true
       share: true
-      comments: true
-  # _portfolio
-  - scope:
-      path: ""
-      type: portfolio
-    values:
-      layout: single
-      author_profile: true
-      share: true
-      comment: true
-  # _talks
-  - scope:
-      path: ""
-      type: talks
-    values:
-      layout: talk
-      author_profile: true
-      share: true
+      comments: false
 
 
 # Sass/SCSS

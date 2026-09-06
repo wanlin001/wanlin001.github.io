@@ -1,0 +1,129 @@
+# ---------------------------------------------------------------------------
+# CV content. Edit this file to update the /cv/ page — no HTML needed.
+# Each entry: when / what / where / note   (note is optional)
+# ---------------------------------------------------------------------------
+
+pdf: # e.g. /files/Wan-Lin-Hu-CV.pdf  — drop the file in files/ and put the path here
+
+employment:
+  - when: "2024/4 – present"
+    what: "Postdoctoral Fellow"
+    where: "Institute of Earth Sciences, Academia Sinica, Taipei, Taiwan"
+    note: "Develops geodynamic and numerical models; leads interdisciplinary work integrating seismic source analysis, seismic anisotropy and crustal tectonics."
+  - when: "2023/8"
+    what: "Visiting Researcher"
+    where: "Faculty of Life and Environmental Sciences, University of Tsukuba, Japan"
+    note: "With Prof. Ryo Okuwaki and Prof. Yuji Yagi — seismic source analysis and rupture dynamics."
+  - when: "2016/8 – 2018/8"
+    what: "Professional Geologist and Researcher"
+    where: "Disaster Prevention Technology Research Center, Sinotech Engineering Consultants Inc., Taipei, Taiwan"
+    note: "Scientific advisor to government agencies: evidence-based multi-hazard (seismic, landslide, debris flow) risk assessment methods feeding national disaster-prevention policy."
+  - when: "2016/1 – 2016/7"
+    what: "Research Assistant"
+    where: "Department of Earth and Environmental Sciences, National Chung-Cheng University, Chiayi, Taiwan"
+
+education:
+  - when: "Ph.D. 2023"
+    what: "Asian School of the Environment, Nanyang Technological University, Singapore"
+    where: "Active tectonics, structural geology and observational seismology"
+    note: "Waveform inversion, seismic interpretation and uncertainty quantification, combining model development with tectonic analysis."
+  - when: "M.Sc. 2015"
+    what: "Department of Geosciences, National Taiwan University, Taipei, Taiwan"
+    where: "Active tectonics and surface deformation"
+    note: "InSAR observations of crustal movement for regional seismic hazard assessment."
+  - when: "Exchange 2012"
+    what: "Faculty of Science, Masaryk University, Brno, Czech Republic"
+    where: "Year-4 exchange student"
+  - when: "B.Sc. 2013"
+    what: "Department of Geosciences, National Taiwan University, Taipei, Taiwan"
+
+awards:
+  - when: "2026"
+    what: "Postdoctoral Paper Award"
+    where: "Division of Earth Sciences, National Science and Technology Council, Taiwan"
+  - when: "2021"
+    what: "Three Minute Thesis (3MT), First Place"
+    where: "Asian School of the Environment, NTU Singapore"
+  - when: "2019 – 2023"
+    what: "Singapore International Graduate Award (SINGA)"
+    where: "A*STAR & Nanyang Technological University — competitive full PhD scholarship"
+  - when: "2015"
+    what: "Outstanding Student Paper Award"
+    where: "Joint Annual Conference of the Geological Society and Geophysical Society of Taiwan"
+  - when: "2013"
+    what: "Dean's Award"
+    where: "College of Science, National Taiwan University"
+  - when: "2011 – 2012"
+    what: "NTU Scholarship for Excellent Exchange Students"
+    where: "National Taiwan University"
+
+mentoring:
+  - when: "2026 – present"
+    what: "Chun-Ling Wang (BSc, Year 3)"
+    where: "National Taiwan University — geodynamic modelling"
+  - when: "2023 – 2024"
+    what: "Bo-Han Tsao (PhD candidate)"
+    where: "National Taiwan University — scientific writing, structural geology"
+  - when: "2023 – 2024"
+    what: "Yi-An Chen (MSc candidate)"
+    where: "National Taiwan University — scientific writing, scientific programming"
+  - when: "2021 – 2022"
+    what: "Win Shwe Sin Oo (PhD, Year 1)"
+    where: "Nanyang Technological University — seismology; co-author on Oo et al. (2022)"
+
+teaching:
+  - when: "2022"
+    what: "Structural Geology"
+    where: "Nanyang Technological University, Singapore — teaching assistant"
+  - when: "2021"
+    what: "Communication Skills"
+    where: "Nanyang Technological University, Singapore — teaching assistant"
+  - when: "2020"
+    what: "Structural Geology & Field Geology"
+    where: "Nanyang Technological University, Singapore — teaching assistant"
+
+service:
+  - when: "Peer review"
+    what: "Ad hoc reviewer"
+    where: "Physics of the Earth and Planetary Interiors · Geoscience Letters · Journal of Petroleum Science and Technology · Acta Geophysica"
+  - when: "2025/3"
+    what: "Science Communicator, Academia Sinica Open House"
+    where: "Taipei, Taiwan"
+    note: "Designed and hosted interactive Earth-science programming for elementary-school students."
+  - when: "2024/2"
+    what: "Invited speaker, Taipei City Library Study Abroad Resource Centre"
+    where: "Online public lecture"
+    note: "\"Fallen into a rabbit hole — navigating challenges as an international student.\""
+
+memberships:
+  - "American Geophysical Union"
+  - "European Geosciences Union"
+  - "Geological Society of Taiwan"
+
+collaborations:
+  - when: "Himalayan tectonics"
+    what: "Victoria L. Stevens"
+    where: "University of Cape Town, South Africa"
+  - when: "Rupture dynamics"
+    what: "Shengji Wei"
+    where: "Nanyang Technological University, Singapore"
+  - when: "Seismic source analysis"
+    what: "Ryo Okuwaki & Yuji Yagi"
+    where: "University of Tsukuba, Japan"
+  - when: "Geodynamics & anisotropy"
+    what: "Eh Tan & Ban-Yuan Kuo"
+    where: "Institute of Earth Sciences, Academia Sinica, Taiwan"
+
+skills:
+  - group: "Programming"
+    items: ["MATLAB", "Python", "R", "Fortran", "C++"]
+  - group: "Geodynamic / numerical modelling"
+    items: ["FLAC", "DynEarthSol", "ASPECT", "MOOSE/PETSc"]
+  - group: "HPC"
+    items: ["Slurm", "PBS", "MPI/OpenMP", "CUDA"]
+  - group: "Visualisation & mapping"
+    items: ["GMT", "ParaView", "VisIt"]
+  - group: "GIS"
+    items: ["QGIS", "ArcGIS"]
+  - group: "Workflow"
+    items: ["Git / GitHub", "shell scripting", "Zenodo archiving"]
