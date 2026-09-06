@@ -23,13 +23,13 @@ employment:
   - when: "2016/8 – 2018/8"
     what: "Professional Geologist and Researcher"
     where: "Disaster Prevention Technology Research Center, Sinotech Engineering Consultants Inc., Taipei, Taiwan"
-    link: "https://www.sinotech.org.tw/en/"
+    #link: "https://www.sinotech.org.tw/en/"
     icon: "fas fa-helmet-safety"
     note: "Scientific advisor to government agencies: evidence-based multi-hazard (seismic, landslide, debris flow) risk assessment methods feeding national disaster-prevention policy."
   - when: "2016/1 – 2016/7"
     what: "Research Assistant"
     where: "Department of Earth and Environmental Sciences, National Chung-Cheng University, Chiayi, Taiwan"
-    link: "https://deps.ccu.edu.tw/"
+    #link: "https://deps.ccu.edu.tw/"
     icon: "fas fa-building-columns"
 
 education:
