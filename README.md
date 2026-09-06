@@ -206,6 +206,20 @@ PUBLICATION SECTIONS  ── edit `publication_category:` in _config.yml ─
 `_data/notes.yml`、`_data/topics.yml`、`_config.yml` 三個檔的最上面也都寫了
 「想改什麼 → 去哪改」的對照表，打開檔案第一眼就看得到。
 
+同一支程式最後會做四項檢查，有問題會列出來：
+
+```
+CHECKS  ── 發現 2 個問題 ⚠️
+  · topics 寫成字串: 兩日以上登山裝備清單  →  改成  topics: [checklist]
+  · 標籤 "geology" 沒有定義在 _data/topics.yml（會顯示成灰色原始字）
+```
+
+檢查的是：`topics` 有沒有寫成清單、標籤有沒有定義、`category` 有沒有打錯、
+以及有沒有定義了卻沒用到的標籤。
+
+> ⚠️ **`topics` 一定要用方括號**：`topics: [checklist]`，不是 `topics: checklist`。
+> 寫成字串的話卡片上看起來正常，但**只能放一個標籤**，而且以後很容易出錯。
+
 **改完 YAML，推上去前先驗格式**（印出 OK 就沒問題，有錯會告訴妳第幾行）：
 
 ```bash

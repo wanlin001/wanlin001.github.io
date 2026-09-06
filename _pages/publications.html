@@ -24,10 +24,19 @@ author_profile: true
 {% if used.size > 1 %}
 <div class="pub-filter" id="pub-filter">
   <button type="button" class="topic-tag topic-tag--all is-active" data-topic="">All</button>
+  {% comment %} defined tags first, in the order they appear in _data/topics.yml {% endcomment %}
+  {% assign listed = "" | split: "" %}
   {% for key in site.data.topics %}
     {% if used contains key[0] %}
+      {% assign listed = listed | push: key[0] %}
       <button type="button" class="topic-tag" data-topic="{{ key[0] }}" style="--tt: {{ key[1].color | default: '#888888' }};">{{ key[1].label | default: key[0] }}</button>
     {% endif %}
+  {% endfor %}
+  {% comment %} then anything used but not defined, so a typo is visible rather than silently missing {% endcomment %}
+  {% for t in used %}
+    {% unless listed contains t %}
+      <button type="button" class="topic-tag" data-topic="{{ t }}" style="--tt: #888888;" title="這個標籤還沒定義在 _data/topics.yml">{{ t }}</button>
+    {% endunless %}
   {% endfor %}
   <span class="pub-filter__count" id="pub-filter-count" aria-live="polite"></span>
 </div>

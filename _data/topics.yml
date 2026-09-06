@@ -77,3 +77,6 @@ tools:
   label: "Tools & workflow"
   color: "#0891b2"
 
+geology:
+  label: "Geology"
+  color: "#8b5a2b"

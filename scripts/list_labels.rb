@@ -47,3 +47,39 @@ config['publication_category'].each do |code, c|
   puts "  %-14s %-30s %s" % [code, c['title'], "#{pcounts[code].to_i} item(s)"]
 end
 puts
+
+# ── problems worth knowing about ─────────────────────────────────────────
+problems = []
+
+notes['notes'].to_a.each do |n|
+  t = n['topics']
+  next if t.nil?
+  unless t.is_a?(Array)
+    problems << "topics 寫成字串: #{n['title']}  →  改成  topics: [#{t}]"
+  end
+end
+pubs.each do |p|
+  t = p['topics']
+  next if t.nil?
+  problems << "topics 寫成字串: #{p['title']}  →  改成  topics: [#{t}]" unless t.is_a?(Array)
+end
+
+(used_by_notes.keys + used_by_pubs.keys).uniq.each do |code|
+  problems << "標籤 \"#{code}\" 沒有定義在 _data/topics.yml（會顯示成灰色原始字）" unless topics.key?(code)
+end
+
+note_cats = notes['categories'].to_a.map(&:first)
+notes['notes'].to_a.each do |n|
+  c = n['category']
+  next if c.nil?
+  problems << "分類 \"#{c}\" 不在 categories: 裡（會掉到 Other 區）: #{n['title']}" unless note_cats.include?(c)
+end
+
+puts
+if problems.empty?
+  puts "CHECKS  ── 沒有發現問題 ✅"
+else
+  puts "CHECKS  ── 發現 #{problems.size} 個問題 ⚠️"
+  problems.each { |x| puts "  · #{x}" }
+end
+puts
