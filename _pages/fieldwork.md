@@ -21,7 +21,7 @@ rocks. Click a pin for photos and notes.
 Selected trips
 ======
 
-## Nepal — Himalaya (2022)
+Nepal — Himalaya (2022)
 ------
 
 HKT Workshop in Pokhara, followed by fieldwork along the Main Frontal Thrust and the
@@ -35,13 +35,13 @@ Kali Gandaki valley in Mustang.
 </div>
 -->
 
-## Sumatra, Indonesia
+Sumatra, Indonesia
 ------
 
 Great Sumatran Fault, Aceh segment — tremor search and post-2004 geotourism in Banda Aceh
 (written up for *Geology [Ti-Chi]*, see [Resources](/resources/)).
 
-## Taiwan
+Taiwan
 ------
 
 Multi-hazard field investigations (seismic, landslide, debris flow) across Taiwan during my time

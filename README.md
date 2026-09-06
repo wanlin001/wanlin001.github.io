@@ -482,6 +482,12 @@ MID 在 My Maps 的網址列裡（`...&mid=182NqsK3rnf...`）。
   會把後面整段程式一起註解掉，造成語法錯誤、整支腳本失效。**內嵌 script 千萬不要用 `//` 註解**
   （要註解就用 `/* */`）。同理，`_includes/` 底下的 analytics / comments 範本也有這個問題，
   但那些預設關閉所以沒事 —— 哪天要開 Google Analytics 或留言功能，記得先檢查。
+- **下拉選單的 `pointer-events` 修正**（`custom.css` 最下面）。佈景的
+  `_sass/layout/_masthead.scss` 有一條 `.masthead__menu-item.selected a { pointer-events: none; }`，
+  用意是「你已經在這一頁了，不能再點」。但它是**後代選擇器** —— 當妳人在下拉選單裡的某一頁
+  （例如 /fieldwork/），被標成 `.selected` 的是父層的「Others」，於是這條規則會把
+  **父層標籤和整個下拉選單裡的每一個連結全部變成不能點**。custom.css 最後那段就是把點擊權還回去，
+  不要刪。
 - **移除的東西**：Talks、Teaching、Portfolio、Blog posts、talkmap、markdown_generator、範例文章與圖檔。要救回來的話：`git log` 找得到，或去原始模板 repo 抓。
 
 ---
@@ -502,7 +508,24 @@ MID 在 My Maps 的網址列裡（`...&mid=182NqsK3rnf...`）。
 
 ### 最簡單、也最推薦：手寫清單
 
-編 **`_data/notes.yml`**，一則文章一個區塊：
+編 **`_data/notes.yml`**，一則文章一個區塊。
+
+> ⚠️ **`notes:` 整個檔案只能出現一次**，寫在最上面。要加第二則是在它底下多一組 `- title:`，
+> **不是再寫一次 `notes:`** —— YAML 遇到重複的 key 會直接蓋掉前面的，寫兩次只會剩最後一則。
+
+```yaml
+notes:
+
+  - title: "第一則"
+    url: "https://..."
+    source: "HackMD"
+
+  - title: "第二則"          # ← 就是這樣往下加，不用再寫 notes:
+    url: "https://..."
+    source: "Medium"
+```
+
+完整欄位：
 
 ```yaml
 notes:

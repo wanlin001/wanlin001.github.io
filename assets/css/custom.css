@@ -323,3 +323,34 @@
 @media (max-width: 520px) {
   .post-card__thumb { display: none; }
 }
+
+/* --- fix: the theme kills clicks inside a "selected" menu item -------------
+   _sass/layout/_masthead.scss has
+
+       .masthead__menu-item.selected a { pointer-events: none; }
+
+   which is a *descendant* selector. It exists so you cannot click the page you
+   are already on. But when you are on a page that lives inside the dropdown,
+   the parent item ("Others") is the one marked .selected — so that rule also
+   disabled the parent label AND every link in the submenu. Result: from
+   /fieldwork/ you could not open the menu, nor reach /travel/ or /resources/.
+   Put the clicks back.                                                        */
+
+.masthead__menu-item--has-children.selected > .nav-parent,
+.masthead__menu-item.selected .nav-submenu a {
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+/* the theme's "current page" underline looks wrong inside a dropdown */
+.nav-submenu a {
+  border-bottom: 0 !important;
+  font-weight: 400 !important;
+}
+
+/* the row for the page you are actually on is highlighted, but stays
+   clickable — inside a dropdown an inert row just feels broken */
+.nav-submenu li.selected > a {
+  color: var(--wl-accent) !important;
+  font-weight: 600 !important;
+}
