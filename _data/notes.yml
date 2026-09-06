@@ -68,6 +68,26 @@ notes:
     source: "HackMD"
     excerpt: "自己寫的互動式 SAC 波形檢視與到時挑選工具的使用說明：可獨立標記多個震相、bandpass 濾波、STA/LTA、包絡線、排序與縮放，針對大型測網資料設計。"
 
+
+  - title: "時空對位與軌跡影像誌"
+    url: "https://hackmd.io/@HuWanLin/BkT1kOTF-x"
+    category: fieldwork
+    date: "Mar 2026"
+    source: "HackMD"
+    excerpt: "把 .gpx 軌跡與手機／相機拍的照片和影片自動對位的工具：以時間校準演算法把多媒體定位到路徑點上，同時產生高度剖面圖，並輸出 .kml / .kmz 供 Google Earth 瀏覽。"
+
+  - title: "Creating Perple_X lookup tables"
+    url: "https://hackmd.io/@HuWanLin/H11Dob2ZZg"
+    category: research
+    source: "HackMD"
+    excerpt: "為 ASPECT 建立濕玄武岩到乾榴輝岩相變模型的流程筆記：build → vertex → werami，產生密度查找表以驅動 slab pull。"
+
+  - title: "Commonly used and basic commands in SAC"
+    url: "https://hackmd.io/@HuWanLin/SAC"
+    category: research
+    source: "HackMD"
+    excerpt: "SAC 常用指令備忘：讀檔、排序、繪圖、標頭欄位操作，以及安裝與學習資源的連結整理。"
+
 # ⚠️ 下面這則的 HackMD 筆記目前是「非公開」，貼上去讀者會看到 403。
 #    到 HackMD 把它改成「知道連結的人可以閱讀」之後，把 # 拿掉就會出現。
 #
