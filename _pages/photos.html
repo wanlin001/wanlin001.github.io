@@ -9,9 +9,14 @@ author_profile: true
 
 {% comment %}
   Every image under images/gallery/ and images/travel/ appears here
-  automatically — drop a file in, and it shows up. Captions are optional and
-  live in _data/gallery.yml, keyed by file name.
+  automatically — drop a file in and it shows up.
+
+  The caption is the date, read straight off the file name when it starts
+  with YYYYMMDD (which is what phones name photos). A hand-written caption in
+  _data/gallery.yml wins over it, and is shown after the date.
 {% endcomment %}
+
+{% assign months = "Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec" | split: "," %}
 
 {% assign shots = "" | split: "" %}
 {% for f in site.static_files %}
@@ -26,10 +31,34 @@ author_profile: true
 {% if shots.size > 0 %}
 <div class="wall" id="wall">
   {% for f in shots %}
-    {% assign cap = site.data.gallery.captions[f.name] %}
-    <figure class="wall__item"{% if cap %} data-caption="{{ cap | escape }}"{% endif %}>
-      <img src="{{ base_path }}{{ f.path }}" alt="{{ cap | default: '' | escape }}" loading="lazy">
-      {% if cap %}<figcaption>{{ cap }}</figcaption>{% endif %}
+
+    {%- assign y = f.basename | slice: 0, 4 -%}
+    {%- assign ynum = y | plus: 0 -%}
+    {%- assign stamp = "" -%}
+    {%- if ynum > 1990 and ynum < 2100 -%}
+      {%- assign mnum = f.basename | slice: 4, 2 | plus: 0 -%}
+      {%- assign dnum = f.basename | slice: 6, 2 | plus: 0 -%}
+      {%- if mnum > 0 and mnum < 13 and dnum > 0 and dnum < 32 -%}
+        {%- assign midx = mnum | minus: 1 -%}
+        {%- assign mname = months[midx] -%}
+        {%- assign stamp = dnum | append: " " | append: mname | append: " " | append: y -%}
+      {%- endif -%}
+    {%- endif -%}
+
+    {%- assign note = site.data.gallery.captions[f.name] -%}
+    {%- if stamp != "" and note -%}
+      {%- assign label = stamp | append: " · " | append: note -%}
+    {%- elsif note -%}
+      {%- assign label = note -%}
+    {%- else -%}
+      {%- assign label = stamp -%}
+    {%- endif -%}
+
+    <figure class="wall__item"{% if label != "" %} data-caption="{{ label | escape }}"{% endif %}>
+      {%- comment -%} the first screenful loads eagerly, so the wall is never
+          blank if a browser is stingy about firing lazy loads {%- endcomment -%}
+      <img src="{{ base_path }}{{ f.path }}" alt="{{ note | default: stamp | escape }}"{% if forloop.index > 8 %} loading="lazy"{% endif %}>
+      {% if label != "" %}<figcaption>{{ label }}</figcaption>{% endif %}
     </figure>
   {% endfor %}
 </div>

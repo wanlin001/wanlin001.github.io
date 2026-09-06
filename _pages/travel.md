@@ -67,14 +67,14 @@ Erto e Casso, Friuli-Venezia Giulia／Longarone, Veneto, Italy · 2026 年 5 月
 Monte Toc 滑動面
 ------
 
-{% include photos.html dir="/images/travel/vajont" files="monte-toc-scar.jpg" size="tall" %}
+{% include photos.html dir="/images/travel/vajont" files="20260516_152714_monte-toc.jpg" size="tall" %}
 
 <!-- 描述寫在這裡 -->
 
 Longarone
 ------
 
-{% include photos.html dir="/images/travel/vajont" files="longarone-gorge.jpg" size="tall" %}
+{% include photos.html dir="/images/travel/vajont" files="20260516_184330_longarone.jpg" size="tall" %}
 
 <!-- 描述寫在這裡 -->
 

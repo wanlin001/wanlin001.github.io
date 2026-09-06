@@ -37,6 +37,43 @@
       document.body.style.overflow = '';
     }
 
+
+    /* ---- masonry ------------------------------------------------------
+       Lay the wall out as a grid and give each tile a row span matching its
+       aspect ratio, so nothing is cropped and there are no ragged gaps.
+       Panoramas take two columns. Uses the browser's own view of the image,
+       so photos carrying an EXIF rotation are measured correctly.
+       Falls back to the plain CSS column layout if this never runs.        */
+
+    var ROW = 8, GAP = 10;
+
+    function layout(fig) {
+      var im = fig.querySelector('img');
+      if (!im.naturalWidth) { return; }
+      var ratio = im.naturalWidth / im.naturalHeight;
+      fig.classList.toggle('wall__item--wide', ratio > 2.2);
+      var w = fig.getBoundingClientRect().width;
+      if (!w) { return; }
+      var h = w / ratio;
+      fig.style.gridRowEnd = 'span ' + Math.ceil((h + GAP) / ROW);
+    }
+
+    function layoutAll() { items.forEach(layout); }
+
+    wall.classList.add('wall--js');
+    items.forEach(function (fig) {
+      var im = fig.querySelector('img');
+      if (im.complete) { layout(fig); }
+      else { im.addEventListener('load', function () { layout(fig); }); }
+    });
+
+    var t;
+    window.addEventListener('resize', function () {
+      clearTimeout(t);
+      t = setTimeout(layoutAll, 120);
+    });
+    window.addEventListener('load', layoutAll);
+
     items.forEach(function (fig, i) {
       fig.setAttribute('tabindex', '0');
       fig.addEventListener('click', function () { show(i); });

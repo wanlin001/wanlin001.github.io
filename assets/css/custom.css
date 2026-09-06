@@ -446,10 +446,38 @@ body { padding-top: var(--masthead-h); }
    space is wasted on text. Captions only appear on hover / focus.
    ========================================================================== */
 
+/* no-JS fallback: plain masonry columns */
 .wall {
   columns: 3 260px;
   column-gap: 10px;
-  margin: 1.2em 0 2em 0;
+  margin: 1.2em 0 2.4em 0;
+}
+
+/* with JS: a real grid, row spans set per photo from its aspect ratio */
+.wall--js {
+  columns: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  grid-auto-rows: 8px;
+  column-gap: 10px;
+}
+.wall--js .wall__item {
+  margin: 0;
+  /* placeholder height so lazy-loaded photos below the fold still occupy
+     space (and therefore get loaded); JS replaces this once each one is in */
+  grid-row-end: span 34;
+}
+.wall--js .wall__item--wide { grid-column: span 2; }
+
+/* the photo fills its tile. before it loads the tile still has the
+   placeholder height, so the browser sees a real box and starts the
+   lazy load; afterwards JS sizes the tile to the exact aspect ratio,
+   so "cover" ends up cropping nothing. */
+.wall--js .wall__item img { height: 100%; object-fit: cover; }
+
+@media (max-width: 520px) {
+  .wall--js { grid-template-columns: 1fr; }
+  .wall--js .wall__item--wide { grid-column: span 1; }
 }
 
 .wall__item {
