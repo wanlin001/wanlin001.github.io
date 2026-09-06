@@ -574,3 +574,21 @@ body { padding-top: var(--masthead-h); }
   .lightbox__nav { font-size: 2.4rem; }
   .lightbox__caption { padding: 0 1em; }
 }
+
+/* --- home page: news & guides -------------------------------------------- */
+
+/* a news item with no link is not clickable, so it must not look clickable */
+.post-card--static { cursor: default; }
+.post-card--static:hover { transform: none; box-shadow: var(--wl-card-shadow); }
+.post-card--static .post-card__title { color: var(--global-text-color); }
+
+/* guides read as a menu of the site, so keep them tighter than news */
+.post-list--guides { gap: .5em; }
+.post-list--guides .post-card { padding: .65em 1em; }
+.post-list--guides .post-card__excerpt { margin-top: .15em; }
+
+.post-card__meta--inline {
+  display: inline;
+  margin: 0 0 0 .5em;
+  font-weight: 400;
+}

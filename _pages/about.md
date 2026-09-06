@@ -24,6 +24,49 @@ earthquake source analysis to probe the strength of the continental lithospheric
 Everything I publish is deposited on Zenodo with the full input files, so that every simulation
 can be reproduced independently.
 
+News
+======
+
+<!-- 內容在 _data/home.yml 的 news:，不用改下面這幾行 -->
+
+{% if site.data.home.news.size > 0 %}
+<div class="post-list">
+{% for n in site.data.home.news %}
+  {% if n.url %}
+  <a class="post-card" href="{{ n.url }}"{% if n.url contains '://' %} target="_blank" rel="noopener"{% endif %}>
+  {% else %}
+  <div class="post-card post-card--static">
+  {% endif %}
+    {% if n.image %}<span class="post-card__thumb" style="background-image:url('{{ n.image }}');"></span>{% endif %}
+    <span class="post-card__text">
+      <span class="post-card__title">{{ n.title }}</span>
+      {% if n.date %}<span class="post-card__meta">{{ n.date }}</span>{% endif %}
+      {% if n.excerpt %}<span class="post-card__excerpt">{{ n.excerpt }}</span>{% endif %}
+    </span>
+  {% if n.url %}</a>{% else %}</div>{% endif %}
+{% endfor %}
+</div>
+{% endif %}
+
+Guides
+======
+
+<!-- 內容在 _data/home.yml 的 guides: -->
+
+{% if site.data.home.guides.size > 0 %}
+<div class="post-list post-list--guides">
+{% for g in site.data.home.guides %}
+  <a class="post-card" href="{{ g.url }}"{% if g.url contains '://' %} target="_blank" rel="noopener"{% endif %}>
+    {% if g.image %}<span class="post-card__thumb" style="background-image:url('{{ g.image }}');"></span>{% endif %}
+    <span class="post-card__text">
+      <span class="post-card__title">{{ g.title }}{% if g.date %} <span class="post-card__meta post-card__meta--inline">{{ g.date }}</span>{% endif %}</span>
+      {% if g.excerpt %}<span class="post-card__excerpt">{{ g.excerpt }}</span>{% endif %}
+    </span>
+  </a>
+{% endfor %}
+</div>
+{% endif %}
+
 What I am working on now
 ------
 
@@ -39,15 +82,10 @@ Elsewhere
 ------
 
 Outside the office I am usually on a trail, in an outcrop, or somewhere between the two — see
-[Fieldwork & travel](/fieldwork/) for the map.
+[Fieldwork](/fieldwork/) and [Photos](/photos/).
 
-<!-- PHOTOS — drop images into images/about/ then uncomment this block.
-     Recommended: JPEG, long edge <= 1600 px, <= 500 KB each.
-<div class="photo-grid">
-  <figure><img src="/images/about/photo-1.jpg" alt=""><figcaption>Fieldwork in Taiwan</figcaption></figure>
-  <figure><img src="/images/about/photo-2.jpg" alt=""><figcaption>Himalaya, Nepal</figcaption></figure>
-  <figure><img src="/images/about/photo-3.jpg" alt=""><figcaption>At the cluster</figcaption></figure>
-</div>
+<!-- 想在首頁放幾張照片，把圖片丟進 images/about/ 再把這一段的註解拿掉：
+{% raw %}{% include photos.html dir="/images/about" files="1.jpg, 2.jpg, 3.jpg" %}{% endraw %}
 -->
 
 Contact

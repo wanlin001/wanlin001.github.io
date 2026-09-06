@@ -13,6 +13,7 @@
 - [2. 本機預覽](#2-本機預覽) — 改完先在自己電腦上看，別直接推上去
 - [3. 檔案速查表](#3-檔案速查表) — 想改 X → 改哪個檔；圖片和 PDF 放哪
 - [4. 列出目前的分類與標籤](#4-列出目前的分類與標籤) — 一行指令印出全部，還有 YAML 格式檢查
+- [4b. 首頁的 News 與 Guides](#4b-首頁的-news-與-guides) — 首頁那兩個清單在哪裡加、可以加圖
 
 **加內容**
 
@@ -225,6 +226,72 @@ CHECKS  ── 發現 2 個問題 ⚠️
 ```bash
 cd ~/Documents/GitHub/huwanlin && ruby -ryaml -e 'YAML.load_file("_data/notes.yml"); puts "OK"'
 ```
+
+---
+
+## 4b. 首頁的 News 與 Guides
+
+首頁 <https://wanlin001.github.io/> 有兩個清單：
+
+- **News** —— 一則一則的近況，最新的寫在最上面
+- **Guides** —— 說明每個分頁在幹嘛，點下去直接過去
+
+兩個的內容都在 **`_data/home.yml`**，卡片樣式跟 Publications、Notes 是同一套。
+
+### 加一則 News
+
+```yaml
+news:
+
+  - date: "Jun 2026"
+    title: "Postdoctoral Paper Award, NSTC Taiwan"
+    excerpt: "國科會地球科學研究推動中心博士後研究論文獎。"
+    url: /cv/#awards--funding
+
+  - date: "May 2026"                                  # ← 往下加就好
+    title: "Fieldwork at the Vajont Dam, Italy"
+    excerpt: "為《地質》季刊的稿件走訪 Monte Toc 滑動面與 Longarone。"
+    url: /travel/#vajont-dam
+    image: /images/travel/vajont/20260516_152714_monte-toc.jpg   # ← 可以加圖
+```
+
+**順序就是顯示順序**，新的寫在最上面。
+
+### 加一個 Guide
+
+```yaml
+guides:
+
+  - title: "Research"
+    url: /research/
+    excerpt: "一兩句話說明這一頁在幹嘛。"
+```
+
+新增了頁面就在這裡補一條，讀者從首頁就找得到。
+
+### 欄位（只有 title 必填）
+
+| 欄位 | 說明 |
+|---|---|
+| `title` | 標題，中文英文都可以 |
+| `date` | 日期，格式隨意。News 建議寫，Guides 通常不用 |
+| `url` | 點下去要去哪。站內寫 `/research/`，站外寫完整網址（會開新分頁）|
+| `excerpt` | 一兩句說明 |
+| `image` | 小圖。站內圖寫 `/images/…`，也可以用外部網址。不寫就沒有圖 |
+
+- **`news:` 和 `guides:` 各自整個檔案只能出現一次**，加第二則是往下多一組 `- title:`
+- `url` 不寫的話那則就是**純文字、不能點**（適合純公告）
+- 寫成 `news: []` 整個 News 區塊會自動隱藏，`guides:` 也一樣
+
+### 想連到某一頁的某個段落
+
+網址後面加 `#` 加該段標題的代號，例如 `/publications/#manuscripts`、`/travel/#vajont-dam`。
+代號就是標題轉小寫、空格換成 `-`。
+
+### 首頁其他部分
+
+最上面那幾段自我介紹、「What I am working on now」、Contact 都在 **`_pages/about.md`**，
+是一般 Markdown，直接改字就好。那個檔裡的 Liquid 迴圈是用來讀 `_data/home.yml` 的，不用碰。
 
 ---
 
