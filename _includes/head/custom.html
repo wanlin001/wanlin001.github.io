@@ -2,6 +2,13 @@
 
 <!-- start custom head snippets -->
 
+<!-- Apply the saved / preferred colour theme before the first paint, so a dark
+     mode reader does not get a flash of the light theme. Must stay inline and
+     synchronous, and must not contain "//" comments (the compress layout
+     strips newlines). main.min.js picks this up as its starting value. -->
+<script>(function(){try{var t=localStorage.getItem("theme");var d=(t==="dark")||((t===null||t==="system")&&window.matchMedia("(prefers-color-scheme: dark)").matches);if(d){document.documentElement.setAttribute("data-theme","dark");}}catch(e){}})();</script>
+
+
 <!-- Support for Academicons -->
 <link rel="preload" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css"></noscript>

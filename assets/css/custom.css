@@ -354,3 +354,46 @@
   color: var(--wl-accent) !important;
   font-weight: 600 !important;
 }
+
+/* ==========================================================================
+   Stop the page from fading in piece by piece on every load
+   --------------------------------------------------------------------------
+   AcademicPages animates the masthead, nav, sidebar and content in with a
+   staggered fade (`intro`, 0.15s → 0.45s delays, see _sass/layout/*.scss).
+   The header and sidebar are identical on every page, so re-animating them on
+   each navigation just reads as flicker. Turn the whole cascade off.
+   ========================================================================== */
+
+.masthead,
+.greedy-nav,
+.sidebar,
+.author__avatar,
+.page__hero,
+.page__hero--overlay,
+#main,
+.page__footer {
+  animation: none !important;
+  -webkit-animation: none !important;
+  opacity: 1 !important;
+}
+
+/* The theme reserves 70px for the fixed header in CSS, then JavaScript
+   measures the real height (65px) and rewrites it — so the content jumps up
+   5px on every load. Reserve the real height from the start instead. */
+
+:root { --masthead-h: 65px; }
+
+body { padding-top: var(--masthead-h); }
+
+@media (min-width: 64em) {
+  .sidebar { padding-top: var(--masthead-h); }
+}
+
+/* Respect the reader's own motion preference for everything else too. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+}

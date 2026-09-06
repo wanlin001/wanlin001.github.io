@@ -15,7 +15,7 @@ Code & data from my papers
 Every published model comes with its full input deck, archived so that the simulation can be
 re-run independently.
 
-* **Zenodo** — model inputs and processing scripts *(add your Zenodo community/DOI links here)*
+* **Zenodo** — model inputs and processing scripts [Zenodo](https://zenodo.org/me/uploads?q=&f=shared_with_me%3Afalse&l=list&p=1&s=10&sort=newest)
 * **GitHub** — [github.com/wanlin001](https://github.com/wanlin001)
 
 Software I use
@@ -37,15 +37,7 @@ Writing for a general audience
 My Mandarin-language science writing is listed on the
 [publications page](/publications/#outreach).
 
-Talks & outreach
-======
-
-* 2025 — Science communicator, Academia Sinica Open House (elementary-school programme)
-* 2024 — Invited speaker, Taipei City Library Study Abroad Resource Centre:
-  *"Fallen into a rabbit hole — navigating challenges as an international student"*
-* 2021 — First place, Three Minute Thesis (3MT), Asian School of the Environment, NTU Singapore
-
-Notes & writing
+Notes
 ======
 
 {% assign feed_posts = site.data.posts.posts %}
