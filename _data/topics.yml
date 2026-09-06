@@ -77,6 +77,3 @@ tools:
   label: "Tools & workflow"
   color: "#0891b2"
 
-safety:
-  label: "Safety"
-  color: "#dc2626"

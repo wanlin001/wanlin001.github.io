@@ -111,11 +111,13 @@ notes:
     source: "HackMD"
     excerpt: "把 .gpx 軌跡與手機／相機拍的照片和影片自動對位的工具：以時間校準演算法把多媒體定位到路徑點上，同時產生高度剖面圖，並輸出 .kml / .kmz 供 Google Earth 瀏覽。"
     topics: tools
+
   - title: "Creating Perple_X lookup tables"
     url: "https://hackmd.io/@HuWanLin/H11Dob2ZZg"
     category: research
     source: "HackMD"
     excerpt: "建立濕玄武岩到乾榴輝岩相變模型的流程筆記：build → vertex → werami，產生密度查找表以驅動 slab pull。"
+    topics: [geology, tools]
 
   - title: "Commonly used and basic commands in SAC"
     url: "https://hackmd.io/@HuWanLin/SAC"
