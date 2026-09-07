@@ -76,9 +76,6 @@ What I am working on now
 
 
 * **Intraslab stress heterogeneity** and faulting in thinned continental lithosphere.
-* **Fault weakening and heterogeneity** — coupled thermo-hydro-mechanical-chemical (THMC)
-  processes in exhumed fault zones, bridging outcrop observation and numerical models.
-
 * **Slab–slab interaction** in the Manila–Taiwan–Ryukyu subduction system, linking 3-D mantle
   flow to observed seismic anisotropy.
   

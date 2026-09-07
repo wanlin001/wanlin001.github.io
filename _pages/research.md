@@ -61,14 +61,6 @@ scatter in geological slip rates simply comes from subjective interpretation of 
 
 *Hu & Stevens (2022), Geology; Hu (2022), Solid Earth.*
 
-Fault weakening and heterogeneity (in development)
-======
-
-Exhumed fault zones record the chemical and mineralogical changes that weaken faults over
-10⁴–10⁶ years — reaction softening, phyllosilicate growth, pressure-solution creep — but this
-static evolution is largely missing from earthquake nucleation models. I am developing a
-workflow that maps outcrop-scale mineralogical heterogeneity and feeds it into coupled
-thermo-hydro-mechanical-chemical (THMC) models of the seismogenic zone.
 
 Methods
 ======
