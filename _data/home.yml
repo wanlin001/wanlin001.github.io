@@ -1,0 +1,72 @@
+# ═══════════════════════════════════════════════════════════════════════════
+#  首頁的 News 與 Guides  →  https://wanlin001.github.io/
+# ═══════════════════════════════════════════════════════════════════════════
+#
+#  ┌─ 想改什麼 ──────────────────┬─ 去哪改 ────────────────────────────────┐
+#  │ 一則消息                    │ 這個檔案，底下的 news 清單              │
+#  │ 一個頁面介紹                │ 這個檔案，底下的 guides 清單            │
+#  │ 首頁最上面那幾段自我介紹    │ _pages/about.md                         │
+#  │ 版面                        │ _pages/about.md 的 Liquid 迴圈（不用碰）│
+#  └─────────────────────────────┴─────────────────────────────────────────┘
+#
+#  ⚠️ 兩個清單的開頭關鍵字各自整個檔案只能出現一次。
+#     加第二則是在底下多一組「  - title:」，不是再寫一次開頭關鍵字。
+#
+#  ── 欄位（只有 title 必填）─────────────────────────────────────────────
+#     - title    標題
+#       date     日期，格式隨意。消息建議寫，頁面介紹通常不用
+#       url      點下去要去哪。站內寫 /research/，站外寫 https://…（開新分頁）
+#       excerpt  一兩句說明（只有消息用；頁面介紹不需要）
+#       image    小圖（只有消息用），例如 /images/gallery/20221108_144202.jpg
+#                或外部網址。不寫就沒有圖，版面會自己補齊
+#       icon     圖示（只有頁面介紹用），Font Awesome 的名稱，
+#                例如 "fas fa-images"。到 fontawesome.com/search 找，
+#                挑 Free 的。不寫就用預設的箭頭
+#
+#  · url 不寫 → 那則變成純文字、不能點（適合單純公告）
+#  · 順序就是顯示順序，新的寫最上面
+#  · 刪掉一整組「- title: ...」就會從首頁消失
+#  · 寫成空清單（[]）整個區塊會自動隱藏
+#
+#  改完記得驗一下格式：
+#      ruby -ryaml -e 'YAML.load_file("_data/home.yml"); puts "OK"'
+#
+#  ⚠️ 網站上顯示的文字一律用英文。
+# ═══════════════════════════════════════════════════════════════════════════
+
+news:
+
+
+guides:
+
+  - title: "Research"
+    url: /research/
+    icon: "fas fa-globe-asia"
+
+  - title: "Publications"
+    url: /publications/
+    icon: "fas fa-file-lines"
+
+  - title: "CV"
+    url: /cv/
+    icon: "fas fa-user"
+
+  - title: "Fieldwork"
+    url: /fieldwork/
+    icon: "fas fa-map-location-dot"
+
+  - title: "Travel"
+    url: /travel/
+    icon: "fas fa-person-hiking"
+
+  - title: "Photos"
+    url: /photos/
+    icon: "fas fa-images"
+
+  - title: "Notes"
+    url: /notes/
+    icon: "fas fa-terminal"
+
+  - title: "Resources"
+    url: /resources/
+    icon: "fas fa-box-open"

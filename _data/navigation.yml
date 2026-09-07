@@ -1,0 +1,39 @@
+# Top navigation.
+#
+# Plain item:
+#   - title: "Research"
+#     url: /research/
+#
+# Dropdown (submenu). Add `children:` and indent the sub-items under it.
+# Give the parent a `url:` if it should also be a clickable page of its own;
+# leave `url:` out and it becomes a label that only opens the menu.
+#
+#   - title: "Others"
+#     children:
+#       - title: "Fieldwork"
+#         url: /fieldwork/
+#
+# Removing a line only hides the button — the page itself still exists.
+
+main:
+  - title: "Research"
+    url: /research/
+
+  - title: "Publications"
+    url: /publications/
+
+  - title: "CV"
+    url: /cv/
+
+  - title: "Others"
+    children:
+      - title: "Fieldwork"
+        url: /fieldwork/
+      - title: "Travel"
+        url: /travel/        
+      - title: "Photos"
+        url: /photos/
+      - title: "Notes"
+        url: /notes/
+      - title: "Resources"
+        url: /resources/

@@ -1,0 +1,136 @@
+# ---------------------------------------------------------------------------
+# CV content. Edit this file to update the /cv/ page — no HTML needed.
+# Each entry: when / what / where / note   (note is optional)
+# ---------------------------------------------------------------------------
+
+career_break: "Career break 2018/10 – 2019/7: independent travel for personal development, immediately followed by the start of doctoral studies."
+
+# 每一筆都可以再加兩個選用欄位：
+#   link: "https://…"        機構網頁。連結會掛在「機構名稱」那一行：
+#                            Education → 掛在 what（校系，粗體大字那行）
+#                            其他區塊  → 掛在 where（單位，斜體小字那行）
+#   icon: "fas fa-building-columns"   小圖示，到 fontawesome.com/search 找 Free 的
+#        常用：fa-building-columns 研究機構 / fa-graduation-cap 學校
+#              fa-helmet-safety 業界 / fa-award 獎項 / fa-users 合作
+
+pdf: # e.g. /files/Wan-Lin-Hu-CV.pdf  — drop the file in files/ and put the path here
+
+employment:
+  - when: "2024/4 – present"
+    what: "Postdoctoral Fellow"
+    where: "Institute of Earth Sciences, Academia Sinica, Taipei, Taiwan"
+    link: "https://www.earth.sinica.edu.tw/en/"
+    icon: "fas fa-building-columns"
+    #note: "Develops geodynamic and numerical models; leads interdisciplinary work integrating seismic source analysis, seismic anisotropy and crustal tectonics."
+  - when: "2016/8 – 2018/8"
+    what: "Professional Geologist and Researcher"
+    where: "Disaster Prevention Technology Research Center, Sinotech Engineering Consultants Inc., Taipei, Taiwan"
+    link: "https://www.sinotech.org.tw/en/"
+    icon: "fas fa-helmet-safety"
+    #note: "Scientific advisor to government agencies: evidence-based multi-hazard (seismic, landslide, debris flow) risk assessment methods feeding national disaster-prevention policy."
+  - when: "2016/1 – 2016/7"
+    what: "Research Assistant"
+    where: "Department of Earth and Environmental Sciences, National Chung-Cheng University, Chiayi, Taiwan"
+    #link: "https://deps.ccu.edu.tw/"
+    icon: "fas fa-building-columns"
+
+education:
+  - when: "Ph.D. 2023"
+    what: "Asian School of the Environment, Nanyang Technological University, Singapore"
+    where: "Active tectonics, structural geology and observational seismology"
+    link: "https://www.ntu.edu.sg/ase"
+    icon: "fas fa-graduation-cap"
+    note: "Waveform inversion, seismic interpretation and uncertainty quantification, combining model development with tectonic analysis."
+  - when: "M.Sc. 2015"
+    what: "Department of Geosciences, National Taiwan University, Taipei, Taiwan"
+    where: "Active tectonics and surface deformation"
+    link: "http://www.gl.ntu.edu.tw/"
+    icon: "fas fa-graduation-cap"
+    note: "InSAR observations of crustal movement for regional seismic hazard assessment."
+  - when: "Exchange 2012"
+    what: "Faculty of Science, Masaryk University, Brno, Czech Republic"
+    where: "Year-4 exchange student"
+    link: "https://www.sci.muni.cz/en"
+    icon: "fas fa-graduation-cap"
+  - when: "B.Sc. 2013"
+    what: "Department of Geosciences, National Taiwan University, Taipei, Taiwan"
+    where: "B.Sc. in Geosciences"
+    link: "http://www.gl.ntu.edu.tw/"
+    icon: "fas fa-graduation-cap"
+
+awards:
+  - when: "2026"
+    what: "Postdoctoral Paper Award"
+    where: "Division of Earth Sciences, National Science and Technology Council, Taiwan"
+  - when: "2021"
+    what: "Three Minute Thesis (3MT), First Place"
+    where: "Asian School of the Environment, NTU Singapore"
+  - when: "2019 – 2023"
+    what: "Singapore International Graduate Award (SINGA)"
+    where: "A*STAR & Nanyang Technological University — competitive full PhD scholarship"
+  - when: "2015"
+    what: "Outstanding Student Paper Award"
+    where: "Joint Annual Conference of the Geological Society and Geophysical Society of Taiwan"
+  - when: "2013"
+    what: "Dean's Award"
+    where: "College of Science, National Taiwan University"
+  - when: "2011 – 2012"
+    what: "NTU Scholarship for Excellent Exchange Students"
+    where: "National Taiwan University"
+
+
+teaching:
+  - when: "2022"
+    what: "Structural Geology"
+    where: "Nanyang Technological University, Singapore — teaching assistant"
+  - when: "2021"
+    what: "Communication Skills"
+    where: "Nanyang Technological University, Singapore — teaching assistant"
+  - when: "2020"
+    what: "Structural Geology & Field Geology"
+    where: "Nanyang Technological University, Singapore — teaching assistant"
+
+service:
+  - when: "Peer review"
+    what: "Ad hoc reviewer"
+    where: "Physics of the Earth and Planetary Interiors · Geoscience Letters · Journal of Petroleum Science and Technology · Acta Geophysica"
+  - when: "2025/3"
+    what: "Science Communicator, Academia Sinica Open House"
+    where: "Taipei, Taiwan"
+    note: "Designed and hosted interactive Earth-science programming for elementary-school students."
+  - when: "2024/2"
+    what: "Invited speaker, Taipei City Library Study Abroad Resource Centre"
+    where: "Online public lecture"
+    note: "\"Fallen into a rabbit hole — navigating challenges as an international student.\""
+
+memberships:
+  - "American Geophysical Union"
+  - "European Geosciences Union"
+  - "Geological Society of Taiwan"
+
+collaborations:
+  - when: "Rupture dynamics"
+    what: "Shengji Wei"
+    where: "Nanyang Technological University, Singapore"
+  - when: "Seismic source analysis"
+    what: "Ryo Okuwaki & Yuji Yagi"
+    where: "University of Tsukuba, Japan"
+    #link: "https://www.tsukuba.ac.jp/en/"
+    #icon: "fas fa-building-columns"
+  - when: "Geodynamics"
+    what: "Eh Tan"
+    where: "Institute of Earth Sciences, Academia Sinica, Taiwan"
+
+skills:
+  - group: "Programming"
+    items: ["MATLAB", "Python", "R", "Fortran", "C++"]
+  - group: "Geodynamic / numerical modelling"
+    items: ["FLAC", "DynEarthSol", "ASPECT", "MOOSE/PETSc"]
+  - group: "HPC"
+    items: ["Slurm", "PBS", "MPI/OpenMP", "CUDA"]
+  - group: "Visualisation & mapping"
+    items: ["GMT", "ParaView", "VisIt"]
+  - group: "GIS"
+    items: ["QGIS", "ArcGIS"]
+  - group: "Workflow"
+    items: ["Git / GitHub", "shell scripting", "Zenodo archiving"]

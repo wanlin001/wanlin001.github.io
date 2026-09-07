@@ -1,0 +1,126 @@
+# ═══════════════════════════════════════════════════════════════════════════
+#  Notes 頁的內容  →  https://wanlin001.github.io/notes/
+# ═══════════════════════════════════════════════════════════════════════════
+#
+#  ┌─ 想改什麼 ──────────────────┬─ 去哪改 ────────────────────────────────┐
+#  │ 章節分類（新增/改名/排序）  │ 這個檔案，下面的 categories 區塊        │
+#  │ 每一則筆記                  │ 這個檔案，下面的 notes 區塊             │
+#  │ 標籤的名稱和顏色            │ _data/topics.yml（跟論文共用）          │
+#  │ 頁面版型                    │ _pages/notes.html（一般不用碰）         │
+#  └─────────────────────────────┴─────────────────────────────────────────┘
+#
+#  想知道現在有哪些分類、哪些標籤、各被用了幾次，順便檢查有沒有寫錯：
+#      ruby scripts/list_labels.rb
+#
+#  改完存檔前先驗格式（印出 OK 就沒問題，有錯會說第幾行）：
+#      ruby -ryaml -e 'YAML.load_file("_data/notes.yml"); puts "OK"'
+#
+# ── 常犯的四個錯誤 ────────────────────────────────────────────────────────
+#   ❌ -title: "x"        ✅ - title: "x"      橫線後面要有空格
+#   ❌ url:"https://…"    ✅ url: "https://…"  冒號後面要有空格
+#   ❌ category: Other    ✅ category: other   大小寫要跟 categories 一致
+#   ❌ topics: tools      ✅ topics: [tools]   標籤一定要用方括號
+#
+#  兩個區塊的開頭關鍵字（categories、notes）各自整個檔案只能出現一次。
+#  加第二則是在底下多一組「  - title:」，不是再寫一次開頭關鍵字。
+#
+# ── 每一則的欄位（只有 title 和 url 必填）─────────────────────────────────
+#   - title     標題
+#     url       連結
+#     category  分類代號，填 categories 裡的 key；沒填就掉到 Other 區
+#     source    來源，例如 HackMD / Medium / Notion
+#     date      日期，格式隨意
+#     excerpt   一兩句說明
+#     image     封面圖網址，或 /images/xxx.jpg
+#     topics    標籤，例如 [gear, checklist]。選用，一則一則決定：
+#               全部都不寫 → 頁面上方的篩選列整條自動消失
+#               只要有一則寫 → 篩選列自動出現，只列出有被用到的標籤
+#
+#  ⚠️ 網站上顯示的文字一律用英文。
+# ═══════════════════════════════════════════════════════════════════════════
+
+categories:
+
+  hiking:
+    title: "Hiking"
+
+  fieldwork:
+    title: "Fieldwork"
+
+  research:
+    title: "Research notes"
+
+  other:
+    title: "Other"
+
+
+notes:
+
+  - title: "兩日以上登山裝備清單"
+    url: "https://hackmd.io/@HuWanLin/H1qQUcWX1l"
+    #category: hiking
+    source: "HackMD"
+    date: "Feb 2024"
+    excerpt: "Packing list for trips of two days or more, with tick boxes you can click on the page. Written in Mandarin."
+    topics: [checklist]
+
+  - title: "一日登山裝備清單"
+    url: "https://hackmd.io/@HuWanLin/H1TIhHTt-x"
+    #category: hiking
+    source: "HackMD"
+    excerpt: "The short version, for single-day trips. Written in Mandarin."
+    topics: [checklist]
+
+  - title: "時空對位與軌跡影像誌"
+    url: "https://hackmd.io/@HuWanLin/BkT1kOTF-x"
+    #category: fieldwork
+    date: "Mar 2026"
+    source: "HackMD"
+    excerpt: "Ties .gpx tracks to photographs and video: timestamps are aligned so each file lands on the right waypoint, an elevation profile is drawn, and the result exports as .kml / .kmz for Google Earth. Written in Mandarin."
+    topics: [tools]
+
+  - title: "Commonly used Linux commands"
+    url: "https://hackmd.io/@HuWanLin/linux_commands"
+    category: research
+    source: "HackMD"
+    excerpt: "A crib sheet: moving around directories, creating and deleting files, pulling text apart with awk, archiving, and the SSH and HPC commands I keep forgetting."
+    topics: [tools]
+
+  - title: "Commonly used and basic commands in SAC"
+    url: "https://hackmd.io/@HuWanLin/SAC"
+    category: research
+    source: "HackMD"
+    excerpt: "Reading, sorting and plotting traces, editing header fields, plus links to installation guides and tutorials."
+    topics: [tools, seismology]
+
+  - title: "Seismic Phase Picker & Record Viewer"
+    url: "https://hackmd.io/@HuWanLin/r1Zfo5OL-l"
+    category: research
+    date: "Jan 2026"
+    source: "HackMD"
+    excerpt: "How to use a tool I wrote for viewing SAC waveforms and picking arrivals: several phases picked independently, bandpass filtering, STA/LTA, envelopes, sorting and zooming, built for large network datasets."
+    topics: [tools, seismology]
+
+  - title: "Creating Perple_X lookup tables"
+    url: "https://hackmd.io/@HuWanLin/H11Dob2ZZg"
+    category: research
+    source: "HackMD"
+    excerpt: "Workflow notes for building a wet basalt to dry eclogite phase transition model for ASPECT: build → vertex → werami, producing the density lookup table that drives slab pull."
+    topics: [geology, tools]
+
+  - title: "Working with Git across several machines"
+    url: "https://hackmd.io/@HuWanLin/Hy1YjHJSbl"
+    category: research
+    source: "HackMD"
+    excerpt: "The upstream / origin / clone layout, first-time setup, the day-to-day loop, branch management, GitHub tokens, and a command crib sheet. Written in Mandarin."
+    topics: [tools]
+
+# 想再加一則，把下面這段複製出來、拿掉開頭的 # 就好：
+#
+#  - title: "Title"
+#    url: "https://..."
+#    category: research
+#    source: "HackMD"
+#    date: "2026"
+#    excerpt: "One or two sentences."
+#    topics: [tools]

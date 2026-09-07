@@ -1,0 +1,29 @@
+{% comment %}
+  Visitor counting.
+
+  Only runs on the published site (JEKYLL_ENV=production, which is what GitHub
+  Pages uses) — local `jekyll serve` previews are never counted.
+
+  Set ONE of these in _config.yml under `analytics:` and leave the other blank.
+
+    goatcounter_code   the subdomain part of your GoatCounter site,
+                       e.g. "wanlin" for https://wanlin.goatcounter.com
+    cloudflare_token   the token from Cloudflare Web Analytics
+
+  Both are cookie-free and do not need a consent banner. The dashboard is
+  private to your own account either way.
+{% endcomment %}
+
+{% if jekyll.environment == "production" %}
+
+  {% if site.analytics.goatcounter_code and site.analytics.goatcounter_code != "" %}
+    <script data-goatcounter="https://{{ site.analytics.goatcounter_code }}.goatcounter.com/count"
+            async src="https://gc.zgo.at/count.js"></script>
+  {% endif %}
+
+  {% if site.analytics.cloudflare_token and site.analytics.cloudflare_token != "" %}
+    <script defer src="https://static.cloudflareinsights.com/beacon.min.js"
+            data-cf-beacon='{"token": "{{ site.analytics.cloudflare_token }}"}'></script>
+  {% endif %}
+
+{% endif %}

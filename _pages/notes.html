@@ -1,0 +1,74 @@
+---
+layout: archive
+title: "Notes"
+permalink: /notes/
+author_profile: true
+---
+
+{% include base_path %}
+{% assign data = site.data.notes %}
+
+<p style="margin-bottom:1.4em;">
+  Working notes and checklists I wrote up for myself. Most live on HackMD — clicking a
+  card opens the original, which is always the up-to-date version.
+</p>
+
+<!-- Filter bar, built from the topics actually used below. -->
+{% assign used = "" | split: "" %}
+{% for n in data.notes %}
+  {% for t in n.topics %}{% assign used = used | push: t %}{% endfor %}
+{% endfor %}
+{% assign used = used | uniq %}
+
+{% if used.size > 1 %}
+<div class="pub-filter" id="pub-filter">
+  <button type="button" class="topic-tag topic-tag--all is-active" data-topic="">All</button>
+  {% comment %} defined tags first, in the order they appear in _data/topics.yml {% endcomment %}
+  {% assign listed = "" | split: "" %}
+  {% for key in site.data.topics %}
+    {% if used contains key[0] %}
+      {% assign listed = listed | push: key[0] %}
+      <button type="button" class="topic-tag" data-topic="{{ key[0] }}" style="--tt: {{ key[1].color | default: '#888888' }};">{{ key[1].label | default: key[0] }}</button>
+    {% endif %}
+  {% endfor %}
+  {% comment %} then anything used but not defined, so a typo is visible rather than silently missing {% endcomment %}
+  {% for t in used %}
+    {% unless listed contains t %}
+      <button type="button" class="topic-tag" data-topic="{{ t }}" style="--tt: #888888;" title="This tag is not defined in _data/topics.yml yet">{{ t }}</button>
+    {% endunless %}
+  {% endfor %}
+  <span class="pub-filter__count" id="pub-filter-count" aria-live="polite"></span>
+</div>
+{% endif %}
+
+{% for cat in data.categories %}
+  {% assign has_any = false %}
+  {% for n in data.notes %}{% if n.category == cat[0] %}{% assign has_any = true %}{% endif %}{% endfor %}
+  {% if has_any %}
+    <section class="note-section" id="{{ cat[0] }}">
+      <h2>{{ cat[1].title }}</h2>
+      <div class="post-list">
+      {% for n in data.notes %}
+        {% if n.category != cat[0] %}{% continue %}{% endif %}
+        {% include note-card.html note=n %}
+      {% endfor %}
+      </div>
+    </section>
+  {% endif %}
+{% endfor %}
+
+<!-- anything whose `category:` is missing or does not match a defined one -->
+{% assign orphans = "" | split: "" %}
+{% for n in data.notes %}
+  {% unless data.categories[n.category] %}{% assign orphans = orphans | push: n %}{% endunless %}
+{% endfor %}
+{% if orphans.size > 0 %}
+  <section class="note-section" id="uncategorised">
+    <h2>其他 · Other</h2>
+    <div class="post-list">
+    {% for n in orphans %}{% include note-card.html note=n %}{% endfor %}
+    </div>
+  </section>
+{% endif %}
+
+<p class="pub-empty" id="pub-empty" hidden>No notes with that tag yet.</p>

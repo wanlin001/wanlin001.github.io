@@ -1,0 +1,78 @@
+# ═══════════════════════════════════════════════════════════════════════════
+#  研討會發表  →  顯示在 Publications 頁最下面（緊湊的一行一則）
+# ═══════════════════════════════════════════════════════════════════════════
+#
+#  一則四個欄位，全部必填以外都可省略：
+#     - authors  作者。自己是第一作者就寫 "Hu, W.-L."；很多人就 "Hu, W.-L., et al."
+#       year     年份
+#       title    講題
+#       venue    會議名稱
+#       place    地點
+#       doi      有摘要 DOI 就填，標題會變成連結（可省略）
+#       url      沒有 DOI 但有網址（例如 Google Scholar 上的摘要）就填這個（可省略）
+#
+#  ── 想標註什麼就用方括號寫在 title 開頭 ──────────────────────────────────
+#     title: "[Invited] How do differences in…"
+#     title: "[Poster] Blind fault branching…"
+#     方括號裡的字會自動變成一個框起來的小標籤，內容隨妳寫，不用先定義。
+#
+#  順序：新的寫最上面。
+#  改完驗一下：ruby -ryaml -e 'YAML.load_file("_data/conferences.yml"); puts "OK"'
+# ═══════════════════════════════════════════════════════════════════════════
+
+conferences:
+
+  - authors: "Hu, W.-L. & Tan, E."
+    year: 2026
+    title: "Geodynamic modelling of slab–slab interactions in the Manila–Taiwan–Ryukyu subduction system"
+    venue: "EGU General Assembly"
+    place: "Vienna, Austria"
+    doi: "10.5194/egusphere-egu26-2911"
+
+  - authors: "Hu, W.-L., et al."
+    year: 2024
+    title: "Stress heterogeneity and mantle faulting in thinned continental lithosphere revealed by an intraslab earthquake doublet in the northern Manila subduction zone"
+    venue: "AGU Fall Meeting"
+    place: "Washington, D.C., USA"
+
+  - authors: "Hu, W.-L."
+    year: 2023
+    title: "[Invited] How do differences in interpreting seismic images affect estimates of geological slip rates?"
+    venue: "EGU General Assembly"
+    place: "Vienna, Austria"
+
+  - authors: "Hu, W.-L., et al."
+    year: 2023
+    title: "The 2006 Pingtung intraslab earthquake doublet offshore southwestern Taiwan: complex normal and strike-slip faulting in the northern Manila subduction zone"
+    venue: "EGU General Assembly"
+    place: "Vienna, Austria"
+
+  - authors: "Jiang, Y., et al."
+    year: 2023
+    title: "Modelling cascading ruptures on a near-orthogonal strike-slip fault system: the 2019 Cotabato earthquake sequence"
+    venue: "EGU General Assembly"
+    place: "Vienna, Austria"
+
+  - authors: "Hu, W.-L., et al."
+    year: 2022
+    title: "A pilot search for non-volcanic tremors along the Aceh segment of the Great Sumatran Fault"
+    venue: "AGU Fall Meeting"
+    place: "Chicago, USA"
+
+  - authors: "Hu, W.-L."
+    year: 2022
+    title: "On the discrepancy of rates between geological slip and geodetic shortening: a structural geometry viewpoint"
+    venue: "AGU Fall Meeting"
+    place: "Chicago, USA"
+
+  - authors: "Hu, W.-L. & Stevens, V. L."
+    year: 2022
+    title: "Duplex kinematics reduces both frontal advance and seismic moment deficit in the Himalaya"
+    venue: "Himalaya–Karakorum–Tibet Workshop"
+    place: "Pokhara, Nepal"
+
+  - authors: "Oo, W. S. S., et al."
+    year: 2022
+    title: "Blind fault branching and propagation beneath Central Myanmar Basin"
+    venue: "AGU Fall Meeting"
+    place: "Chicago, USA"

@@ -1,0 +1,21 @@
+{% comment %}
+  A card linking out to Medium / HackMD / anywhere.
+
+  {% include link-card.html title="標題" url="https://..." source="Medium"
+                            date="2026" excerpt="一句說明" image="/images/x.jpg" %}
+
+  Only title and url are required.
+{% endcomment %}
+
+<div class="post-list">
+  <a class="post-card" href="{{ include.url }}" target="_blank" rel="noopener">
+    {% if include.image %}<span class="post-card__thumb" style="background-image:url('{{ include.image }}');"></span>{% endif %}
+    <span class="post-card__text">
+      <span class="post-card__title">{{ include.title }}</span>
+      {% if include.source or include.date %}
+      <span class="post-card__meta">{{ include.source }}{% if include.source and include.date %} · {% endif %}{{ include.date }}</span>
+      {% endif %}
+      {% if include.excerpt %}<span class="post-card__excerpt">{{ include.excerpt }}</span>{% endif %}
+    </span>
+  </a>
+</div>

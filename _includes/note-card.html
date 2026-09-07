@@ -1,0 +1,17 @@
+{% assign n = include.note %}
+<a class="post-card" href="{{ n.url }}" target="_blank" rel="noopener" data-topics="{{ n.topics | join: ' ' }}">
+  {% if n.image %}<span class="post-card__thumb" style="background-image:url('{{ n.image }}');"></span>{% endif %}
+  <span class="post-card__text">
+    <span class="post-card__title">{{ n.title }}</span>
+    <span class="post-card__meta">{{ n.source }}{% if n.date %} · {{ n.date }}{% endif %}</span>
+    {% if n.topics %}
+    <span class="topic-tags">
+      {% for t in n.topics %}
+        {% assign td = site.data.topics[t] %}
+        <span class="topic-tag topic-tag--static" style="--tt: {{ td.color | default: '#888888' }};">{{ td.label | default: t }}</span>
+      {% endfor %}
+    </span>
+    {% endif %}
+    {% if n.excerpt %}<span class="post-card__excerpt">{{ n.excerpt }}</span>{% endif %}
+  </span>
+</a>

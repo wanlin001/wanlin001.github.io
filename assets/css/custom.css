@@ -1,0 +1,807 @@
+/* ==========================================================================
+   Custom styles for wanlin001.github.io
+   Layered on top of AcademicPages. Safe to edit — nothing here is generated.
+   ========================================================================== */
+
+:root {
+  --wl-accent:        #1f7a51;   /* primary accent (buttons, chips, rules)  */
+  --wl-accent-soft:   #e8f5ee;   /* tinted background for chips/cards       */
+  --wl-accent-dark:   #22795220;
+  --wl-badge-journal: #1f7a51;   /* darker so it reads the same on a phone */
+  --wl-badge-prep:    #b45309;
+  --wl-badge-conf:    #1d4ed8;
+  --wl-badge-outreach:#6d28d9;
+  --wl-card-bg:       #ffffff;
+  --wl-card-shadow:   0 1px 2px rgba(0,0,0,.06), 0 4px 14px rgba(0,0,0,.05);
+}
+
+/* Dark mode changes the paper, never the ink: the accent and the tag colours
+   stay identical, so a card looks the same on a phone in dark mode as it does
+   on a laptop in light mode. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --wl-accent-soft: #17352a;
+    --wl-card-bg:     #1d1f21;
+    --wl-card-shadow: 0 1px 2px rgba(0,0,0,.5), 0 4px 14px rgba(0,0,0,.35);
+  }
+}
+:root[data-theme="dark"] {
+  --wl-accent-soft: #17352a;
+  --wl-card-bg:     #1d1f21;
+  --wl-card-shadow: 0 1px 2px rgba(0,0,0,.5), 0 4px 14px rgba(0,0,0,.35);
+}
+
+/* --------------------------------------------------------------- headings */
+
+/* Section headings get the accent rule. In Markdown pages "====" produces an
+   <h1> (section) and "----" an <h2> (sub-section), so the rule belongs on h1
+   there; the Publications and CV pages use the archive layout with real <h2>. */
+
+.page__content h1:not(.page__title),
+.archive h2 {
+  border-bottom: 2px solid var(--wl-accent);
+  padding-bottom: .25em;
+}
+
+/* sub-headings stay plain, so the hierarchy still reads */
+.page__content h2 { border-bottom: 0; }
+
+/* ------------------------------------------------------- publication card */
+
+.pub-card {
+  background: var(--wl-card-bg);
+  border: 1px solid var(--global-border-color);
+  border-left: 4px solid var(--wl-accent);
+  border-radius: 6px;
+  box-shadow: var(--wl-card-shadow);
+  padding: 1em 1.2em;
+  margin-bottom: 1.1em;
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+.pub-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 2px 4px rgba(0,0,0,.08), 0 10px 24px rgba(0,0,0,.09);
+}
+.pub-card__title {
+  font-size: 1.05em;
+  line-height: 1.35;
+  font-weight: 600;
+  margin: 0 0 .35em 0;
+}
+.pub-card__title a { text-decoration: none; }
+.pub-card__authors { margin: 0 0 .3em 0; font-size: .88em; }
+.pub-card__authors .me { font-weight: 700; }
+.pub-card__meta { margin: 0 0 .55em 0; font-size: .82em; color: var(--global-text-color-light); }
+.pub-card__excerpt { margin: 0 0 .7em 0; font-size: .87em; }
+
+.pub-card__body { display: flex; gap: 1.2em; align-items: flex-start; flex-wrap: wrap; }
+.pub-card__main { flex: 1 1 320px; min-width: 0; }
+.pub-card__badges { flex: 0 0 auto; display: flex; gap: .5em; align-items: center; padding-top: .2em; }
+
+/* coloured type label */
+.pub-tag {
+  display: inline-block;
+  padding: .12em .6em;
+  border-radius: 3px;
+  font-size: .72em;
+  font-weight: 600;
+  letter-spacing: .02em;
+  color: #fff;
+  vertical-align: middle;
+  margin-right: .4em;
+}
+.pub-tag--manuscripts { background: var(--wl-badge-journal); }
+.pub-tag--inprep      { background: var(--wl-badge-prep); }
+.pub-tag--conferences { background: var(--wl-badge-conf); }
+.pub-tag--outreach    { background: var(--wl-badge-outreach); }
+.pub-tag--oa          { background: transparent; color: var(--wl-accent); border: 1px solid var(--wl-accent); }
+
+/* small pill buttons: DOI / PDF / code */
+.pub-links { display: flex; flex-wrap: wrap; gap: .45em; }
+.pub-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .4em;
+  padding: .25em .7em;
+  font-size: .78em;
+  border-radius: 999px;
+  border: 1px solid var(--global-border-color);
+  background: transparent;
+  color: var(--global-text-color) !important;
+  text-decoration: none !important;
+  transition: background .15s ease, border-color .15s ease, color .15s ease;
+}
+.pub-btn:hover {
+  background: var(--wl-accent);
+  border-color: var(--wl-accent);
+  color: #fff !important;
+}
+
+/* ------------------------------------------------------------- CV timeline */
+
+.tl { margin: 0 0 2em 0; }
+.tl-item { display: flex; gap: 1em; margin-bottom: 1.2em; align-items: flex-start; }
+.tl-when {
+  flex: 0 0 7.5em;
+  text-align: right;
+  font-size: .82em;
+  font-weight: 600;
+  line-height: 1.35;
+  color: #fff;
+  background: var(--wl-accent);
+  border-radius: 3px;
+  padding: .3em .6em;
+}
+.tl-when--muted { background: var(--global-text-color-light); }
+.tl-what { flex: 1 1 auto; min-width: 0; }
+.tl-what strong { display: block; line-height: 1.35; }
+.tl-where { font-style: italic; font-size: .9em; color: var(--global-text-color-light); }
+.tl-note  { font-size: .88em; margin-top: .25em; }
+
+@media (max-width: 600px) {
+  .tl-item { flex-direction: column; gap: .3em; }
+  .tl-when { flex: none; text-align: left; align-self: flex-start; }
+}
+
+/* ------------------------------------------------------------- skill chips */
+
+.chips { display: flex; flex-wrap: wrap; gap: .4em; margin: .4em 0 1.2em 0; }
+.chip {
+  font-size: .8em;
+  padding: .22em .7em;
+  border-radius: 999px;
+  background: var(--wl-accent-soft);
+  color: var(--global-text-color);
+  border: 1px solid var(--global-border-color);
+}
+
+/* ------------------------------------------------------------ photo grids */
+
+.photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: .8em; margin: 1.2em 0; }
+.photo-grid figure { margin: 0; }
+.photo-grid img { width: 100%; height: 200px; object-fit: cover; border-radius: 6px; display: block; }
+.photo-grid figcaption { font-size: .78em; color: var(--global-text-color-light); margin-top: .3em; }
+
+/* --------------------------------------------------------- research blocks */
+
+.rs-card {
+  border: 1px solid var(--global-border-color);
+  border-radius: 6px;
+  padding: 1em 1.2em;
+  margin-bottom: 1.1em;
+  background: var(--wl-card-bg);
+  box-shadow: var(--wl-card-shadow);
+}
+.rs-card h3 { margin-top: 0; }
+
+/* map embed */
+.map-embed { position: relative; padding-bottom: 68%; height: 0; overflow: hidden; border-radius: 6px; box-shadow: var(--wl-card-shadow); margin: 1.5em 0; }
+.map-embed iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+
+/* --------------------------------------------------- research-field tags */
+/* Colours come from _data/topics.yml (injected as the --tt variable).      */
+
+.topic-tags { display: flex; flex-wrap: wrap; gap: .35em; margin: 0 0 .6em 0; }
+.topic-tag {
+  font-size: .72em;
+  line-height: 1.5;
+  padding: .12em .65em;
+  border-radius: 999px;
+  color: var(--tt);
+  border: 1px solid var(--tt);
+  background: transparent;
+  white-space: nowrap;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background .12s ease, color .12s ease;
+}
+.topic-tag:hover { background: var(--tt); color: #fff; }
+.topic-tag.is-active { background: var(--tt); color: #fff; font-weight: 600; }
+
+/* the "All" reset button has no colour of its own */
+.topic-tag--all { --tt: var(--global-text-color-light); }
+
+/* filter bar above the publication list */
+.pub-filter {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .4em;
+  padding: .7em .9em;
+  margin: 0 0 1.6em 0;
+  border: 1px solid var(--global-border-color);
+  border-radius: 6px;
+  background: var(--wl-card-bg);
+}
+.pub-filter__count {
+  margin-left: auto;
+  font-size: .75em;
+  color: var(--global-text-color-light);
+}
+.pub-empty { color: var(--global-text-color-light); font-style: italic; }
+
+/* ------------------------------------------------- "last updated" stamp */
+
+.site-stamp {
+  text-align: center;
+  font-size: .72em;
+  color: var(--global-text-color-light);
+  opacity: .7;
+  padding: 1.2em 0 1.6em 0;
+  margin: 0;
+}
+
+/* ==========================================================================
+   Dropdown submenu in the top navigation
+   Driven by `children:` in _data/navigation.yml — see README §6.
+   ========================================================================== */
+
+.masthead__menu-item--has-children { position: relative; }
+
+.nav-caret { font-size: .62em; margin-left: .4em; opacity: .65; vertical-align: middle; }
+
+.nav-submenu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0.6rem;          /* anchored to the item's right edge so it never
+                             runs off the screen on the last menu items */
+  left: auto;
+  z-index: 300;
+  min-width: 12em;
+  margin: 0;
+  padding: .3em 0;
+  list-style: none;
+  background: var(--global-bg-color);
+  border: 1px solid var(--global-border-color);
+  border-radius: 5px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, .16);
+}
+
+/* open on hover, on keyboard focus, and on click (JS adds .is-open) */
+.masthead__menu-item--has-children:hover      > .nav-submenu,
+.masthead__menu-item--has-children:focus-within > .nav-submenu,
+.masthead__menu-item--has-children.is-open    > .nav-submenu { display: block; }
+
+.nav-submenu li {
+  display: block !important;
+  border: 0;
+  font-weight: normal !important;
+}
+.nav-submenu a {
+  display: block;
+  margin: 0 !important;
+  padding: .45em 1.1em !important;
+  white-space: nowrap;
+  font-size: .95em;
+}
+.nav-submenu a:hover { background: var(--global-border-color); }
+.nav-submenu a:before { display: none !important; }   /* kill the underline sweep */
+.nav-submenu li.selected > a { color: var(--wl-accent); font-weight: 600; }
+
+/* keep a hover-gap so the menu doesn't close while the pointer travels down */
+.masthead__menu-item--has-children:hover > .nav-submenu { margin-top: 0; }
+.masthead__menu-item--has-children > .nav-parent { cursor: pointer; }
+
+/* when greedy-nav pushes the item into the overflow menu, show it inline */
+.hidden-links .nav-submenu {
+  display: block;
+  position: static;
+  min-width: 0;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 0;
+  background: transparent;
+}
+.hidden-links .nav-submenu a { padding-left: 2.4em !important; font-size: .9em; }
+.hidden-links .nav-caret { display: none; }
+.hidden-links .nav-parent--nolink { pointer-events: none; opacity: .65; font-size: .85em; text-transform: uppercase; letter-spacing: .04em; }
+
+/* ---------------------------------------------- external blog post cards */
+/* Fed by _data/posts.yml (see scripts/fetch_feeds.py).                     */
+
+.post-list { display: grid; gap: .7em; margin: 1em 0 1.6em 0; }
+
+.post-card {
+  display: flex;
+  gap: .9em;
+  align-items: flex-start;
+  padding: .8em 1em;
+  border: 1px solid var(--global-border-color);
+  border-left: 4px solid var(--wl-accent);
+  border-radius: 6px;
+  background: var(--wl-card-bg);
+  box-shadow: var(--wl-card-shadow);
+  text-decoration: none !important;
+  color: var(--global-text-color) !important;
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+.post-card:hover { transform: translateY(-2px); box-shadow: 0 2px 4px rgba(0,0,0,.08), 0 10px 24px rgba(0,0,0,.09); }
+
+.post-card__thumb {
+  flex: 0 0 84px;
+  height: 84px;
+  border-radius: 4px;
+  background-size: cover;
+  background-position: center;
+}
+.post-card__text { display: block; min-width: 0; }
+.post-card__title { display: block; font-weight: 600; line-height: 1.35; color: var(--global-link-color); }
+.post-card__meta { display: block; font-size: .78em; color: var(--global-text-color-light); margin: .2em 0 .35em 0; }
+.post-card__excerpt { display: block; font-size: .85em; line-height: 1.5; }
+
+@media (max-width: 520px) {
+  .post-card__thumb { display: none; }
+}
+
+/* --- fix: the theme kills clicks inside a "selected" menu item -------------
+   _sass/layout/_masthead.scss has
+
+       .masthead__menu-item.selected a { pointer-events: none; }
+
+   which is a *descendant* selector. It exists so you cannot click the page you
+   are already on. But when you are on a page that lives inside the dropdown,
+   the parent item ("Others") is the one marked .selected — so that rule also
+   disabled the parent label AND every link in the submenu. Result: from
+   /fieldwork/ you could not open the menu, nor reach /travel/ or /resources/.
+   Put the clicks back.                                                        */
+
+.masthead__menu-item--has-children.selected > .nav-parent,
+.masthead__menu-item.selected .nav-submenu a {
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+/* the theme's "current page" underline looks wrong inside a dropdown */
+.nav-submenu a {
+  border-bottom: 0 !important;
+  font-weight: 400 !important;
+}
+
+/* the row for the page you are actually on is highlighted, but stays
+   clickable — inside a dropdown an inert row just feels broken */
+.nav-submenu li.selected > a {
+  color: var(--wl-accent) !important;
+  font-weight: 600 !important;
+}
+
+/* ==========================================================================
+   Stop the page from fading in piece by piece on every load
+   --------------------------------------------------------------------------
+   AcademicPages animates the masthead, nav, sidebar and content in with a
+   staggered fade (`intro`, 0.15s → 0.45s delays, see _sass/layout/*.scss).
+   The header and sidebar are identical on every page, so re-animating them on
+   each navigation just reads as flicker. Turn the whole cascade off.
+   ========================================================================== */
+
+.masthead,
+.greedy-nav,
+.sidebar,
+.author__avatar,
+.page__hero,
+.page__hero--overlay,
+#main,
+.page__footer {
+  animation: none !important;
+  -webkit-animation: none !important;
+  opacity: 1 !important;
+}
+
+/* The theme reserves 70px for the fixed header in CSS, then JavaScript
+   measures the real height (65px) and rewrites it — so the content jumps up
+   5px on every load. Reserve the real height from the start instead. */
+
+:root { --masthead-h: 65px; }
+
+body { padding-top: var(--masthead-h); }
+
+@media (min-width: 64em) {
+  .sidebar { padding-top: var(--masthead-h); }
+}
+
+/* Respect the reader's own motion preference for everything else too. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+}
+
+/* --- notes page ---------------------------------------------------------- */
+
+/* `hidden` must win over the flex display the cards declare, otherwise the
+   topic filter cannot hide them */
+[hidden] { display: none !important; }
+
+/* tags printed on a note card are labels, not buttons (the card itself is a
+   link, so a button inside it would be invalid and would swallow the click) */
+.topic-tag--static { cursor: inherit; }
+.topic-tag--static:hover { background: transparent; color: var(--tt); }
+
+.post-card .topic-tags { margin: .3em 0 .35em 0; }
+.note-section { margin-bottom: 2em; }
+
+/* --- building blocks used by the Travel page ----------------------------- */
+
+.photo-grid--tall img { height: 320px; }
+.grid-caption {
+  font-size: .8em;
+  color: var(--global-text-color-light);
+  margin: -.6em 0 1.4em 0;
+}
+
+/* a grid holding a single photo should not sit in a narrow column */
+.photo-grid:has(> figure:only-child) {
+  grid-template-columns: minmax(0, 620px);
+}
+.photo-grid > figure:only-child img {
+  height: auto;
+  width: auto;
+  max-width: 100%;
+  max-height: 560px;
+}
+
+/* ==========================================================================
+   Photo wall  (/photos/)
+   Masonry-ish columns, so every photo keeps its own aspect ratio and no
+   space is wasted on text. Captions only appear on hover / focus.
+   ========================================================================== */
+
+/* no-JS fallback: plain masonry columns */
+.wall {
+  columns: 3 260px;
+  column-gap: 10px;
+  margin: 1.2em 0 2.4em 0;
+}
+
+/* with JS: a real grid, row spans set per photo from its aspect ratio */
+.wall--js {
+  columns: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  grid-auto-rows: 8px;
+  column-gap: 10px;
+}
+.wall--js .wall__item {
+  margin: 0;
+  /* placeholder height so lazy-loaded photos below the fold still occupy
+     space (and therefore get loaded); JS replaces this once each one is in */
+  grid-row-end: span 34;
+}
+.wall--js .wall__item--wide { grid-column: span 2; }
+
+/* the photo fills its tile. before it loads the tile still has the
+   placeholder height, so the browser sees a real box and starts the
+   lazy load; afterwards JS sizes the tile to the exact aspect ratio,
+   so "cover" ends up cropping nothing. */
+.wall--js .wall__item img { height: 100%; object-fit: cover; }
+
+@media (max-width: 520px) {
+  .wall--js { grid-template-columns: 1fr; }
+  .wall--js .wall__item--wide { grid-column: span 1; }
+}
+
+.wall__item {
+  position: relative;
+  break-inside: avoid;
+  margin: 0 0 10px 0;
+  border-radius: 6px;
+  overflow: hidden;
+  cursor: zoom-in;
+  background: var(--global-border-color);
+}
+.wall__item img {
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: transform .35s ease;
+}
+.wall__item:hover img,
+.wall__item:focus-within img { transform: scale(1.03); }
+
+/* caption slides up from the bottom edge, only when pointed at */
+.wall__item figcaption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: 0;
+  padding: 2.2em .8em .7em .8em;
+  color: #fff;
+  font-size: .8em;
+  line-height: 1.4;
+  background: linear-gradient(to top, rgba(0,0,0,.82) 0%, rgba(0,0,0,.55) 55%, transparent 100%);
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity .2s ease, transform .2s ease;
+  pointer-events: none;
+}
+.wall__item:hover figcaption,
+.wall__item:focus-within figcaption { opacity: 1; transform: translateY(0); }
+
+@media (hover: none) {           /* touch: no hover, so always show */
+  .wall__item figcaption { opacity: 1; transform: none; }
+  .wall__item:hover img { transform: none; }
+}
+
+/* ------------------------------------------------------------- lightbox */
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,.92);
+  padding: 3em 3.5em 4.2em;
+}
+.lightbox__img {
+  max-width: 100%;
+  max-height: 82vh;
+  object-fit: contain;
+  border-radius: 4px;
+}
+.lightbox__caption {
+  position: absolute;
+  left: 0; right: 0; bottom: .9em;
+  margin: 0;
+  padding: 0 3.5em;
+  text-align: center;
+  color: #eee;
+  font-size: .85em;
+}
+.lightbox__close,
+.lightbox__nav {
+  position: absolute;
+  background: none;
+  border: 0;
+  color: #fff;
+  opacity: .7;
+  cursor: pointer;
+  line-height: 1;
+  padding: .2em .45em;
+  font-family: inherit;
+}
+.lightbox__close:hover,
+.lightbox__nav:hover { opacity: 1; }
+.lightbox__close { top: .4em; right: .6em; font-size: 2.4rem; }
+.lightbox__nav   { top: 50%; transform: translateY(-50%); font-size: 3.2rem; }
+.lightbox__nav--prev { left: .3em; }
+.lightbox__nav--next { right: .3em; }
+
+@media (max-width: 640px) {
+  .lightbox { padding: 3em .5em 4.2em; }
+  .lightbox__nav { font-size: 2.4rem; }
+  .lightbox__caption { padding: 0 1em; }
+}
+
+/* --- home page: news & guides -------------------------------------------- */
+
+/* a news item with no link is not clickable, so it must not look clickable */
+.post-card--static { cursor: default; }
+.post-card--static:hover { transform: none; box-shadow: var(--wl-card-shadow); }
+.post-card--static .post-card__title { color: var(--global-text-color); }
+
+/* guides read as a menu of the site, so keep them tighter than news */
+.post-list--guides { gap: .5em; }
+.post-list--guides .post-card { padding: .65em 1em; }
+.post-list--guides .post-card__excerpt { margin-top: .15em; }
+
+.post-card__meta--inline {
+  display: inline;
+  margin: 0 0 0 .5em;
+  font-weight: 400;
+}
+
+/* --- home: News gets its own colour, distinct from the site green -------- */
+
+:root { --wl-news: #b8430f; }   /* burnt orange, same in light and dark */
+
+.post-list--news .post-card { border-left-color: var(--wl-news); }
+.post-list--news .post-card__title { color: var(--wl-news); }
+
+/* --- home: Guides as a grid of tiles ------------------------------------ */
+
+.guide-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(122px, 1fr));
+  gap: .6em;
+  margin: 1.1em 0 2em 0;
+}
+
+.guide {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 1.05em .7em .9em;
+  border: 1px solid var(--global-border-color);
+  border-radius: 8px;
+  background: var(--wl-card-bg);
+  box-shadow: var(--wl-card-shadow);
+  text-decoration: none !important;
+  color: var(--global-text-color) !important;
+  transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+}
+.guide:hover {
+  transform: translateY(-2px);
+  border-color: var(--wl-accent);
+  box-shadow: 0 2px 4px rgba(0,0,0,.08), 0 10px 24px rgba(0,0,0,.09);
+}
+
+.guide__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.3em;
+  height: 2.3em;
+  margin-bottom: .5em;
+  border-radius: 7px;
+  background: var(--wl-accent-soft);
+  color: var(--wl-accent);
+  font-size: 1.05em;
+}
+.guide__title {
+  display: block;
+  font-weight: 600;
+  font-size: .92em;
+  line-height: 1.3;
+}
+.guide__text {
+  display: block;
+  font-size: .82em;
+  line-height: 1.45;
+  color: var(--global-text-color-light);
+}
+
+/* --- conference talks: a thin list, deliberately not cards --------------- */
+
+.talks { list-style: none; margin: .6em 0 2em 0; padding: 0; counter-reset: none; }
+
+.talk {
+  display: flex;
+  gap: .9em;
+  padding: .5em 0;
+  border-bottom: 1px solid var(--global-border-color);
+}
+.talk:last-child { border-bottom: 0; }
+
+.talk__year {
+  flex: 0 0 3.2em;
+  font-size: .82em;
+  font-weight: 600;
+  color: var(--wl-accent);
+  padding-top: .15em;
+}
+.talk__body { flex: 1 1 auto; min-width: 0; }
+.talk__title { display: block; font-size: .92em; line-height: 1.4; }
+.talk__meta {
+  display: block;
+  font-size: .78em;
+  color: var(--global-text-color-light);
+  margin-top: .1em;
+}
+.talk__label {
+  display: inline-block;
+  font-size: .72em;
+  font-weight: 600;
+  letter-spacing: .02em;
+  color: var(--wl-accent);
+  border: 1px solid var(--wl-accent);
+  border-radius: 3px;
+  padding: .05em .4em;
+  margin-right: .15em;
+  vertical-align: 1px;
+  white-space: nowrap;
+}
+.talks-note { font-size: .82em; color: var(--global-text-color-light); margin: 0 0 .4em 0; }
+
+/* language note on a publication card, e.g. "in Mandarin" */
+.pub-lang {
+  font-size: .82em;
+  font-style: italic;
+  color: var(--global-text-color-light);
+}
+
+@media (max-width: 520px) {
+  .talk { flex-direction: column; gap: .1em; }
+  .talk__year { flex: none; }
+}
+
+/* small institution icon in the CV timeline */
+.tl-icon {
+  color: var(--wl-accent);
+  font-size: .85em;
+  width: 1.25em;
+  margin-right: .35em;
+  opacity: .85;
+}
+.tl-what strong a { text-decoration: none; }
+.tl-what strong a:hover { text-decoration: underline; }
+
+/* --- home: News as thin rows — mark, date, one-line title ---------------- */
+
+.news { list-style: none; margin: .8em 0 2.2em 0; padding: 0; }
+
+.news__item {
+  display: flex;
+  align-items: center;
+  gap: .85em;
+  padding: .5em 0;
+  border-bottom: 1px solid var(--global-border-color);
+}
+.news__item:last-child { border-bottom: 0; }
+
+.news__mark {
+  flex: 0 0 2.4em;
+  height: 2.4em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  overflow: hidden;
+  background: var(--wl-accent-soft);
+  color: var(--wl-news);
+  font-size: .95em;
+}
+.news__thumb {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+}
+
+.news__date {
+  flex: 0 0 6.4em;
+  font-size: .78em;
+  color: var(--global-text-color-light);
+  font-variant-numeric: tabular-nums;
+}
+
+.news__title {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-size: .95em;
+  line-height: 1.35;
+}
+.news__title a { text-decoration: none; }
+.news__title a:hover { text-decoration: underline; }
+
+@media (max-width: 560px) {
+  .news__item { flex-wrap: wrap; }
+  .news__date { flex: 0 0 auto; order: 3; margin-left: 3.25em; }
+  .news__title { flex: 1 1 100%; order: 2; }
+}
+
+/* --- travel: the when / where line under a trip heading ------------------ */
+
+.trip-meta {
+  font-size: .84em;
+  color: var(--global-text-color-light);
+  margin: -.3em 0 1em 0;
+}
+.trip-meta i { margin-right: .3em; opacity: .8; }
+.trip-meta__sep { margin: 0 .55em; opacity: .5; }
+
+/* "See more" under the home page news list */
+.news-more {
+  display: inline-flex;
+  align-items: center;
+  gap: .4em;
+  margin: -1.4em 0 2.2em 0;
+  padding: .3em .9em;
+  font-family: inherit;
+  font-size: .8em;
+  border: 1px solid var(--global-border-color);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--global-text-color-light);
+  cursor: pointer;
+  transition: border-color .15s ease, color .15s ease;
+}
+.news-more:hover { border-color: var(--wl-news); color: var(--wl-news); }
+.news-more::after { content: "▾"; font-size: .9em; }
+.news-more.is-open::after { content: "▴"; }

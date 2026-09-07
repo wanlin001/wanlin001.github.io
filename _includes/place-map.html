@@ -1,0 +1,30 @@
+{% comment %}
+  A plain location map. Uses OpenStreetMap's embed, so it needs no API key and
+  no sharing settings — unlike map.html, which embeds one of your own
+  Google My Maps.
+
+  {% include place-map.html lat="46.2672" lon="12.3293" %}
+  {% include place-map.html lat="46.2672" lon="12.3293" span="0.06"
+                            caption="Diga del Vajont, Italy" %}
+
+  lat / lon  the point to mark
+  span       how much area to show, in degrees. smaller = closer in.
+             0.01 ≈ a village, 0.05 ≈ a valley, 0.2 ≈ a region. default 0.05
+  height     height as a % of the width. default 55
+  caption    optional line underneath
+{% endcomment %}
+
+{% assign sp = include.span | default: 0.05 | times: 1.0 %}
+{% assign w = include.lon | times: 1.0 | minus: sp %}
+{% assign e = include.lon | times: 1.0 | plus: sp %}
+{% assign s = include.lat | times: 1.0 | minus: sp %}
+{% assign n = include.lat | times: 1.0 | plus: sp %}
+
+<div class="map-embed" style="padding-bottom: {{ include.height | default: 55 }}%;">
+  <iframe loading="lazy"
+          src="https://www.openstreetmap.org/export/embed.html?bbox={{ w }},{{ s }},{{ e }},{{ n }}&layer=mapnik&marker={{ include.lat }},{{ include.lon }}"
+          title="{{ include.caption | default: 'Map' }}"></iframe>
+</div>
+<p class="grid-caption">
+  {% if include.caption %}{{ include.caption }} · {% endif %}<a href="https://www.openstreetmap.org/?mlat={{ include.lat }}&mlon={{ include.lon }}#map=13/{{ include.lat }}/{{ include.lon }}" target="_blank" rel="noopener">Open in OpenStreetMap</a>
+</p>

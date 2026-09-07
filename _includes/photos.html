@@ -1,0 +1,27 @@
+{% comment %}
+  Photo grid.
+
+  {% include photos.html dir="/images/travel/nepal" files="1.jpg, 2.jpg, 3.jpg" %}
+  {% include photos.html dir="/images/travel/nepal" files="1.jpg, 2.jpg"
+                         captions="Kali Gandaki, Mustang" caption="Nepal, 2022" %}
+
+  dir       folder the photos live in (no trailing slash)
+  files     comma-separated file names
+  captions  optional, comma-separated, one per photo, same order
+  caption   optional, one line under the whole grid
+  size      optional: "tall" for 320px rows, default is 200px
+{% endcomment %}
+
+{% assign _files = include.files | split: "," %}
+{% assign _caps  = include.captions | split: "," %}
+{% assign _dir   = include.dir | default: "/images" | strip %}
+
+<div class="photo-grid{% if include.size == 'tall' %} photo-grid--tall{% endif %}">
+  {% for f in _files %}
+    <figure>
+      <img src="{{ _dir }}/{{ f | strip }}" alt="{{ _caps[forloop.index0] | default: '' | strip }}" loading="lazy">
+      {% if _caps[forloop.index0] %}<figcaption>{{ _caps[forloop.index0] | strip }}</figcaption>{% endif %}
+    </figure>
+  {% endfor %}
+</div>
+{% if include.caption %}<p class="grid-caption">{{ include.caption }}</p>{% endif %}
