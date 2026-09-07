@@ -42,23 +42,28 @@ author_profile: true
 </div>
 {% endif %}
 
-{% for category in site.publication_category %}
-  {% assign title_shown = false %}
-  {% for post in site.publications reversed %}
-    {% if post.category != category[0] %}{% continue %}{% endif %}
-    {% unless title_shown %}
-      {% if title_shown_once %}</section>{% endif %}
-      <section class="pub-section" id="{{ category[0] }}">
-      <h2>{{ category[1].title }}</h2>
-      {% assign title_shown = true %}
-    {% endunless %}
+{% comment %}
+  Publications are listed newest first, grouped by year. The category
+  (journal paper / outreach / in prep.) stays visible as the coloured label on
+  each card, so nothing is lost by not grouping into category sections.
+  Section titles come from _config.yml → publication_category.
+{% endcomment %}
+{% assign pubs = site.publications | sort: "date" | reverse %}
+{% assign years = pubs | map: "year" | uniq %}
+
+{% for y in years %}
+  <section class="pub-section" id="year-{{ y }}">
+  <h2 class="pub-year">{{ y }}</h2>
+  {% for post in pubs %}
+    {% if post.year != y %}{% continue %}{% endif %}
+    {% assign cat = site.publication_category[post.category] %}
 
     <div class="pub-card" data-topics="{{ post.topics | join: ' ' }}">
       <div class="pub-card__body">
         <div class="pub-card__main">
 
           <p class="pub-card__title">
-            <span class="pub-tag pub-tag--{{ post.category }}">{{ category[1].label | default: category[1].title }}</span>
+            <span class="pub-tag pub-tag--{{ post.category }}">{{ cat.label | default: cat.title | default: post.category }}</span>
             <a href="{{ base_path }}{{ post.url }}" rel="permalink">{{ post.title }}</a>
           </p>
 
@@ -66,7 +71,6 @@ author_profile: true
 
           <p class="pub-card__meta">
             {% if post.venue %}<i>{{ post.venue }}</i>{% endif %}{% if post.volume %}, {{ post.volume }}{% endif %}
-            {% if post.year %} | {{ post.year }}{% endif %}
             {% if post.language %} <span class="pub-lang">{{ post.language }}</span>{% endif %}
             {% if post.openaccess %} <span class="pub-tag pub-tag--oa">Open access</span>{% endif %}
           </p>
@@ -108,7 +112,7 @@ author_profile: true
       </div>
     </div>
   {% endfor %}
-  {% if title_shown %}</section>{% endif %}
+  </section>
 {% endfor %}
 
 {% comment %} conference talks: a thin list, not cards — content in _data/conferences.yml {% endcomment %}
