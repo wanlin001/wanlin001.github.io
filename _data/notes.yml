@@ -115,6 +115,36 @@ notes:
     excerpt: "The upstream / origin / clone layout, first-time setup, the day-to-day loop, branch management, GitHub tokens, and a command crib sheet. Written in Mandarin."
     topics: [tools]
 
+  - title: "Git Commands Guide"
+    url: "https://hackmd.io/@HuWanLin/ByHOP7ylbe"
+    category: research
+    source: "HackMD"
+    excerpt: "as title"
+    topics: [tools]
+
+    
+
+  - title: "Generate greens function and synthetic waveform"
+    url: "https://hackmd.io/@HuWanLin/H1DJV-Czp"
+    category: research
+    source: "HackMD"
+    date: "Dec 2023"
+    #excerpt: ""
+    topics: [tools, seismology]
+
+  - title: "English helper"
+    url: "https://hackmd.io/@HuWanLin/refiningEnglish"
+    #category: research
+    source: "HackMD"
+    date: "Nov 2023"
+    excerpt: "英文寫作小工具"
+    topics: [tools]
+
+
+
+
+    
+
 # 想再加一則，把下面這段複製出來、拿掉開頭的 # 就好：
 #
 #  - title: "Title"
