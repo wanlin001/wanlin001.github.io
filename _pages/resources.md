@@ -25,7 +25,7 @@ Software I use
 | | |
 |---|---|
 | [ASPECT](https://aspect.geodynamics.org/) | Mantle convection & lithosphere dynamics (deal.II) |
-| [DynEarthSol](https://bitbucket.org/tan2/dynearthsol3d) | Explicit finite-element crustal deformation |
+| [DynEarthSol](https://github.com/GeoFLAC/DynEarthSol) | Explicit finite-element crustal deformation |
 | [MOOSE](https://mooseframework.inl.gov/) | Multiphysics FEM, coupled THM(C) problems |
 | [GMT](https://www.generic-mapping-tools.org/) | Mapping and figures |
 | [ParaView](https://www.paraview.org/) / [VisIt](https://visit-dav.github.io/visit-website/) | 3-D visualisation |
@@ -42,6 +42,4 @@ My Mandarin-language science writing is listed on the
 For students
 ======
 
-Notes and links I share with students I mentor — on scientific writing, on running models on an
-HPC cluster, and on applying for graduate study abroad.
 *(Add posts or PDF links here as you write them.)*
