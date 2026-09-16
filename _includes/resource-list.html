@@ -19,6 +19,7 @@
         {%- if r.by %}<span class="res__by">{{ r.by }}</span>{% endif -%}
         {%- if r.source %}{% if r.by %} · {% endif %}{{ r.source }}{% endif -%}
         {%- if r.date %}{% if r.by or r.source %} · {% endif %}{{ r.date }}{% endif -%}
+        {%- if r.format %} · {{ r.format }}{% endif -%}
         {%- if r.language %} <span class="pub-lang">{{ r.language }}</span>{% endif -%}
         {%- for a in r.also %} · <a href="{{ a.url }}" target="_blank" rel="noopener">{{ a.label }}</a>{% endfor -%}
       </span>

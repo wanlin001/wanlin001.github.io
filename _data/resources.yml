@@ -20,8 +20,9 @@
 #     url       連結。站內 PDF 寫 /files/talks/xxx.pdf，站外寫完整網址
 #               （網址裡的 ?fbclid=… / ?utm_… 追蹤碼整段刪掉）
 #     category  分類代號，填 categories 裡的 key
-#     type      左邊的小標籤：PDF / Slides / Article / Video / Website / Code …
-#               隨便寫，不用先定義
+#     type      左邊的小標籤＝「這是什麼」：Slides / Article / Video / Guide /
+#               Website / Code / Dataset …  隨便寫，不用先定義
+#     format    檔案格式，會接在日期後面，例如 "PDF, 3.3 MB"。線上網頁就不用寫
 #     by        作者／講者／製作者
 #     source    在哪裡發表、在哪裡講、哪個網站
 #     date      日期，格式隨意
@@ -59,7 +60,8 @@ items:
   - title: "Fallen into a Rabbit Hole — 談國際學生面對留學困境及解套方式"
     url: /files/talks/2024-02-25-study-abroad-talk.pdf
     category: talks
-    type: PDF
+    type: Slides
+    format: "PDF, 3.3 MB"
     by: "Wan-Lin Hu & Szu-Ting Kuo"
     source: "Public lecture, Study Abroad Resource Centre, Taipei Public Library"
     date: "25 Feb 2024"
@@ -81,7 +83,8 @@ items:
 #  - title: "Title"
 #    url: /files/talks/2026-01-01-short-name.pdf
 #    category: talks
-#    type: PDF
+#    type: Slides
+#    format: PDF
 #    by: "Wan-Lin Hu"
 #    source: "Where it was given or published"
 #    date: "1 Jan 2026"

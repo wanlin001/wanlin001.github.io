@@ -422,7 +422,8 @@ Resources 頁下半部（Talks & slides、For students…）是**瘦版清單**�
   - title: "簡報標題"
     url: /files/talks/2026-01-01-short-name.pdf   # 站外就寫完整網址
     category: talks          # 填 categories 裡的 key
-    type: PDF                # 左邊小標籤，PDF / Slides / Article / Video…隨意
+    type: Slides             # 左邊小標籤＝這是什麼：Slides / Article / Video…
+    format: PDF              # 檔案格式；線上網頁不用寫
     by: "Wan-Lin Hu"         # 作者／講者
     source: "在哪裡講、哪個網站"
     date: "1 Jan 2026"
