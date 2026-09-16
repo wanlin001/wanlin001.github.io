@@ -1,0 +1,88 @@
+# ═══════════════════════════════════════════════════════════════════════════
+#  Resources 頁下半部的清單  →  https://wanlin001.github.io/resources/
+#  （上半部的 Code & data、Software 表格還是直接寫在 _pages/resources.md）
+# ═══════════════════════════════════════════════════════════════════════════
+#
+#  ┌─ 想改什麼 ──────────────────┬─ 去哪改 ────────────────────────────────┐
+#  │ 分類（新增/改名/排序）      │ 這個檔案，下面的 categories 區塊        │
+#  │ 每一筆資源                  │ 這個檔案，下面的 items 區塊             │
+#  │ 樣式                        │ assets/css/custom.css 搜尋 .res-        │
+#  │ 版型                        │ _includes/resource-list.html（不用碰）  │
+#  └─────────────────────────────┴─────────────────────────────────────────┘
+#
+#  · 分類的順序 = 頁面上的順序。沒有任何一筆的分類會自動隱藏，
+#    所以可以先把分類開好放著。
+#  · 同一個分類裡，items 寫在上面的就排在上面 → 新的寫最上面。
+#  · categories 和 items 兩個關鍵字整個檔案各只能出現一次。
+#
+# ── 每一筆的欄位（只有 title、url 必填）───────────────────────────────────
+#   - title     標題。中文作品就用中文標題，language 寫 in Mandarin
+#     url       連結。站內 PDF 寫 /files/talks/xxx.pdf，站外寫完整網址
+#               （網址裡的 ?fbclid=… / ?utm_… 追蹤碼整段刪掉）
+#     category  分類代號，填 categories 裡的 key
+#     type      左邊的小標籤：PDF / Slides / Article / Video / Website / Code …
+#               隨便寫，不用先定義
+#     by        作者／講者／製作者
+#     source    在哪裡發表、在哪裡講、哪個網站
+#     date      日期，格式隨意
+#     language  例如 in Mandarin；英文的就不用寫
+#     also      額外連結，會以小字接在後面，例如：
+#               also:
+#                 - label: "Original article"
+#                   url: "https://..."
+#
+#  改完驗格式：  ruby -ryaml -e 'YAML.load_file("_data/resources.yml"); puts "OK"'
+#  網站上顯示的文字用英文（中文作品的標題除外）。
+# ═══════════════════════════════════════════════════════════════════════════
+
+categories:
+
+  talks:
+    title: "Talks & slides"
+
+  students:
+    title: "For students"
+
+  # 預留的分類，要用的時候拿掉開頭的 #：
+  # teaching:
+  #   title: "Teaching material"
+  # tools:
+  #   title: "Tools & tutorials"
+  # data:
+  #   title: "Data sources"
+  # outreach:
+  #   title: "Outreach & media"
+
+
+items:
+
+  - title: "Fallen into a Rabbit Hole — 談國際學生面對留學困境及解套方式"
+    url: /files/talks/2024-02-25-study-abroad-talk.pdf
+    category: talks
+    type: PDF
+    by: "Wan-Lin Hu & Szu-Ting Kuo"
+    source: "Public lecture, Study Abroad Resource Centre, Taipei Public Library"
+    date: "25 Feb 2024"
+    language: "in Mandarin"
+
+  - title: "研究生生存指南：把研究做完，更要把自己找回來"
+    url: "https://deck.researcher.tw/decks/grad-student-survival-guide/"
+    category: students
+    type: Slides
+    by: "研究者基地"
+    source: "researcher.tw"
+    language: "in Mandarin"
+    also:
+      - label: "Original article"
+        url: "https://researcher.tw/articles/grad-student-survival-guide/"
+
+# 新增一筆，複製下面這段、拿掉開頭的 #：
+#
+#  - title: "Title"
+#    url: /files/talks/2026-01-01-short-name.pdf
+#    category: talks
+#    type: PDF
+#    by: "Wan-Lin Hu"
+#    source: "Where it was given or published"
+#    date: "1 Jan 2026"
+#    language: "in Mandarin"

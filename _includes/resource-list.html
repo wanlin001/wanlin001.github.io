@@ -1,0 +1,29 @@
+{% comment %}
+  Thin, categorised resource list. Content lives in _data/resources.yml.
+  Every category with at least one item gets its own heading, in the order
+  the categories are written; empty categories are skipped.
+{% endcomment %}
+{% assign res = site.data.resources %}
+{% for c in res.categories %}
+  {% assign rows = res.items | where: "category", c[0] %}
+  {% if rows.size == 0 %}{% continue %}{% endif %}
+<h1 id="{{ c[0] }}">{{ c[1].title }}</h1>
+<ol class="res-list">
+  {% for r in rows %}
+  {%- if r.url contains "://" -%}{%- assign href = r.url -%}{%- else -%}{%- assign href = r.url | relative_url -%}{%- endif -%}
+  <li class="res">
+    <span class="res__type">{{ r.type | default: "Link" }}</span>
+    <span class="res__body">
+      <a class="res__title" href="{{ href }}" target="_blank" rel="noopener">{{ r.title }}</a>
+      <span class="res__meta">
+        {%- if r.by %}<span class="res__by">{{ r.by }}</span>{% endif -%}
+        {%- if r.source %}{% if r.by %} · {% endif %}{{ r.source }}{% endif -%}
+        {%- if r.date %}{% if r.by or r.source %} · {% endif %}{{ r.date }}{% endif -%}
+        {%- if r.language %} <span class="pub-lang">{{ r.language }}</span>{% endif -%}
+        {%- for a in r.also %} · <a href="{{ a.url }}" target="_blank" rel="noopener">{{ a.label }}</a>{% endfor -%}
+      </span>
+    </span>
+  </li>
+  {% endfor %}
+</ol>
+{% endfor %}

@@ -413,12 +413,26 @@ paperurl: '/files/Hu-Tan-2026-Tectonophysics.pdf'
 ### 演講簡報 PDF 放哪
 
 **放進 `files/talks/`**，檔名 `日期-英文短名.pdf`，例如
-`files/talks/2024-02-25-study-abroad-talk.pdf`。然後到 `_pages/resources.md` 的
-**Talks & slides** 區塊，照檔案裡註解的範本複製一組 `link-card`（新的放最上面）。
-線上簡報（Google Slides 等）一樣用 `link-card`，url 換成網址即可。
+`files/talks/2024-02-25-study-abroad-talk.pdf`。
 
-外部資源放在同一頁的 **For students** 區塊。從 Facebook 複製的網址常帶
-`?fbclid=…` 追蹤碼，**問號之後整段刪掉**再貼。
+Resources 頁下半部（Talks & slides、For students…）是**瘦版清單**，內容全在
+**`_data/resources.yml`**，不用碰 `_pages/resources.md`：
+
+```yaml
+  - title: "簡報標題"
+    url: /files/talks/2026-01-01-short-name.pdf   # 站外就寫完整網址
+    category: talks          # 填 categories 裡的 key
+    type: PDF                # 左邊小標籤，PDF / Slides / Article / Video…隨意
+    by: "Wan-Lin Hu"         # 作者／講者
+    source: "在哪裡講、哪個網站"
+    date: "1 Jan 2026"
+    language: "in Mandarin"  # 英文的就不用寫
+```
+
+- **新增分類**：在同一個檔案的 `categories:` 底下多一組（已經預留了 teaching / tools / data /
+  outreach 四個，拿掉 `#` 就能用）。**沒有任何一筆的分類會自動隱藏**。
+- 額外連結（例如原文）用 `also:`，範例在檔案裡。
+- 從 Facebook 複製的網址常帶 `?fbclid=…` 追蹤碼，**問號之後整段刪掉**再貼。
 
 北市圖留學講座那份實測：**15 MB → 3.3 MB**，53 頁完整。
 

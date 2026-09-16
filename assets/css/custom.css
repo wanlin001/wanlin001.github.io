@@ -828,3 +828,45 @@ h2.pub-year::after {
   background: var(--global-border-color, #e3e3e3);
 }
 .pub-section:first-of-type h2.pub-year { margin-top: .6em; }
+
+
+/* ── Resources：瘦版清單（內容在 _data/resources.yml）──────────────────
+   跟 Publications 最下面的研討會清單同一個樣子：左邊一個類型小標，
+   右邊標題 + 一行來源。沒有卡片、沒有 hover 效果。                     */
+.res-list { list-style: none; margin: .6em 0 2em 0; padding: 0; }
+.res {
+  display: flex;
+  gap: .9em;
+  padding: .55em 0;
+  border-bottom: 1px solid var(--global-border-color);
+}
+.res:last-child { border-bottom: 0; }
+.res__type {
+  flex: 0 0 4.6em;
+  align-self: flex-start;
+  margin-top: .2em;
+  font-size: .7em;
+  font-weight: 600;
+  letter-spacing: .03em;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--wl-accent);
+  border: 1px solid var(--wl-accent);
+  border-radius: 3px;
+  padding: .1em .3em;
+  white-space: nowrap;
+}
+.res__body  { flex: 1 1 auto; min-width: 0; }
+.res__title { display: block; font-size: .92em; line-height: 1.4; }
+.res__meta {
+  display: block;
+  font-size: .78em;
+  line-height: 1.45;
+  color: var(--global-text-color-light);
+  margin-top: .15em;
+}
+.res__by { color: var(--global-text-color); }
+@media (max-width: 36em) {
+  .res { flex-direction: column; gap: .25em; }
+  .res__type { flex: none; }
+}
