@@ -410,6 +410,18 @@ paperurl: '/files/Hu-Tan-2026-Tectonophysics.pdf'
 
 卡片上就會多一個 **PDF** 按鈕。檔名用 `作者-年-期刊.pdf` 最好認，**不要有空格和中文**。
 
+### 演講簡報 PDF 放哪
+
+**放進 `files/talks/`**，檔名 `日期-英文短名.pdf`，例如
+`files/talks/2024-02-25-study-abroad-talk.pdf`。然後到 `_pages/resources.md` 的
+**Talks & slides** 區塊，照檔案裡註解的範本複製一組 `link-card`（新的放最上面）。
+線上簡報（Google Slides 等）一樣用 `link-card`，url 換成網址即可。
+
+外部資源放在同一頁的 **For students** 區塊。從 Facebook 複製的網址常帶
+`?fbclid=…` 追蹤碼，**問號之後整段刪掉**再貼。
+
+北市圖留學講座那份實測：**15 MB → 3.3 MB**，53 頁完整。
+
 ### ⚠️ PDF 不會自動壓縮，要手動跑
 
 `images/` 底下的圖片 commit 時會自動壓縮，**PDF 不會** —— 期刊 PDF 動輒二三十 MB，
