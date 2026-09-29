@@ -33,19 +33,34 @@ News
 {% if items.size > 0 %}
 <ul class="news" id="news-list">
 {% for n in items %}
-  {% assign target = n.link | default: n.url %}
-  {% assign clickable = true %}
-  {% unless n.link %}{% if n.content == blank %}{% assign clickable = false %}{% endif %}{% endunless %}
-  <li class="news__item{% if forloop.index > 5 %} news__item--extra{% endif %}"{% if forloop.index > 5 %} hidden{% endif %}>
-    <span class="news__mark">
-      {% if n.image %}<span class="news__thumb" style="background-image:url('{{ n.image }}');"></span>
-      {% else %}<i class="{{ n.icon | default: 'fas fa-circle-dot' }}" aria-hidden="true"></i>{% endif %}
+  {%- comment -%}
+    三種消息：
+      1. 有 link:      → 標題是連結（外部連結另開分頁）
+      2. 有內文沒 link → 標題點下去「在原地下拉展開」，不會跳到新的頁面
+      3. 兩者都沒有    → 純文字一行
+  {%- endcomment -%}
+  {% assign body = n.content | strip %}
+  {% capture row %}<span class="news__mark">{% if n.image %}<span class="news__thumb" style="background-image:url('{{ n.image }}');"></span>{% else %}<i class="{{ n.icon | default: 'fas fa-circle-dot' }}" aria-hidden="true"></i>{% endif %}</span><time class="news__date" datetime="{{ n.date | date: '%Y-%m-%d' }}">{{ n.date | date: "%d %b %Y" }}</time>{% endcapture %}
+  <li class="news__item{% if forloop.index > 5 %} news__item--extra{% endif %}" id="news-{{ n.date | date: '%Y-%m-%d' }}"{% if forloop.index > 5 %} hidden{% endif %}>
+    {% if n.link %}
+    <span class="news__row">
+      {{ row }}
+      <span class="news__title"><a href="{{ n.link }}"{% if n.link contains '://' %} target="_blank" rel="noopener"{% endif %}>{{ n.title }}</a></span>
     </span>
-    <time class="news__date" datetime="{{ n.date | date: '%Y-%m-%d' }}">{{ n.date | date: "%d %b %Y" }}</time>
-    <span class="news__title">
-      {% if clickable %}<a href="{{ target }}"{% if target contains '://' %} target="_blank" rel="noopener"{% endif %}>{{ n.title }}</a>
-      {% else %}{{ n.title }}{% endif %}
+    {% elsif body != "" %}
+    <details class="news__details">
+      <summary class="news__row">
+        {{ row }}
+        <span class="news__title">{{ n.title }}</span>
+      </summary>
+      <div class="news__body">{{ n.content }}</div>
+    </details>
+    {% else %}
+    <span class="news__row">
+      {{ row }}
+      <span class="news__title">{{ n.title }}</span>
     </span>
+    {% endif %}
   </li>
 {% endfor %}
 </ul>

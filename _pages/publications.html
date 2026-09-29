@@ -62,9 +62,17 @@ author_profile: true
       <div class="pub-card__body">
         <div class="pub-card__main">
 
+          {%- comment -%}
+            每篇文章不會另外產生一頁（_config.yml 的 collections.publications.output: false），
+            所以標題連到原文：有 DOI 就連 DOI，沒有就連 paperurl，都沒有就只是文字。
+            .md 檔裡寫的內文改成在下面「More」那裡下拉展開。
+          {%- endcomment -%}
+          {%- if post.doi -%}{%- assign titlehref = post.doi | prepend: "https://doi.org/" -%}
+          {%- elsif post.paperurl -%}{%- if post.paperurl contains "://" -%}{%- assign titlehref = post.paperurl -%}{%- else -%}{%- assign titlehref = post.paperurl | prepend: base_path -%}{%- endif -%}
+          {%- else -%}{%- assign titlehref = "" -%}{%- endif -%}
           <p class="pub-card__title">
             <span class="pub-tag pub-tag--{{ post.category }}">{{ cat.label | default: cat.title | default: post.category }}</span>
-            <a href="{{ base_path }}{{ post.url }}" rel="permalink">{{ post.title }}</a>
+            {% if titlehref != "" %}<a href="{{ titlehref }}"{% if titlehref contains '://' %} target="_blank" rel="noopener"{% endif %}>{{ post.title }}</a>{% else %}{{ post.title }}{% endif %}
           </p>
 
           <p class="pub-card__authors">{{ post.authors }}</p>
@@ -97,8 +105,19 @@ author_profile: true
             {% if post.slidesurl %}
               <a class="pub-btn" href="{{ post.slidesurl }}"><i class="fas fa-desktop" aria-hidden="true"></i> Slides</a>
             {% endif %}
-            <a class="pub-btn" href="{{ base_path }}{{ post.url }}"><i class="fas fa-expand-alt" aria-hidden="true"></i> Details</a>
           </div>
+
+          {%- comment -%} 摘要 + .md 檔的內文，在原地下拉展開，不跳頁 {%- endcomment -%}
+          {% assign body = post.content | strip %}
+          {% if post.excerpt or body != "" %}
+          <details class="pub-more">
+            <summary><i class="fas fa-expand-alt" aria-hidden="true"></i> Details</summary>
+            <div class="pub-more__body">
+              {% if post.excerpt %}<p class="pub-card__excerpt">{{ post.excerpt }}</p>{% endif %}
+              {{ post.content }}
+            </div>
+          </details>
+          {% endif %}
 
         </div>
 

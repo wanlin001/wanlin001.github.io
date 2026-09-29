@@ -55,7 +55,7 @@ station the gorge frames the dam wall almost exactly.
 
 {% include photos.html dir="/images/travel/vajont" files="20260516_152714_monte-toc.jpg, 20260516_184330_longarone.jpg" captions="The Monte Toc slide surface, The gorge seen from Longarone" %}
 
-Written up in more detail in [this note](/news/2026-05-16-vajont/).
+Written up in more detail in the [News list on the home page](/#news-2026-05-16) (click the item to unfold it).
 
 
 {% include trip.html title="Sumatra — Aceh" when="2022"

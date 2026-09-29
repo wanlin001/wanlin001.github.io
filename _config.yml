@@ -261,12 +261,15 @@ kramdown:
 
 
 # These settings control the types of collections used by the template
+# output: false = 不另外產生一頁。Publications 和 News 的內容都是在原本的清單上
+# 「下拉展開」，不會跳到新的頁面。想改回每則一頁的話，把 false 改成 true 即可
+# （同時要把 _pages/publications.html 和 _pages/about.md 裡的展開區塊改回連結）。
 collections:
   publications:
-    output: true
+    output: false
     permalink: /:collection/:path/
   news:
-    output: true
+    output: false
     permalink: /news/:path/
 
 

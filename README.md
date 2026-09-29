@@ -299,7 +299,7 @@ link: /cv/#awards--funding
 
 檔名建議 `年-月-日-短名.md`，例如 `2026-06-16-nstc-award.md`。
 
-**想寫成一整篇**（文字 + 照片，有自己的頁面）：**不要寫 `link:`**，改在 `---` 底下寫內容：
+**想寫成一整篇**（文字 + 照片，在首頁原地下拉展開）：**不要寫 `link:`**，改在 `---` 底下寫內容：
 
 ```markdown
 ---
@@ -314,7 +314,9 @@ image: /images/travel/vajont/20260516_152714_monte-toc.jpg
 {% raw %}{% include photos.html dir="/images/travel/vajont" files="1.jpg, 2.jpg" %}{% endraw %}
 ```
 
-標題就會連到 `/news/2026-05-16-vajont/`，那是一個完整的頁面。
+標題點下去會**在首頁原地往下展開**，不會跳到新的頁面（`_config.yml` 裡
+`collections.news.output: false`，所以不會另外產生 `/news/…` 那一頁）。
+再點一次收合。
 
 | 欄位 | 說明 |
 |---|---|
@@ -322,7 +324,7 @@ image: /images/travel/vajont/20260516_152714_monte-toc.jpg
 | `date` | `YYYY-MM-DD` ← 必填，決定排序（新的在上）|
 | `icon` | 左邊的小符號，Font Awesome 名稱。不寫用預設圓點 |
 | `image` | 左邊改放小圖（會蓋掉 icon）。建議用現成的照片 |
-| `link` | 有寫 → 標題連到這裡，內文不會產生頁面<br>沒寫 → 標題連到自己的頁面 |
+| `link` | 有寫 → 標題連到這裡（外部連結會另開分頁），內文不會顯示<br>沒寫 → 標題點下去在原地下拉展開內文<br>兩個都沒有 → 就是純文字一行 |
 
 **超過 5 則會自動收起來**，底下出現一個「See N more」按鈕，點了在同一頁展開，
 再點一次收合。不用做任何設定。
@@ -363,13 +365,17 @@ topics: [modelling, structural, hazard]
 paperurl: '/files/mypaper.pdf'    # 本機 PDF；也可放外部網址
 codeurl: 'https://zenodo.org/...'
 slidesurl: 'https://...'
-excerpt: '一兩句話的摘要，顯示在卡片上。'
+excerpt: '一兩句話的摘要，點開 Details 才會看到。'
 ---
 
-這裡寫比較長的內文，點進單篇頁面才會看到。
+這裡寫比較長的內文，點卡片上的「Details」在原地展開才會看到。
 ```
 
 **按鈕是自動長出來的**：有 `doi` 就出現 DOI 鈕、有 `paperurl` 就出現 PDF 鈕、有 `codeurl` 就出現 Code & data 鈕，沒填就不顯示。
+
+**不會另外產生單篇頁面**（`_config.yml` 裡 `collections.publications.output: false`）。
+標題直接連到原文（有 `doi` 連 DOI，沒有就連 `paperurl`），`excerpt` 和內文則是在
+卡片上點「Details」**在原地下拉展開**。`permalink:` 那行留著沒關係，只是現在沒有用到。
 
 ### 為什麼有些論文沒有 metric 圖示
 

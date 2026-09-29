@@ -15,16 +15,14 @@
   --wl-card-shadow:   0 1px 2px rgba(0,0,0,.06), 0 4px 14px rgba(0,0,0,.05);
 }
 
-/* Dark mode changes the paper, never the ink: the accent and the tag colours
-   stay identical, so a card looks the same on a phone in dark mode as it does
-   on a laptop in light mode. */
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --wl-accent-soft: #17352a;
-    --wl-card-bg:     #1d1f21;
-    --wl-card-shadow: 0 1px 2px rgba(0,0,0,.5), 0 4px 14px rgba(0,0,0,.35);
-  }
-}
+/* Dark mode is OPT-IN only: it is applied when the reader presses the sun/moon
+   button in the menu (which sets data-theme="dark"), never because the phone or
+   the laptop is in dark mode. That is deliberate — otherwise the same page looks
+   dark on a phone and light on a laptop. Do not add a
+   @media (prefers-color-scheme: dark) block here, or the cards will turn dark
+   on a page whose background is still white.
+   Dark mode changes the paper, never the ink: the accent and the tag colours
+   stay identical. */
 :root[data-theme="dark"] {
   --wl-accent-soft: #17352a;
   --wl-card-bg:     #1d1f21;
@@ -423,6 +421,30 @@ body { padding-top: var(--masthead-h); }
 .post-card .topic-tags { margin: .3em 0 .35em 0; }
 .note-section { margin-bottom: 2em; }
 
+/* Keep a note card to 3 lines: title / source · date · tags / excerpt.
+   Line 2 is one flex row, so the tags sit next to the date instead of under
+   it; the title may take 2 lines, the excerpt is cut to 1 line with "…".
+   (-webkit-line-clamp is the standard way to do this — every current browser
+   supports it, prefix included.) */
+.post-card--note .post-card__line {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .25em .5em;
+  margin: .25em 0 .3em 0;
+}
+.post-card--note .post-card__meta,
+.post-card--note .topic-tags { margin: 0; }
+
+.post-card--note .post-card__title,
+.post-card--note .post-card__excerpt {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.post-card--note .post-card__title   { -webkit-line-clamp: 2; }
+.post-card--note .post-card__excerpt { -webkit-line-clamp: 1; }
+
 /* --- building blocks used by the Travel page ----------------------------- */
 
 .photo-grid--tall img { height: 320px; }
@@ -727,13 +749,18 @@ body { padding-top: var(--masthead-h); }
 .news { list-style: none; margin: .8em 0 2.2em 0; padding: 0; }
 
 .news__item {
-  display: flex;
-  align-items: center;
-  gap: .85em;
   padding: .5em 0;
   border-bottom: 1px solid var(--global-border-color);
 }
 .news__item:last-child { border-bottom: 0; }
+
+/* the one-line row itself. It is a <summary> when the item can be expanded,
+   otherwise a plain <span> — the layout is the same either way. */
+.news__row {
+  display: flex;
+  align-items: center;
+  gap: .85em;
+}
 
 .news__mark {
   flex: 0 0 2.4em;
@@ -771,10 +798,69 @@ body { padding-top: var(--masthead-h); }
 .news__title a:hover { text-decoration: underline; }
 
 @media (max-width: 560px) {
-  .news__item { flex-wrap: wrap; }
+  .news__row { flex-wrap: wrap; }
   .news__date { flex: 0 0 auto; order: 3; margin-left: 3.25em; }
   .news__title { flex: 1 1 100%; order: 2; }
 }
+
+/* --- expand in place, instead of opening a separate page ----------------- */
+/* A news item with a body (and no `link:`) and a publication's Details button
+   both use <details>: the text unfolds under the row, nothing navigates away.
+   _config.yml has collections.*.output: false, so no separate page exists. */
+
+.news__details > summary,
+.pub-more > summary {
+  cursor: pointer;
+  list-style: none;                 /* Firefox's default triangle */
+}
+.news__details > summary::-webkit-details-marker,
+.pub-more > summary::-webkit-details-marker { display: none; }
+
+.news__details .news__title::after {
+  content: "▾";
+  margin-left: .45em;
+  font-size: .85em;
+  color: var(--global-text-color-light);
+}
+.news__details[open] .news__title::after { content: "▴"; }
+.news__details > summary:hover .news__title { color: var(--wl-news); }
+
+.news__body {
+  margin: .6em 0 .8em 3.25em;
+  font-size: .92em;
+}
+.news__body > *:first-child { margin-top: 0; }
+.news__body > *:last-child  { margin-bottom: 0; }
+
+@media (max-width: 560px) {
+  .news__body { margin-left: 0; }
+}
+
+/* the publication card's "Details" — styled like the other .pub-btn buttons */
+.pub-more { margin-top: .2em; }
+.pub-more > summary {
+  display: inline-flex;
+  align-items: center;
+  gap: .4em;
+  padding: .28em .7em;
+  font-size: .78em;
+  border: 1px solid var(--global-border-color);
+  border-radius: 999px;
+  color: var(--global-text-color-light);
+  transition: border-color .15s ease, color .15s ease;
+}
+.pub-more > summary::after { content: "▾"; font-size: .9em; }
+.pub-more[open] > summary::after { content: "▴"; }
+.pub-more > summary:hover { border-color: var(--wl-accent); color: var(--wl-accent); }
+
+.pub-more__body {
+  margin-top: .7em;
+  padding-left: .9em;
+  border-left: 2px solid var(--global-border-color);
+  font-size: .9em;
+}
+.pub-more__body > *:first-child { margin-top: 0; }
+.pub-more__body > *:last-child  { margin-bottom: 0; }
 
 /* --- travel: the when / where line under a trip heading ------------------ */
 
