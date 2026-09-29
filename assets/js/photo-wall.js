@@ -45,7 +45,7 @@
        so photos carrying an EXIF rotation are measured correctly.
        Falls back to the plain CSS column layout if this never runs.        */
 
-    var ROW = 8, GAP = 10;
+    var ROW = 4, GAP = 10;   /* must match grid-auto-rows in custom.css */
 
     function layout(fig) {
       var im = fig.querySelector('img');

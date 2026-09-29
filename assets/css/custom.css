@@ -79,21 +79,22 @@
 .pub-card__authors .me { font-weight: 700; }
 .pub-card__meta { margin: 0 0 .55em 0; font-size: .82em; color: var(--global-text-color-light); }
 
-/* The journal is the thing people look for, so it is boxed in the accent
-   colour rather than set in grey. The volume/pages stay lighter inside it. */
+/* The journal is the thing people look for, so it is outlined rather than set
+   in grey — but only outlined: no fill, black text, thin border. Visible
+   without shouting. */
 .pub-venue {
   display: inline-block;
-  padding: .05em .55em;
+  padding: .05em .5em;
   font-size: .8em;
   font-style: normal;
   font-weight: 600;
   line-height: 1.5;
-  color: var(--wl-accent);
-  background: var(--wl-accent-soft);
-  border: 1px solid var(--wl-accent);
+  color: var(--global-text-color);
+  background: none;
+  border: 1px solid var(--global-border-color);
   border-radius: 4px;
 }
-.pub-venue__vol { font-weight: 400; opacity: .8; }
+.pub-venue__vol { font-weight: 400; color: var(--global-text-color-light); }
 .pub-card__excerpt { margin: 0 0 .7em 0; font-size: .87em; }
 
 .pub-card__body { display: flex; gap: 1.2em; align-items: flex-start; flex-wrap: wrap; }
@@ -507,14 +508,19 @@ body { padding-top: var(--masthead-h); }
   columns: auto;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
-  grid-auto-rows: 8px;
+  grid-auto-rows: 4px;
   column-gap: 10px;
+  /* "dense" = when a tall photo leaves a hole, a later photo that fits is
+     pulled up into it instead of the hole being left blank. It is what keeps
+     a wall of mixed portrait/landscape photos from going ragged. It does
+     reorder the photos, which is fine here — there is no reading order. */
+  grid-auto-flow: row dense;
 }
 .wall--js .wall__item {
   margin: 0;
   /* placeholder height so lazy-loaded photos below the fold still occupy
      space (and therefore get loaded); JS replaces this once each one is in */
-  grid-row-end: span 34;
+  grid-row-end: span 68;
 }
 .wall--js .wall__item--wide { grid-column: span 2; }
 
@@ -985,7 +991,10 @@ h2.pub-year::after {
    (it copies the address rather than opening a mail app — see
    assets/js/email-copy.js). */
 
-.author__email {
+/* The theme hides every <button> inside .author__urls-wrapper on wide screens
+   (that rule exists for the "Follow" button). This one must stay visible, so
+   it is selected by two classes and therefore wins. */
+.author__urls-wrapper .author__email {
   display: inline;
   padding: 0;
   border: 0;
@@ -1010,8 +1019,11 @@ h2.pub-year::after {
   .cv-toolbar { margin-top: 0; }
 }
 
-/* name / contact block: on screen it is in the sidebar, so it is only printed */
-.cv-print-header { display: none; }
+/* Blocks that only exist in the printed PDF: the name/contact header (on
+   screen it is in the sidebar) and the full publication list (on screen the
+   Publications page already has it). */
+.cv-print-header,
+.cv-print-only { display: none; }
 
 /* ── printing the CV ──────────────────────────────────────────────────────
    "Download PDF" on /cv/ opens the print dialog, so what the PDF looks like
@@ -1080,6 +1092,26 @@ h2.pub-year::after {
 
   /* the skill chips keep their outline but lose the tint */
   .chip, .skill, .tag-pill { background: none !important; border: 1px solid #888 !important; }
+
+  .cv-screen-only { display: none !important; }
+  .cv-print-only  { display: block !important; }
+
+  /* the publication list: plain numbered citations, nothing else */
+  .cv-pubs h3 {
+    font-size: 10.5pt;
+    font-weight: 700;
+    margin: .8em 0 .3em 0;
+    break-after: avoid;
+  }
+  .cv-pubs__list {
+    margin: 0 0 .2em 0;
+    padding-left: 1.6em;
+  }
+  .cv-pubs__list li {
+    margin-bottom: .35em;
+    line-height: 1.35;
+    text-align: left;
+  }
 
   @page { margin: 14mm 15mm; }
 }

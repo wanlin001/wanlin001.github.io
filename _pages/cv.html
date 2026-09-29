@@ -88,7 +88,56 @@ redirect_from:
 {% endif %}
 
 <h2>Publications</h2>
-<p>See the <a href="{{ base_path }}/publications/">publications page</a> for the full list with DOIs and PDFs.</p>
+<p class="cv-screen-only">See the <a href="{{ base_path }}/publications/">publications page</a> for the full list with DOIs, PDFs and abstracts.</p>
+
+{%- comment -%}
+  下載的 PDF 裡要有完整著作列表，但網頁上不必再抄一次（Publications 那頁已經有了），
+  所以這一段平常藏起來，只有列印/存成 PDF 時才出現（custom.css 的 .cv-print-only）。
+  內容直接讀 _publications/ 的那些 .md，所以只要那邊改，PDF 就跟著改，不用另外維護。
+  格式是一般引用格式：作者 (年). 標題. 期刊, 卷期. doi
+{%- endcomment -%}
+<div class="cv-print-only cv-pubs">
+  {% assign allpubs = site.publications | sort: "date" | reverse %}
+  {% for group in site.publication_category %}
+    {% assign rows = allpubs | where: "category", group[0] %}
+    {% if rows.size == 0 %}{% continue %}{% endif %}
+    <h3>{{ group[1].title | default: group[1].label }}</h3>
+    <ol class="cv-pubs__list">
+      {% for post in rows %}
+      <li>
+        {{ post.authors }}{% if post.year %} ({{ post.year }}){% endif %}.
+        {{ post.title }}.
+        {% if post.venue %}<em>{{ post.venue }}</em>{% endif %}{% if post.volume %}, {{ post.volume }}{% endif %}{% if post.language %} ({{ post.language }}){% endif %}.
+        {% if post.doi %}https://doi.org/{{ post.doi }}{% endif %}
+      </li>
+      {% endfor %}
+    </ol>
+  {% endfor %}
+
+  {% assign talks = site.data.conferences.conferences %}
+  {% if talks.size > 0 %}
+    <h3>Conference presentations</h3>
+    <ol class="cv-pubs__list">
+      {% for t in talks %}
+      {%- comment -%} 標題開頭 [Oral] / [Poster] 這種方括號標記在 PDF 裡寫成一般文字 {%- endcomment -%}
+      {%- assign parts = t.title | split: "]" -%}
+      {%- if t.title contains "[" and parts.size > 1 -%}
+        {%- assign tlabel = parts[0] | remove: "[" | strip -%}
+        {%- assign tplain = parts[1] | strip -%}
+      {%- else -%}
+        {%- assign tlabel = "" -%}
+        {%- assign tplain = t.title -%}
+      {%- endif -%}
+      <li>
+        {{ t.authors }}{% if t.year %} ({{ t.year }}){% endif %}.
+        {{ tplain }}.
+        <em>{{ t.venue }}</em>{% if t.place %}, {{ t.place }}{% endif %}{% if tlabel != "" %} ({{ tlabel }}){% endif %}.
+        {% if t.doi %}https://doi.org/{{ t.doi }}{% endif %}
+      </li>
+      {% endfor %}
+    </ol>
+  {% endif %}
+</div>
 
 {% if cv.mentoring.size > 0 %}
 <h2>Supervising &amp; mentoring</h2>

@@ -103,16 +103,18 @@ author:
 #  想知道現在有哪些分區、哪些標籤、各被用了幾次：
 #      ruby scripts/list_labels.rb
 # ═══════════════════════════════════════════════════════════════════════════
+# 順序 = CV PDF 裡著作分區的順序（網頁上的 Publications 是按年份排，不受這裡影響）。
+# label 是卡片上的小標籤，title 是 PDF 裡的分區標題。
 publication_category:
-  outreach:
-    title: '科普寫作 · Public engagement writing'
-    label: 'Outreach'
   manuscripts:
     title: 'Peer-reviewed journal articles'
     label: 'Journal paper'
   inprep:
     title: 'In preparation'
     label: 'In prep.'
+  outreach:
+    title: '科普寫作 · Public engagement writing'
+    label: 'Outreach'
   conferences:
     title: 'Conference presentations'
     label: 'Conference'
