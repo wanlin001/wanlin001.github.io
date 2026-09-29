@@ -64,9 +64,9 @@ pubs.each do |p|
   problems << "topics 寫成字串: #{p['title']}  →  改成  topics: [#{t}]" unless t.is_a?(Array)
 end
 
-(used_by_notes.keys + used_by_pubs.keys).uniq.each do |code|
-  problems << "標籤 \"#{code}\" 沒有定義在 _data/topics.yml（會顯示成灰色原始字）" unless topics.key?(code)
-end
+# 沒定義的標籤不是錯誤 —— 網站會自動配標籤文字和顏色。只是提醒一下，
+# 想指定漂亮的名字或顏色的話可以去 _data/topics.yml 定義。
+undefined = (used_by_notes.keys + used_by_pubs.keys).uniq.reject { |c| topics.key?(c) }
 
 note_cats = notes['categories'].to_a.map(&:first)
 notes['notes'].to_a.each do |n|
@@ -76,6 +76,13 @@ notes['notes'].to_a.each do |n|
 end
 
 puts
+unless undefined.empty?
+  puts "自動配色的標籤  ── 沒有定義在 _data/topics.yml，網站會自己給文字和顏色"
+  undefined.sort.each { |c| puts "  · #{c}" }
+  puts "  （想自訂文字或顏色再去 _data/topics.yml 定義就好，不定義也能正常顯示）"
+  puts
+end
+
 if problems.empty?
   puts "CHECKS  ── 沒有發現問題 ✅"
 else

@@ -26,6 +26,9 @@ author:
   # Biographic information
   avatar           : "profile.png"
   name             : "Wan-Lin Hu"
+  # 左側欄標題用的字。站名（左上角）已經是 "Wan-Lin Hu" 了，同一個名字印兩次
+  # 沒有意義，所以側欄那行改成頭銜。留空或刪掉這行就會變回用 name。
+  sidebar_name     : "Postdoc @ IES, AS"
   pronouns         : "she/her"  
   bio              : "Postdoctoral fellow, Institute of Earth Sciences, Academia Sinica. Earthquake science, geodynamic modelling, structural geology."
   location         : "Taipei, Taiwan"

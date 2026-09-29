@@ -13,10 +13,7 @@
       {% if n.source or n.date %}<span class="post-card__meta">{{ n.source }}{% if n.source and n.date %} · {% endif %}{{ n.date }}</span>{% endif %}
       {% if n.topics %}
       <span class="topic-tags">
-        {% for t in n.topics %}
-          {% assign td = site.data.topics[t] %}
-          <span class="topic-tag topic-tag--static" style="--tt: {{ td.color | default: '#888888' }};">{{ td.label | default: t }}</span>
-        {% endfor %}
+        {% for t in n.topics %}{% include topic-tag.html key=t as="static" %}{% endfor %}
       </span>
       {% endif %}
     </span>

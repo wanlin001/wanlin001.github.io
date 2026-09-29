@@ -98,7 +98,7 @@ Elsewhere
 ------
 
 Outside the office I am usually on a trail, in an outcrop, or somewhere between the two — see
-[Fieldwork](/fieldwork/) and [Photos](/photos/).
+[Fieldwork](/fieldwork/) and the [Gallery](/gallery/).
 
 <!-- 想在首頁放幾張照片，把圖片丟進 images/about/ 再把這一段的註解拿掉：
 {% raw %}{% include photos.html dir="/images/about" files="1.jpg, 2.jpg, 3.jpg" %}{% endraw %}

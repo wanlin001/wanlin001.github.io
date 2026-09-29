@@ -59,8 +59,8 @@ guides:
     url: /travel/
     icon: "fas fa-person-hiking"
 
-  - title: "Photos"
-    url: /photos/
+  - title: "Gallery"
+    url: /gallery/
     icon: "fas fa-images"
 
   - title: "Notes"

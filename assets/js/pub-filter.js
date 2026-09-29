@@ -59,4 +59,21 @@
       if (bar && topic) { bar.scrollIntoView({block: 'nearest'}); }
     });
   });
+
+  /* The "Details" button on a publication card: unfold the abstract in place,
+     click again to fold it back. No separate page is involved. The button sits
+     in the same row as DOI / PDF, and the text it opens is the next element
+     after that row. */
+  document.addEventListener('click', function (e) {
+    var btn = e.target.closest && e.target.closest('.pub-btn--more');
+    if (!btn) { return; }
+    e.preventDefault();
+    var row = btn.parentNode;
+    var body = row && row.nextElementSibling;
+    if (!body || !body.classList.contains('pub-more__body')) { return; }
+    var open = body.hidden;
+    body.hidden = !open;
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    btn.classList.toggle('is-open', open);
+  });
 })();

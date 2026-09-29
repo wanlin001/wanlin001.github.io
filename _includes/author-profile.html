@@ -15,7 +15,7 @@
   </div>
 
   <div class="author__content">
-    <h3 class="author__name">{{ author.name }}</h3>
+    <h3 class="author__name">{{ author.sidebar_name | default: author.name }}</h3>
     {% if author.pronouns %}<p class="author__pronouns">{{ author.pronouns }}</p>{% endif %}
     {% if author.bio %}<p class="author__bio">{{ author.bio }}</p>{% endif %}
   </div>
@@ -33,8 +33,15 @@
       {% if author.uri %}
         <li><a href="{{ author.uri }}"><i class="fas fa-fw fa-link icon-pad-right" aria-hidden="true"></i>{{ site.data.ui-text[site.locale].website_label | default: "Website" }}</a></li>
       {% endif %}
+      {%- comment -%}
+        Email is a copy-to-clipboard button, not a mailto: link — a mailto opens
+        whatever mail app the computer happens to be set to, which is often not
+        the one the reader actually uses. Hovering shows the address written as
+        name[at]domain; clicking copies the real address and says so.
+        The code is in assets/js/email-copy.js.
+      {%- endcomment -%}
       {% if author.email %}
-        <li><a href="mailto:{{ author.email }}"><i class="fas fa-fw fa-envelope icon-pad-right" aria-hidden="true"></i>{{ site.data.ui-text[site.locale].email_label | default: "Email" }}</a></li>
+        <li><button type="button" class="author__email" data-email="{{ author.email }}" title="{{ author.email | replace: '@', '[at]' }}"><i class="fas fa-fw fa-envelope icon-pad-right" aria-hidden="true"></i><span class="author__email-label">{{ site.data.ui-text[site.locale].email_label | default: "Email" }}</span></button></li>
       {% endif %}
 
       <!-- Font Awesome and Academicons icons / Academic websites -->

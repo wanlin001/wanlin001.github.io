@@ -1,0 +1,41 @@
+{%- comment -%}
+  One topic tag, used by the publication cards, the note cards and both filter
+  bars. Call it with:
+
+      {% include topic-tag.html key="geodynamics" as="button" %}
+
+      as="button"  a filter button on a card (Publications page)
+      as="filter"  a button in the filter bar at the top of a page
+      as="static"  a plain label, no click (Notes cards — the card is a link)
+
+  A key that is NOT defined in _data/topics.yml still gets a proper label and
+  a colour: the label is the key with dashes turned into spaces, and the colour
+  is picked from the palette below using the first character of the key's MD5.
+  That is a fixed, repeatable choice — the same key always gets the same colour,
+  on every page and on every rebuild — so a new topic can simply be used in
+  topics: [...] without editing any file. Define it in _data/topics.yml only
+  when you want a nicer label or a specific colour.
+{%- endcomment -%}
+
+{%- assign k = include.key -%}
+{%- assign td = site.data.topics[k] -%}
+
+{%- if td -%}
+  {%- assign tlabel = td.label | default: k -%}
+  {%- assign tcolor = td.color | default: "#888888" -%}
+{%- else -%}
+  {%- assign tlabel = k | replace: "-", " " | replace: "_", " " | capitalize -%}
+  {%- assign hexchars = "0,1,2,3,4,5,6,7,8,9,a,b,c,d,e,f" | split: "," -%}
+  {%- assign palette = "#c0392b,#d35400,#8e44ad,#2e9e6b,#16a085,#2980b9,#7f8c8d,#b7791f,#e0407a,#0d9488,#6366f1,#0891b2,#8b5a2b,#b7950b,#5b7c99,#a3574b" | split: "," -%}
+  {%- assign firsthex = k | md5 | slice: 0, 1 -%}
+  {%- assign idx = 0 -%}
+  {%- for hc in hexchars -%}{%- if hc == firsthex -%}{%- assign idx = forloop.index0 -%}{%- endif -%}{%- endfor -%}
+  {%- assign tcolor = palette[idx] -%}
+{%- endif -%}
+
+{%- case include.as -%}
+{%- when "static" -%}
+<span class="topic-tag topic-tag--static" style="--tt: {{ tcolor }};">{{ tlabel }}</span>
+{%- else -%}
+<button type="button" class="topic-tag" data-topic="{{ k }}" style="--tt: {{ tcolor }};">{{ tlabel }}</button>
+{%- endcase -%}

@@ -13,9 +13,31 @@ redirect_from:
 <!-- Every section below is wrapped in a Liquid "if", so deleting a block
      from _data/cv.yml removes its heading from the page too. -->
 
-{% if cv.pdf %}
-<p><a class="pub-btn" href="{{ base_path }}{{ cv.pdf }}"><i class="fas fa-file-pdf" aria-hidden="true"></i> Download CV (PDF)</a></p>
-{% endif %}
+{%- comment -%}
+  下載鍵在標題右邊。
+
+  預設是「把這一頁印成 PDF」：按下去會跳出系統的列印視窗，選 Save as PDF
+  （Mac 是左下角的 PDF ▾）。好處是 PDF 永遠等於網頁上的內容 —— 妳改 _data/cv.yml，
+  下一個人下載到的就是新的，不用另外準備、也不會忘記更新。版面由 custom.css
+  最底下的 @media print 決定：選單、側欄、頁尾、按鈕都不印，只留 CV 本身。
+
+  如果哪天想改成放一份固定的 PDF 檔，把檔案丟進 files/，然後在 _data/cv.yml
+  填 pdf: /files/xxx.pdf，這顆鍵就會自動變成直接下載那個檔。
+{%- endcomment -%}
+<div class="cv-toolbar">
+  {% if cv.pdf %}
+  <a class="pub-btn pub-btn--more" href="{{ base_path }}{{ cv.pdf }}" download><i class="fas fa-file-pdf" aria-hidden="true"></i> Download PDF</a>
+  {% else %}
+  <button type="button" class="pub-btn pub-btn--more" onclick="window.print()" title="Opens the print dialog — choose “Save as PDF”"><i class="fas fa-file-pdf" aria-hidden="true"></i> Download PDF</button>
+  {% endif %}
+</div>
+
+<!-- 只有印出來（PDF）才看得到：網頁上這些資訊在左邊側欄，但側欄不會印出來 -->
+<div class="cv-print-header">
+  <h1>{{ site.author.name }}</h1>
+  <p>{{ site.author.bio }}</p>
+  <p>{{ site.author.email }}{% if site.author.location %} · {{ site.author.location }}{% endif %} · {{ site.url }}{{ site.baseurl }}/cv/</p>
+</div>
 
 {% if cv.employment.size > 0 %}
 <h2>Employment</h2>

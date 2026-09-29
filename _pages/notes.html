@@ -13,33 +13,16 @@ author_profile: true
   card opens the original, which is always the up-to-date version.
 </p>
 
-<!-- Filter bar, built from the topics actually used below. -->
+<!-- Filter bar: same buttons as the Publications page. It is built from the
+     topics actually used below, and a topic that is not defined in
+     _data/topics.yml still gets a label and a colour automatically
+     (see _includes/topic-tag.html) — no file needs editing to add one. -->
 {% assign used = "" | split: "" %}
 {% for n in data.notes %}
   {% for t in n.topics %}{% assign used = used | push: t %}{% endfor %}
 {% endfor %}
 {% assign used = used | uniq %}
-
-{% if used.size > 1 %}
-<div class="pub-filter" id="pub-filter">
-  <button type="button" class="topic-tag topic-tag--all is-active" data-topic="">All</button>
-  {% comment %} defined tags first, in the order they appear in _data/topics.yml {% endcomment %}
-  {% assign listed = "" | split: "" %}
-  {% for key in site.data.topics %}
-    {% if used contains key[0] %}
-      {% assign listed = listed | push: key[0] %}
-      <button type="button" class="topic-tag" data-topic="{{ key[0] }}" style="--tt: {{ key[1].color | default: '#888888' }};">{{ key[1].label | default: key[0] }}</button>
-    {% endif %}
-  {% endfor %}
-  {% comment %} then anything used but not defined, so a typo is visible rather than silently missing {% endcomment %}
-  {% for t in used %}
-    {% unless listed contains t %}
-      <button type="button" class="topic-tag" data-topic="{{ t }}" style="--tt: #888888;" title="This tag is not defined in _data/topics.yml yet">{{ t }}</button>
-    {% endunless %}
-  {% endfor %}
-  <span class="pub-filter__count" id="pub-filter-count" aria-live="polite"></span>
-</div>
-{% endif %}
+{% include topic-filter.html used=used %}
 
 {% for cat in data.categories %}
   {% assign has_any = false %}

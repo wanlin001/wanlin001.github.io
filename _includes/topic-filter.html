@@ -1,0 +1,32 @@
+{%- comment -%}
+  The row of filter buttons at the top of the Publications and Notes pages.
+  Call it with the list of topic keys actually used on that page:
+
+      {% include topic-filter.html used=used %}
+
+  Tags defined in _data/topics.yml come first, in the order of that file;
+  anything else follows in alphabetical order and gets an automatic label
+  and colour (see _includes/topic-tag.html).
+{%- endcomment -%}
+
+{% assign used = include.used %}
+{% if used.size > 1 %}
+<div class="pub-filter" id="pub-filter">
+  <button type="button" class="topic-tag topic-tag--all is-active" data-topic="">All</button>
+  {% assign listed = "" | split: "" %}
+  {% for key in site.data.topics %}
+    {% if used contains key[0] %}
+      {% assign tk = key[0] %}
+      {% assign listed = listed | push: tk %}
+      {% include topic-tag.html key=tk as="filter" %}
+    {% endif %}
+  {% endfor %}
+  {% assign extra = "" | split: "" %}
+  {% for t in used %}{% unless listed contains t %}{% assign extra = extra | push: t %}{% endunless %}{% endfor %}
+  {% assign extra = extra | sort %}
+  {% for t in extra %}
+    {% include topic-tag.html key=t as="filter" %}
+  {% endfor %}
+  <span class="pub-filter__count" id="pub-filter-count" aria-live="polite"></span>
+</div>
+{% endif %}

@@ -531,7 +531,15 @@ conferences:
 
 ### 圖示
 
-到 <https://fontawesome.com/search?o=r&m=free> 找，挑 **Free** 的，複製 class 名稱。常用：
+**找圖示就到這裡**（網站上所有的小圖示都出自這裡，News、CV、Guides 通用）：
+
+> <https://fontawesome.com/search?o=r&m=free>
+>
+> 搜尋想要的字（例如 `birth`、`mountain`、`award`），**左邊的篩選要選 Free**，
+> 點進去複製它的 class 名稱（像 `fa-solid fa-cake-candles`），貼到 `icon:` 那一格。
+> 付費（Pro）的圖示貼上去只會是一塊空白。
+
+常用：
 
 | 圖示 | class |
 |---|---|
@@ -858,7 +866,7 @@ ls -lh ~/Documents/GitHub/huwanlin/images/travel/新地方/
 
 ## 11b. 照片牆
 
-一頁把所有照片攤開來看：<https://wanlin001.github.io/photos/>（選單 → Others → Photos）
+一頁把所有照片攤開來看：<https://wanlin001.github.io/gallery/>（選單 → Others → Gallery）
 
 ### 加照片 = 把檔案丟進資料夾，沒了
 

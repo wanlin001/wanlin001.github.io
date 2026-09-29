@@ -67,9 +67,33 @@
   margin: 0 0 .35em 0;
 }
 .pub-card__title a { text-decoration: none; }
-.pub-card__authors { margin: 0 0 .3em 0; font-size: .88em; }
+/* authors, journal, language and Open access all share one line */
+.pub-card__line {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: .3em .55em;
+  margin: 0 0 .4em 0;
+}
+.pub-card__authors { margin: 0; font-size: .88em; }
 .pub-card__authors .me { font-weight: 700; }
 .pub-card__meta { margin: 0 0 .55em 0; font-size: .82em; color: var(--global-text-color-light); }
+
+/* The journal is the thing people look for, so it is boxed in the accent
+   colour rather than set in grey. The volume/pages stay lighter inside it. */
+.pub-venue {
+  display: inline-block;
+  padding: .05em .55em;
+  font-size: .8em;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--wl-accent);
+  background: var(--wl-accent-soft);
+  border: 1px solid var(--wl-accent);
+  border-radius: 4px;
+}
+.pub-venue__vol { font-weight: 400; opacity: .8; }
 .pub-card__excerpt { margin: 0 0 .7em 0; font-size: .87em; }
 
 .pub-card__body { display: flex; gap: 1.2em; align-items: flex-start; flex-wrap: wrap; }
@@ -836,25 +860,23 @@ body { padding-top: var(--masthead-h); }
   .news__body { margin-left: 0; }
 }
 
-/* the publication card's "Details" — styled like the other .pub-btn buttons */
-.pub-more { margin-top: .2em; }
-.pub-more > summary {
-  display: inline-flex;
-  align-items: center;
-  gap: .4em;
-  padding: .28em .7em;
-  font-size: .78em;
-  border: 1px solid var(--global-border-color);
-  border-radius: 999px;
-  color: var(--global-text-color-light);
-  transition: border-color .15s ease, color .15s ease;
+/* "Details" sits in the same row as DOI / PDF but is a button, not a link:
+   it unfolds .pub-more__body just below, and folds it back when clicked again.
+   It is filled black so the row reads as "open this" first, "go there" after. */
+.pub-btn--more {
+  font-family: inherit;
+  cursor: pointer;
+  background: var(--global-text-color);
+  border-color: var(--global-text-color);
+  color: var(--global-bg-color) !important;
 }
-.pub-more > summary::after { content: "▾"; font-size: .9em; }
-.pub-more[open] > summary::after { content: "▴"; }
-.pub-more > summary:hover { border-color: var(--wl-accent); color: var(--wl-accent); }
+.pub-btn--more:hover { background: var(--wl-accent); border-color: var(--wl-accent); color: #fff !important; }
+/* the little arrow belongs to the Details toggle, not to every black button */
+.pub-links .pub-btn--more::after { content: "▾"; font-size: .9em; }
+.pub-links .pub-btn--more.is-open::after { content: "▴"; }
 
 .pub-more__body {
-  margin-top: .7em;
+  margin-top: .6em;
   padding-left: .9em;
   border-left: 2px solid var(--global-border-color);
   font-size: .9em;
@@ -955,4 +977,109 @@ h2.pub-year::after {
 @media (max-width: 36em) {
   .res { flex-direction: column; gap: .25em; }
   .res__type { flex: none; }
+}
+
+
+/* --- sidebar: the Email button ------------------------------------------- */
+/* It must look exactly like the links above and below it, but it is a <button>
+   (it copies the address rather than opening a mail app — see
+   assets/js/email-copy.js). */
+
+.author__email {
+  display: inline;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  text-align: left;
+}
+.author__email:hover .author__email-label { text-decoration: underline; }
+.author__email.is-copied { color: var(--wl-accent); }
+
+
+/* --- CV: download button, and the print layout it produces ---------------- */
+
+.cv-toolbar {
+  display: flex;
+  justify-content: flex-end;
+  margin: -2.9em 0 1.2em 0;
+}
+@media (max-width: 700px) {
+  .cv-toolbar { margin-top: 0; }
+}
+
+/* name / contact block: on screen it is in the sidebar, so it is only printed */
+.cv-print-header { display: none; }
+
+/* ── printing the CV ──────────────────────────────────────────────────────
+   "Download PDF" on /cv/ opens the print dialog, so what the PDF looks like
+   is decided here. Deliberately plain: black on white, no cards, no shadows,
+   no colour blocks — a CV that a search committee can read and annotate.
+   Everything that is navigation rather than content is dropped.            */
+@media print {
+  .masthead,
+  .page__footer,
+  .sidebar,
+  .author__avatar,
+  .author__urls-wrapper,
+  .cv-toolbar,
+  .pub-filter,
+  .back-to-top,
+  .page__title { display: none !important; }
+
+  /* the theme floats the content next to the sidebar; with no sidebar it
+     should simply use the whole sheet */
+  html, body {
+    background: #fff !important;
+    color: #000 !important;
+    margin: 0 !important;
+    padding: 0 !important;   /* the theme reserves space for the sticky menu */
+  }
+  #main, .page, .archive, .page__content {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    float: none !important;
+  }
+
+  body { font-size: 10.5pt; line-height: 1.4; }
+  a, a:visited { color: #000 !important; text-decoration: none; }
+
+  .cv-print-header { display: block; margin: 0 0 1.2em 0; }
+  .cv-print-header h1 { margin: 0 0 .15em 0; font-size: 19pt; }
+  .cv-print-header p  { margin: 0; font-size: 9.5pt; }
+
+  h2 {
+    font-size: 12pt;
+    margin: 1.1em 0 .5em 0;
+    padding-bottom: .15em;
+    border-bottom: 1px solid #000 !important;
+    break-after: avoid;
+  }
+
+  /* keep one CV entry on one page */
+  .tl-item, .talk, li { break-inside: avoid; }
+  .tl-item { margin-bottom: .5em; }
+
+  /* On screen the year is white text on a green block. Browsers do not print
+     background colours unless the reader ticks "Background graphics", and
+     white-on-white would be invisible — so in print it is plain black text. */
+  .tl-when, .tl-when--muted {
+    flex-basis: 8em;
+    color: #000 !important;
+    background: none !important;
+    padding: 0 !important;
+  }
+
+  /* everything else that is grey on screen goes black on paper */
+  .tl-where, .tl-note, .talks-note, .cv-updated,
+  .page__content, .archive, p, li, td, th { color: #000 !important; }
+
+  /* the skill chips keep their outline but lose the tint */
+  .chip, .skill, .tag-pill { background: none !important; border: 1px solid #888 !important; }
+
+  @page { margin: 14mm 15mm; }
 }
