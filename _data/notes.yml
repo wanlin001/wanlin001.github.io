@@ -20,6 +20,9 @@
 #   ❌ url:"https://…"    ✅ url: "https://…"  冒號後面要有空格
 #   ❌ category: Other    ✅ category: other   大小寫要跟 categories 一致
 #   ❌ topics: tools      ✅ topics: [tools]   標籤一定要用方括號
+#   ❌ topics: [Geodynamics] ✅ topics: [geodynamics]  標籤代號全小寫
+#      （大寫會被當成另一個沒定義的標籤，變成灰色原始字。顯示出來的
+#        「Geodynamics」是 _data/topics.yml 裡的 label，不是這裡寫的代號）
 #
 #  兩個區塊的開頭關鍵字（categories、notes）各自整個檔案只能出現一次。
 #  加第二則是在底下多一組「  - title:」，不是再寫一次開頭關鍵字。
@@ -62,7 +65,7 @@ notes:
     #source: "HackMD"
     date: "Dec 2025"
     excerpt: "Check for GWB model (wb file)"
-    topics: [checklist, Geodynamics]
+    topics: [checklist, geodynamics]
 
   - title: "兩日以上登山裝備清單"
     url: "https://hackmd.io/@HuWanLin/H1qQUcWX1l"
