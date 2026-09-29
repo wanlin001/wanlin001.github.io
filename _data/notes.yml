@@ -56,16 +56,13 @@ categories:
 
 notes:
 
-  - title: "兩日以上登山裝備清單"
+  - title: "GWB file checker"
     url: "https://wanlin001.github.io/gwb-checker/"
     category: research
     #source: "HackMD"
     date: "Dec 2025"
     excerpt: "Check for GWB model (wb file)"
-    topics: [checklist, geodynamic]
-
-
-
+    topics: [checklist, Geodynamics]
 
   - title: "兩日以上登山裝備清單"
     url: "https://hackmd.io/@HuWanLin/H1qQUcWX1l"
