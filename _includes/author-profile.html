@@ -34,14 +34,20 @@
         <li><a href="{{ author.uri }}"><i class="fas fa-fw fa-link icon-pad-right" aria-hidden="true"></i>{{ site.data.ui-text[site.locale].website_label | default: "Website" }}</a></li>
       {% endif %}
       {%- comment -%}
-        Email is a copy-to-clipboard button, not a mailto: link — a mailto opens
-        whatever mail app the computer happens to be set to, which is often not
-        the one the reader actually uses. Hovering shows the address written as
-        name[at]domain; clicking copies the real address and says so.
-        The code is in assets/js/email-copy.js.
+        Email copies the address to the clipboard instead of being a mailto:
+        link — a mailto opens whatever mail app the computer happens to be set
+        to, which is often not the one the reader actually uses. Hovering shows
+        the address as name[at]domain (instantly: it is a CSS bubble, not the
+        browser's slow title tooltip); clicking copies the real address and
+        shows "copied" next to the label. Code: assets/js/email-copy.js.
+
+        It must be an <a role="button">, NOT a <button>: the theme binds
+        "fade the whole sidebar list away" to every <button> in this wrapper
+        (assets/js/_main.js, for the Follow button) and hides them on wide
+        screens.
       {%- endcomment -%}
       {% if author.email %}
-        <li><button type="button" class="author__email" data-email="{{ author.email }}" title="{{ author.email | replace: '@', '[at]' }}"><i class="fas fa-fw fa-envelope icon-pad-right" aria-hidden="true"></i><span class="author__email-label">{{ site.data.ui-text[site.locale].email_label | default: "Email" }}</span></button></li>
+        <li><a class="author__email" role="button" tabindex="0" data-email="{{ author.email }}" data-hover="{{ author.email | replace: '@', '[at]' }}"><i class="fas fa-fw fa-envelope icon-pad-right" aria-hidden="true"></i><span class="author__email-label">{{ site.data.ui-text[site.locale].email_label | default: "Email" }}</span><span class="author__email-flash"> copied</span></a></li>
       {% endif %}
 
       <!-- Font Awesome and Academicons icons / Academic websites -->

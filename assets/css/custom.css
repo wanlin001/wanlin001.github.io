@@ -91,10 +91,13 @@
   line-height: 1.5;
   color: var(--global-text-color);
   background: none;
-  border: 1px solid var(--global-border-color);
+  border: 1px solid var(--global-text-color);
   border-radius: 4px;
 }
-.pub-venue__vol { font-weight: 400; color: var(--global-text-color-light); }
+/* volume / pages: plain weight, a shade darker than the usual muted grey so it
+   still reads inside the box */
+.pub-venue__vol { font-weight: 400; color: #555; }
+:root[data-theme="dark"] .pub-venue__vol { color: #b0b0b0; }
 .pub-card__excerpt { margin: 0 0 .7em 0; font-size: .87em; }
 
 .pub-card__body { display: flex; gap: 1.2em; align-items: flex-start; flex-wrap: wrap; }
@@ -986,27 +989,43 @@ h2.pub-year::after {
 }
 
 
-/* --- sidebar: the Email button ------------------------------------------- */
-/* It must look exactly like the links above and below it, but it is a <button>
-   (it copies the address rather than opening a mail app — see
-   assets/js/email-copy.js). */
+/* --- sidebar: the Email link -------------------------------------------- */
+/* It looks exactly like the links around it, but it copies the address rather
+   than opening a mail app (assets/js/email-copy.js). */
 
-/* The theme hides every <button> inside .author__urls-wrapper on wide screens
-   (that rule exists for the "Follow" button). This one must stay visible, so
-   it is selected by two classes and therefore wins. */
-.author__urls-wrapper .author__email {
-  display: inline;
-  padding: 0;
-  border: 0;
-  background: none;
-  font: inherit;
-  color: inherit;
+.author__email {
+  position: relative;
   cursor: pointer;
-  text-align: left;
 }
-.author__email:hover .author__email-label { text-decoration: underline; }
-.author__email.is-copied { color: var(--wl-accent); }
 
+/* the address, shown the instant the pointer arrives — the browser's own
+   title tooltip waits about a second, which feels broken */
+.author__email::after {
+  content: attr(data-hover);
+  position: absolute;
+  left: 0;
+  top: 115%;
+  z-index: 20;
+  white-space: nowrap;
+  padding: .25em .5em;
+  border-radius: 4px;
+  background: var(--global-text-color);
+  color: var(--global-bg-color);
+  font-size: .78em;
+  line-height: 1.4;
+  opacity: 0;
+  pointer-events: none;
+}
+.author__email:hover::after,
+.author__email:focus::after { opacity: 1; }
+
+/* "copied" appears next to the label and nothing else moves */
+.author__email-flash {
+  opacity: 0;
+  color: var(--wl-accent);
+  font-size: .85em;
+}
+.author__email.is-copied .author__email-flash { opacity: 1; }
 
 /* --- CV: download button, and the print layout it produces ---------------- */
 
