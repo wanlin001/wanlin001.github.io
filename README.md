@@ -1075,7 +1075,7 @@ notes:
 
 ### 放別人做的工具／網站
 
-Notes 頁有一個獨立的章節 **Tools by other people**（`category: tools`），
+Notes 頁有一個獨立的章節 **工具 · Tools**（`category: tools`），
 專門放不是自己寫的東西。放進去的時候 **`by` 和 `source` 要寫清楚**：
 
 ```yaml
