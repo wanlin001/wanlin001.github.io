@@ -45,7 +45,7 @@ categories:
 
   data:
     title: "Data"
-    intro: "Public data sources I use. Every one of them is other people's work — please use the citation given under the entry."
+    intro: "Public data sources I use."
 
   slides:
     title: "Slides"
@@ -69,7 +69,7 @@ items:
     by: "TEC Data Center, Academia Sinica"
     source: "tecdc.earth.sinica.edu.tw"
     note: "Published 1-D and 3-D Vp, Vs and Q models for Taiwan, with vertical profiles, horizontal slices and download in .txt or GeoCSV."
-    cite: "Cite the paper of whichever model you download — Rau & Wu (1995), Kim et al. (2005), Wu et al. (2009), Wang et al. (2010), Kuo-Chen et al. (2012), Huang et al. (2014, 2015), Su et al. (2019) — and credit the TVM platform."
+    cite: "Cite the paper of whichever model you download."
 
   - title: "AutoBATS CMT Catalog"
     url: "https://tecdc.earth.sinica.edu.tw/FM/AutoBATS/"
@@ -80,6 +80,15 @@ items:
     note: "Focal mechanism solutions for Taiwan, from the BATS broadband network. 1996 to present; output as CSV, GMT psmeca or event list."
     cite: "Jian, P.-R., Tseng, T.-L., Liang, W.-T., & Huang, P.-H. (2018). A new automatic full waveform regional moment tensor inversion algorithm and its applications in the Taiwan area. Bulletin of the Seismological Society of America, 108(2), 573–587. https://doi.org/10.1785/0120170231"
 
+  - title: "USGS Earthquake Catalog (ANSS ComCat)"
+    url: "https://earthquake.usgs.gov/earthquakes/search/"
+    category: data
+    type: "Focal mechanisms"
+    by: "U.S. Geological Survey, Earthquake Hazards Program"
+    source: "earthquake.usgs.gov"
+    note: "Worldwide search of the ANSS catalog — origins, magnitudes and moment tensors. Output as CSV, GeoJSON, QuakeML or KML."
+    cite: "U.S. Geological Survey (2017). Advanced National Seismic System (ANSS) Comprehensive Catalog. https://doi.org/10.5066/F7MS3QZH"
+
   - title: "GDMS — Taiwan Seismological and Geophysical Data Management System"
     url: "https://gdms.cwa.gov.tw/"
     category: data
@@ -88,6 +97,15 @@ items:
     source: "gdms.cwa.gov.tw"
     note: "Waveforms, station information and relocated seismicity from the CWA networks."
     cite: "Central Weather Administration (CWA, Taiwan). (2012). Central Weather Administration Seismographic Network [Data set]. International Federation of Digital Seismograph Networks. https://doi.org/10.7914/SN/T5"
+
+  - title: "Wilber 3"
+    url: "https://ds.iris.edu/wilber3/find_event"
+    category: data
+    type: "Waveforms"
+    by: "EarthScope Consortium (NSF NGF, formerly the IRIS DMC)"
+    source: "ds.iris.edu"
+    note: "Pick an earthquake, pick stations, and request the waveforms from the global archive as miniSEED or SAC."
+    cite: "Cite the FDSN DOI of each seismic network whose data you use, and acknowledge the archive: \"Data were accessed from the NSF NGF data archive operated by EarthScope Consortium (NSF award 2435260).\""
 
   # ── Slides ────────────────────────────────────────────────────────────────
 
