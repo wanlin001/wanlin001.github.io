@@ -1,6 +1,8 @@
 ---
 permalink: /
 title: "About me"
+# 分頁（瀏覽器標籤）上只顯示名字，不顯示 "About me - Wan-Lin Hu"
+tab_title: "Wan-Lin Hu"
 author_profile: true
 redirect_from:
   - /about/

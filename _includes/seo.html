@@ -6,7 +6,15 @@
 {% endif %}
 {% assign seo_url = seo_url | default: site.github.url %}
 
-{% if page.title %}
+{%- comment -%}
+  瀏覽器分頁上的標題。預設是「頁面標題 - 站名」。
+  在某一頁的 front matter 寫 tab_title: 就可以蓋掉它，例如首頁寫
+      tab_title: "Wan-Lin Hu"
+  分頁上就只會有名字，頁面上的大標題（title:）不受影響。
+{%- endcomment -%}
+{% if page.tab_title %}
+  {% assign seo_title = page.tab_title %}
+{% elsif page.title %}
   {% assign seo_title = page.title | append: " " | append: site.title_separator | append: " " | append: site.title %}
 {% endif %}
 

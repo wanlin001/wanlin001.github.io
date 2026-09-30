@@ -20,7 +20,15 @@
  <link rel="preload" href="{{ base_path }}/assets/css/fontawesome.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 <noscript><link rel="stylesheet" href="{{ base_path }}/assets/css/fontawesome.css"></noscript>
 
-<!-- favicon from https://commons.wikimedia.org/wiki/File:OOjs_UI_icon_academic-progressive.svg -->
+<!-- 分頁上的小圖示（favicon）。圖是 Font Awesome Free 的 earth-asia（CC BY 4.0，
+     https://fontawesome.com/license/free），顏色改成網站的綠色。
+     要換圖：把新的 SVG 存成 images/favicon.svg，然後重新產生那幾個 PNG：
+         magick -background none images/favicon.svg -resize 32x32  images/favicon-32x32.png
+         magick -background none images/favicon.svg -resize 192x192 images/favicon-192x192.png
+         magick -background none images/favicon.svg -resize 512x512 images/favicon-512x512.png
+         magick -background none images/favicon.svg -resize 180x180 images/apple-touch-icon-180x180.png
+         magick -background none images/favicon.svg -define icon:auto-resize=16,32,48 images/favicon.ico
+     瀏覽器會把舊圖示快取很久，換完記得強制重新整理（Cmd+Shift+R）。 -->
 <link rel="apple-touch-icon" sizes="180x180" href="{{ base_path }}/images/apple-touch-icon-180x180.png"/>
 <link rel="icon" type="image/svg+xml" href="{{ base_path }}/images/favicon.svg"/>
 <link rel="icon" type="image/png" href="{{ base_path }}/images/favicon-32x32.png" sizes="32x32"/>
