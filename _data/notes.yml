@@ -71,14 +71,14 @@ notes:
     category: other
     #source: "Others"
     excerpt: "地層柱繪製"
-    topics: [tools]
+    topics: [tools, geology]
 
   - title: "SSA邊坡穩定性分析"
     url: "https://cychen59.github.io/ssa-slope-stability/"
     category: other
     #source: "Others"
     excerpt: ""
-    topics: [tools]
+    topics: [tools, geological engineering]
 
 
   - title: "Geodynamic world builder (GWB): file checker"
