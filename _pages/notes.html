@@ -48,8 +48,12 @@ author_profile: true
   {% unless data.categories[n.category] %}{% assign orphans = orphans | push: n %}{% endunless %}
 {% endfor %}
 {% if orphans.size > 0 %}
+  {%- comment -%}
+    沒寫 category:（或寫了一個不存在的 key）的筆記會掉到這一區。
+    標題不能再叫 Other —— categories 裡的 other 已經改名成 "Tools from others" 了。
+  {%- endcomment -%}
   <section class="note-section" id="uncategorised">
-    <h2>其他 · Other</h2>
+    <h2>Other</h2>
     <div class="post-list">
     {% for n in orphans %}{% include note-card.html note=n %}{% endfor %}
     </div>

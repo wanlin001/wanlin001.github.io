@@ -1075,18 +1075,20 @@ notes:
 
 ### 放別人做的工具／網站
 
-Notes 頁有一個獨立的章節 **工具 · Tools**（`category: tools`），
+Notes 頁有一個獨立的章節 **Tools from others**（`category: other`），
 專門放不是自己寫的東西。放進去的時候 **`by` 和 `source` 要寫清楚**：
 
 ```yaml
-  - title: "Cool Map 酷路"
+  - title: "Cool Map"
     url: "https://coolmap.tw/"
-    category: tools
+    category: other
     by: "做的人或團隊"          # 查得到就填，查不到就不填
     source: "coolmap.tw"        # 一定要有
-    excerpt: "用即時建築陰影和天氣，規劃台北最涼爽的步行路線"
+    excerpt: "一兩句說明"
     topics: [tools]
 ```
+
+> 沒寫 `category:` 的筆記會掉到頁面最下面的 **Other** 區，那一區跟這個不一樣。
 
 卡片上會印成 `by 某某 · coolmap.tw`，讀者一眼就知道不是妳做的。
 
