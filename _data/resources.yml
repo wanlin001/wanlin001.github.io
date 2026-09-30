@@ -16,6 +16,9 @@
 #  · categories 和 items 兩個關鍵字整個檔案各只能出現一次。
 #
 # ── 每一筆的欄位（只有 title、url 必填）───────────────────────────────────
+#  分類除了 title 之外還可以寫 intro:，會用一段小字排在該區標題底下。
+#
+# ── 每一筆的欄位 ──────────────────────────────────────────────────────────
 #   - title     標題。中文作品就用中文標題，language 寫 in Mandarin
 #     url       連結。站內 PDF 寫 /files/talks/xxx.pdf，站外寫完整網址
 #               （網址裡的 ?fbclid=… / ?utm_… 追蹤碼整段刪掉）
@@ -26,6 +29,8 @@
 #     by        作者／講者／製作者
 #     source    在哪裡發表、在哪裡講、哪個網站
 #     date      日期，格式隨意
+#     note      一句話說明這是什麼（接在標題下面，一般字級）
+#     cite       引用方式，會用灰色小字排在最下面一行。公開資料一定要寫
 #     language  例如 in Mandarin；英文的就不用寫
 #     also      額外連結，會以小字接在後面，例如：
 #               also:
@@ -38,28 +43,57 @@
 
 categories:
 
-  talks:
-    title: "Talks & slides"
+  data:
+    title: "Data"
+    intro: "Public data sources I use. Every one of them is other people's work — please use the citation given under the entry."
 
-  students:
-    title: "For students"
+  slides:
+    title: "Slides"
 
   # 預留的分類，要用的時候拿掉開頭的 #：
   # teaching:
   #   title: "Teaching material"
   # tools:
   #   title: "Tools & tutorials"
-  # data:
-  #   title: "Data sources"
-  # outreach:
-  #   title: "Outreach & media"
 
 
 items:
 
+  # ── Data：公開的資料來源。type 寫「種類」，by / source 寫「來源」，
+  #    cite 寫「引用方式」（會用灰色小字排在下面一行）。 ──────────────────
+
+  - title: "Taiwan Velocity Models (TVM)"
+    url: "https://tecdc.earth.sinica.edu.tw/TWtomo/index.php"
+    category: data
+    type: "Velocity models"
+    by: "TEC Data Center, Academia Sinica"
+    source: "tecdc.earth.sinica.edu.tw"
+    note: "Published 1-D and 3-D Vp, Vs and Q models for Taiwan, with vertical profiles, horizontal slices and download in .txt or GeoCSV."
+    cite: "Cite the paper of whichever model you download — Rau & Wu (1995), Kim et al. (2005), Wu et al. (2009), Wang et al. (2010), Kuo-Chen et al. (2012), Huang et al. (2014, 2015), Su et al. (2019) — and credit the TVM platform."
+
+  - title: "AutoBATS CMT Catalog"
+    url: "https://tecdc.earth.sinica.edu.tw/FM/AutoBATS/"
+    category: data
+    type: "Focal mechanisms"
+    by: "BATS, Institute of Earth Sciences, Academia Sinica"
+    source: "tecdc.earth.sinica.edu.tw"
+    note: "Focal mechanism solutions for Taiwan, from the BATS broadband network. 1996 to present; output as CSV, GMT psmeca or event list."
+    cite: "Jian, P.-R., Tseng, T.-L., Liang, W.-T., & Huang, P.-H. (2018). A new automatic full waveform regional moment tensor inversion algorithm and its applications in the Taiwan area. Bulletin of the Seismological Society of America, 108(2), 573–587. https://doi.org/10.1785/0120170231"
+
+  - title: "GDMS — Taiwan Seismological and Geophysical Data Management System"
+    url: "https://gdms.cwa.gov.tw/"
+    category: data
+    type: "Waveforms"
+    by: "Central Weather Administration (CWA), Taiwan"
+    source: "gdms.cwa.gov.tw"
+    note: "Waveforms, station information and relocated seismicity from the CWA networks."
+    cite: "Central Weather Administration (CWA, Taiwan). (2012). Central Weather Administration Seismographic Network [Data set]. International Federation of Digital Seismograph Networks. https://doi.org/10.7914/SN/T5"
+
+  # ── Slides ────────────────────────────────────────────────────────────────
+
   - title: "Fallen into a Rabbit Hole — 談國際學生面對留學困境及解套方式"
     url: /files/talks/2024-02-25-study-abroad-talk.pdf
-    category: talks
+    category: slides
     type: Slides
     format: "PDF, 3.3 MB"
     by: "Wan-Lin Hu & Szu-Ting Kuo"
@@ -69,7 +103,7 @@ items:
 
   - title: "研究生生存指南：把研究做完，更要把自己找回來"
     url: "https://deck.researcher.tw/decks/grad-student-survival-guide/"
-    category: students
+    category: slides
     type: Slides
     by: "研究者基地"
     source: "researcher.tw"
@@ -82,7 +116,7 @@ items:
 #
 #  - title: "Title"
 #    url: /files/talks/2026-01-01-short-name.pdf
-#    category: talks
+#    category: slides
 #    type: Slides
 #    format: PDF
 #    by: "Wan-Lin Hu"

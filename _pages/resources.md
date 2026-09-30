@@ -10,7 +10,7 @@ toc_label: "On this page"
 Code, data and links I keep coming back to. Working notes and checklists live on the
 [Notes page](/notes/).
 
-Code & data from my papers
+Code
 ======
 
 Every published model comes with its full input deck, archived so that the simulation can be
@@ -18,6 +18,10 @@ re-run independently.
 
 * **Zenodo** — model inputs and processing scripts [Zenodo](https://zenodo.org/me/uploads?q=&f=shared_with_me%3Afalse&l=list&p=1&s=10&sort=newest)
 * **GitHub** — [github.com/wanlin001](https://github.com/wanlin001)
+
+<!-- Data 這一區的內容在 _data/resources.yml 的 category: data，不用改這個檔案。
+     每一筆請寫清楚 type（種類）、by / source（來源）和 cite（引用方式）。 -->
+{% include resource-list.html only="data" %}
 
 Software I use
 ======
@@ -32,13 +36,11 @@ Software I use
 | [ObsPy](https://docs.obspy.org/) | Seismological data handling |
 | [QGIS](https://qgis.org/) | GIS |
 
-Writing for a general audience
+<!-- Slides 這一區的內容也在 _data/resources.yml，category: slides。 -->
+{% include resource-list.html only="slides" %}
+
+Outreach
 ======
 
-My Mandarin-language science writing is listed on the
+My Mandarin-language science writing is on the
 [publications page](/publications/), marked *Outreach*.
-
-
-<!-- 底下的清單（Talks & slides、For students、以及之後新增的分類）
-     內容全部在 _data/resources.yml，不用改這個檔案。 -->
-{% include resource-list.html %}

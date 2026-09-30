@@ -1134,3 +1134,42 @@ h2.pub-year::after {
 
   @page { margin: 14mm 15mm; }
 }
+
+
+/* --- Resources: a section's lead-in, and the two extra lines on an entry -- */
+
+.res-intro {
+  font-size: .88em;
+  color: var(--global-text-color-light);
+  margin: -.2em 0 .8em 0;
+}
+
+/* one line saying what the thing is, directly under the title */
+.res__note {
+  display: block;
+  font-size: .86em;
+  line-height: 1.45;
+  margin-top: .15em;
+}
+
+/* how to cite it — deliberately the quietest line on the row, but always
+   present for other people's data */
+.res__cite {
+  display: block;
+  font-size: .74em;
+  line-height: 1.45;
+  color: var(--global-text-color-light);
+  margin-top: .25em;
+}
+.res__cite-label {
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  font-size: .92em;
+}
+
+/* the type chip holds two words now ("Focal mechanisms"), so it may wrap */
+.res__type {
+  flex-basis: 6.6em;
+  white-space: normal;
+}

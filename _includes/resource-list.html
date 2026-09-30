@@ -2,12 +2,19 @@
   Thin, categorised resource list. Content lives in _data/resources.yml.
   Every category with at least one item gets its own heading, in the order
   the categories are written; empty categories are skipped.
+
+  Called with `only=` it prints just that one category, so the page can put
+  each list exactly where it belongs:
+
+      {% include resource-list.html only="data" %}
 {% endcomment %}
 {% assign res = site.data.resources %}
 {% for c in res.categories %}
+  {% if include.only and include.only != c[0] %}{% continue %}{% endif %}
   {% assign rows = res.items | where: "category", c[0] %}
   {% if rows.size == 0 %}{% continue %}{% endif %}
 <h1 id="{{ c[0] }}">{{ c[1].title }}</h1>
+{% if c[1].intro %}<p class="res-intro">{{ c[1].intro }}</p>{% endif %}
 <ol class="res-list">
   {% for r in rows %}
   {%- if r.url contains "://" -%}{%- assign href = r.url -%}{%- else -%}{%- assign href = r.url | relative_url -%}{%- endif -%}
@@ -15,6 +22,7 @@
     <span class="res__type">{{ r.type | default: "Link" }}</span>
     <span class="res__body">
       <a class="res__title" href="{{ href }}" target="_blank" rel="noopener">{{ r.title }}</a>
+      {%- if r.note %}<span class="res__note">{{ r.note }}</span>{% endif -%}
       <span class="res__meta">
         {%- if r.by %}<span class="res__by">{{ r.by }}</span>{% endif -%}
         {%- if r.source %}{% if r.by %} · {% endif %}{{ r.source }}{% endif -%}
@@ -23,6 +31,7 @@
         {%- if r.language %} <span class="pub-lang">{{ r.language }}</span>{% endif -%}
         {%- for a in r.also %} · <a href="{{ a.url }}" target="_blank" rel="noopener">{{ a.label }}</a>{% endfor -%}
       </span>
+      {%- if r.cite %}<span class="res__cite"><span class="res__cite-label">Cite as</span> {{ r.cite }}</span>{% endif -%}
     </span>
   </li>
   {% endfor %}
