@@ -10,7 +10,9 @@
   <span class="post-card__text">
     <span class="post-card__title">{{ n.title }}</span>
     <span class="post-card__line">
-      {% if n.source or n.date %}<span class="post-card__meta">{{ n.source }}{% if n.source and n.date %} · {% endif %}{{ n.date }}</span>{% endif %}
+      {%- comment -%} 不是自己寫的東西，作者（by:）排在來源前面 {%- endcomment -%}
+      {% capture meta %}{% if n.by %}by {{ n.by }}{% endif %}{% if n.by and n.source %} · {% endif %}{{ n.source }}{% if n.source or n.by %}{% if n.date %} · {% endif %}{% endif %}{{ n.date }}{% endcapture %}
+      {% if meta != "" %}<span class="post-card__meta">{{ meta }}</span>{% endif %}
       {% if n.topics %}
       <span class="topic-tags">
         {% for t in n.topics %}{% include topic-tag.html key=t as="static" %}{% endfor %}

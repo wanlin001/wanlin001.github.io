@@ -31,7 +31,9 @@
 #   - title     標題
 #     url       連結
 #     category  分類代號，填 categories 裡的 key；沒填就掉到 Other 區
-#     source    來源，例如 HackMD / Medium / Notion
+#     source    來源，例如 HackMD / Medium / Notion；別人的東西就寫網站名
+#     by        作者。**不是自己寫的東西一定要填**，卡片上會顯示成 "by 某某"。
+#               查不到作者是誰就不填，但 source 一定要有
 #     date      日期，格式隨意
 #     excerpt   一兩句說明
 #     image     封面圖網址，或 /images/xxx.jpg
@@ -52,6 +54,9 @@ categories:
 
   research:
     title: "Research notes"
+
+  tools:
+    title: "Tools by other people"
 
   other:
     title: "Other"
@@ -165,3 +170,12 @@ notes:
 #    date: "2026"
 #    excerpt: "One or two sentences."
 #    topics: [tools]
+
+  # ── 別人做的工具／網站。放這裡的東西不是我寫的，所以 by / source 要寫清楚 ──
+
+  - title: "Cool Map 酷路"
+    url: "https://coolmap.tw/"
+    category: tools
+    source: "coolmap.tw"
+    excerpt: "用即時建築陰影和天氣，規劃台北最涼爽的步行路線"
+    topics: [tools]

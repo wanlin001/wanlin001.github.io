@@ -1065,11 +1065,36 @@ notes:
 notes:
   - title: "兩日以上登山裝備清單"
     url: "https://hackmd.io/@HuWanLin/H1qQUcWX1l"
+    category: hiking            # 章節，填 categories 裡的 key（全小寫）
     source: "HackMD"
     date: "26 Feb 2024"
     excerpt: "多日行程的打包清單，可以直接在頁面上打勾。"
+    topics: [gear, checklist]   # 標籤，一定要方括號、全小寫
     image:                      # 可省略
 ```
+
+### 放別人做的工具／網站
+
+Notes 頁有一個獨立的章節 **Tools by other people**（`category: tools`），
+專門放不是自己寫的東西。放進去的時候 **`by` 和 `source` 要寫清楚**：
+
+```yaml
+  - title: "Cool Map 酷路"
+    url: "https://coolmap.tw/"
+    category: tools
+    by: "做的人或團隊"          # 查得到就填，查不到就不填
+    source: "coolmap.tw"        # 一定要有
+    excerpt: "用即時建築陰影和天氣，規劃台北最涼爽的步行路線"
+    topics: [tools]
+```
+
+卡片上會印成 `by 某某 · coolmap.tw`，讀者一眼就知道不是妳做的。
+
+> **要放 Notes 還是 Resources？** 分法是「誰做的」：
+> **Notes** = 自己寫的筆記（加上少數自己天天在用、想放手邊的別人的工具）；
+> **Resources** = 給別人看的資源清單，本來就是以別人的東西為主
+> （`_data/resources.yml`，有 `by` / `source` / `also` 欄位，版面是細長的清單）。
+> 一份東西只放一邊，不要兩邊都放。
 
 存檔就會在 Resources 頁的「Notes & writing」變成一張卡片。刪掉區塊就消失。
 HackMD、Medium、Notion、Google Doc、任何有網址的東西都能放。**不會壞、不依賴外部服務、一則一分鐘。**
