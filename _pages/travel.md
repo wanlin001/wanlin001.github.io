@@ -44,6 +44,12 @@ toc_label: "Trips"
 Trips, trails and the places the rocks took me.
 
 
+{% include trip.html title="Austria to the Dolomites" when="May 2026"
+                     place="Vienna, Austria to the Dolomites, Italy" %}
+
+<!-- 待補：路線、照片。地圖做好之後，把 Google My Maps 的 mid= 或 lat/lon 加進上面那行 include。 -->
+<!-- 這趟是 EGU General Assembly 之後接著走的；下面 Vajont 那一段也是同一趟。 -->
+
 {% include trip.html title="Vajont Dam" when="May 2026"
                      place="Erto e Casso and Longarone, Italy"
                      lat="46.2672" lon="12.3293" span="0.055"
@@ -58,6 +64,17 @@ station the gorge frames the dam wall almost exactly.
 Written up in more detail in the [News list on the home page](/#news-2026-05-16) (click the item to unfold it).
 
 
+{% include trip.html title="Omote-Ginza traverse" when="2025"
+                     place="Northern Japan Alps, Japan" %}
+
+<!-- 待補：路線（中房温泉 → 燕岳 → 大天井岳 → 槍ヶ岳 這類逐日行程）、照片。地圖做好之後，把 Google My Maps 的 mid= 或 lat/lon 加進上面那行 include。 -->
+
+{% include trip.html title="Aceh to Bali" when="June 2023"
+                     place="Indonesia" %}
+
+<!-- 待補：路線、照片。地圖做好之後，把 Google My Maps 的 mid= 或 lat/lon 加進上面那行 include。 -->
+<!-- 下面「Sumatra — Aceh」那一段寫的是 2022；如果其實是同一趟，記得把年份對一下。 -->
+
 {% include trip.html title="Sumatra — Aceh" when="2022"
                      place="Banda Aceh, Indonesia"
                      lat="5.5483" lon="95.3238" span="0.35" %}
@@ -71,3 +88,16 @@ tsunami.
    source="地質 Ti-Chi"
    date="2024 · in Mandarin"
    excerpt="How the wreckage was preserved and turned into a destination, and how a society lives alongside catastrophe." %}
+
+
+{% include trip.html title="Nepal, India, Pakistan and Iran" when="2019"
+                     place="Everest Base Camp, then overland westwards" %}
+
+<!-- 待補：路線、照片。地圖做好之後，把 Google My Maps 的 mid= 或 lat/lon 加進上面那行 include。 -->
+<!-- 時間上就是 CV 上寫的 career break（2018/10 – 2019/7），接著開始念博士。 -->
+
+{% include trip.html title="Overland after the exchange year" when="2011 – 2012"
+                     place="Europe" %}
+
+<!-- 待補：去了哪些地方、路線、照片。地圖做好之後，把 Google My Maps 的 mid= 或 lat/lon 加進上面那行 include。 -->
+
