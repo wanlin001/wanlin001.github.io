@@ -34,37 +34,28 @@ employment:
     #link: "https://deps.ccu.edu.tw/"
     icon: "fas fa-building-columns"
 
-# Education：年份（when）和學位（degree）分開寫。
-#   when   只寫年份，例如 "2023"（會印在左邊的框框裡）
-#   degree 學位，例如 Ph.D. / M.Sc. / B.Sc. / Exchange
-#   what   學校系所（粗體那行，link 掛在這裡）
-#   where  研究領域或身分（底下的斜體小字）
 education:
-  - when: "2023"
-    degree: "Ph.D."
+  - when: "Ph.D. 2023"
     what: "Asian School of the Environment, Nanyang Technological University, Singapore"
     where: "Active tectonics, structural geology and observational seismology"
     link: "https://www.ntu.edu.sg/ase"
     icon: "fas fa-graduation-cap"
     note: "Waveform inversion, seismic interpretation and uncertainty quantification, combining model development with tectonic analysis."
-  - when: "2015"
-    degree: "M.Sc."
+  - when: "M.Sc. 2015"
     what: "Department of Geosciences, National Taiwan University, Taipei, Taiwan"
     where: "Active tectonics and surface deformation"
     link: "http://www.gl.ntu.edu.tw/"
     icon: "fas fa-graduation-cap"
     note: "InSAR observations of crustal movement for regional seismic hazard assessment."
-  - when: "2013"
-    degree: "B.Sc."
-    what: "Department of Geosciences, National Taiwan University, Taipei, Taiwan"
-    where: "Geosciences"
-    link: "http://www.gl.ntu.edu.tw/"
-    icon: "fas fa-graduation-cap"
-  - when: "2012"
-    degree: "Exchange"
+  - when: "Exchange 2012"
     what: "Faculty of Science, Masaryk University, Brno, Czech Republic"
     where: "Year-4 exchange student"
     link: "https://www.sci.muni.cz/en"
+    icon: "fas fa-graduation-cap"
+  - when: "B.Sc. 2013"
+    what: "Department of Geosciences, National Taiwan University, Taipei, Taiwan"
+    where: "B.Sc. in Geosciences"
+    link: "http://www.gl.ntu.edu.tw/"
     icon: "fas fa-graduation-cap"
 
 awards:

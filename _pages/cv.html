@@ -44,7 +44,7 @@ redirect_from:
 <div class="tl">
 {% for e in cv.employment %}
   <div class="tl-item">
-    <div class="tl-when"><span class="tl-year">{{ e.when }}</span></div>
+    <div class="tl-when">{{ e.when }}</div>
     <div class="tl-what">
       <strong>{{ e.what }}</strong>
       <span class="tl-where">{% if e.icon %}<i class="{{ e.icon }} tl-icon" aria-hidden="true"></i>{% endif %}{% if e.link %}<a href="{{ e.link }}" target="_blank" rel="noopener">{{ e.where }}</a>{% else %}{{ e.where }}{% endif %}</span>
@@ -61,12 +61,10 @@ redirect_from:
 {% if cv.education.size > 0 %}
 <h2>Education</h2>
 <div class="tl">
-{% comment %} in Education the institution is the headline, so the link sits on `what`.
-   左邊的框框裡是「學位（靠左）＋年份（靠右）」，所以 `when:` 只寫年份，
-   `degree:` 寫 Ph.D. / M.Sc. / B.Sc. / Exchange。 {% endcomment %}
+{% comment %} in Education the institution is the headline, so the link sits on `what` {% endcomment %}
 {% for e in cv.education %}
   <div class="tl-item">
-    <div class="tl-when">{% if e.degree %}<span class="tl-degree">{{ e.degree }}</span>{% endif %}<span class="tl-year">{{ e.when }}</span></div>
+    <div class="tl-when">{{ e.when }}</div>
     <div class="tl-what">
       <strong>{% if e.icon %}<i class="{{ e.icon }} tl-icon" aria-hidden="true"></i>{% endif %}{% if e.link %}<a href="{{ e.link }}" target="_blank" rel="noopener">{{ e.what }}</a>{% else %}{{ e.what }}{% endif %}</strong>
       <span class="tl-where">{{ e.where }}</span>
@@ -82,7 +80,7 @@ redirect_from:
 <div class="tl">
 {% for e in cv.awards %}
   <div class="tl-item">
-    <div class="tl-when"><span class="tl-year">{{ e.when }}</span></div>
+    <div class="tl-when tl-when--muted">{{ e.when }}</div>
     <div class="tl-what"><strong>{{ e.what }}</strong><span class="tl-where">{% if e.icon %}<i class="{{ e.icon }} tl-icon" aria-hidden="true"></i>{% endif %}{% if e.link %}<a href="{{ e.link }}" target="_blank" rel="noopener">{{ e.where }}</a>{% else %}{{ e.where }}{% endif %}</span></div>
   </div>
 {% endfor %}
@@ -146,7 +144,7 @@ redirect_from:
 <div class="tl">
 {% for e in cv.mentoring %}
   <div class="tl-item">
-    <div class="tl-when"><span class="tl-year">{{ e.when }}</span></div>
+    <div class="tl-when tl-when--muted">{{ e.when }}</div>
     <div class="tl-what"><strong>{{ e.what }}</strong><span class="tl-where">{% if e.icon %}<i class="{{ e.icon }} tl-icon" aria-hidden="true"></i>{% endif %}{% if e.link %}<a href="{{ e.link }}" target="_blank" rel="noopener">{{ e.where }}</a>{% else %}{{ e.where }}{% endif %}</span></div>
   </div>
 {% endfor %}
@@ -158,7 +156,7 @@ redirect_from:
 <div class="tl">
 {% for e in cv.teaching %}
   <div class="tl-item">
-    <div class="tl-when"><span class="tl-year">{{ e.when }}</span></div>
+    <div class="tl-when tl-when--muted">{{ e.when }}</div>
     <div class="tl-what"><strong>{{ e.what }}</strong><span class="tl-where">{% if e.icon %}<i class="{{ e.icon }} tl-icon" aria-hidden="true"></i>{% endif %}{% if e.link %}<a href="{{ e.link }}" target="_blank" rel="noopener">{{ e.where }}</a>{% else %}{{ e.where }}{% endif %}</span></div>
   </div>
 {% endfor %}
@@ -170,7 +168,7 @@ redirect_from:
 <div class="tl">
 {% for e in cv.service %}
   <div class="tl-item">
-    <div class="tl-when"><span class="tl-year">{{ e.when }}</span></div>
+    <div class="tl-when tl-when--muted">{{ e.when }}</div>
     <div class="tl-what">
       <strong>{{ e.what }}</strong>
       <span class="tl-where">{% if e.icon %}<i class="{{ e.icon }} tl-icon" aria-hidden="true"></i>{% endif %}{% if e.link %}<a href="{{ e.link }}" target="_blank" rel="noopener">{{ e.where }}</a>{% else %}{{ e.where }}{% endif %}</span>
@@ -186,7 +184,7 @@ redirect_from:
 <div class="tl">
 {% for e in cv.collaborations %}
   <div class="tl-item">
-    <div class="tl-when"><span class="tl-year">{{ e.when }}</span></div>
+    <div class="tl-when tl-when--muted">{{ e.when }}</div>
     <div class="tl-what"><strong>{{ e.what }}</strong><span class="tl-where">{% if e.icon %}<i class="{{ e.icon }} tl-icon" aria-hidden="true"></i>{% endif %}{% if e.link %}<a href="{{ e.link }}" target="_blank" rel="noopener">{{ e.where }}</a>{% else %}{{ e.where }}{% endif %}</span></div>
   </div>
 {% endfor %}

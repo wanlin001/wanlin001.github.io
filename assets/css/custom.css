@@ -146,15 +146,10 @@
 /* ------------------------------------------------------------- CV timeline */
 
 .tl { margin: 0 0 2em 0; }
-.tl-item { display: flex; gap: 1em; margin-bottom: .55em; align-items: flex-start; }
-/* 左欄的時間框：每一列都一樣寬、一樣是實心色塊（空心在深色模式下看不清楚）。
-   Education 是「學位 + 年份」排在同一行，學位靠左、年份靠右。
-   以前 Awards 以下用的灰底 .tl-when--muted 已經取消，不要再加回來。 */
+.tl-item { display: flex; gap: 1em; margin-bottom: 1.2em; align-items: flex-start; }
 .tl-when {
-  flex: 0 0 10.5em;
-  display: flex;
-  align-items: baseline;
-  gap: .5em;
+  flex: 0 0 7.5em;
+  text-align: right;
   font-size: .82em;
   font-weight: 600;
   line-height: 1.35;
@@ -163,9 +158,7 @@
   border-radius: 3px;
   padding: .3em .6em;
 }
-/* 學位用空心框（在色塊上就是白框白字），年份一律靠右、不換行 */
-.tl-degree { white-space: nowrap; border: 1px solid currentColor; border-radius: 3px; padding: 0 .35em; }
-.tl-year   { margin-left: auto; text-align: right; white-space: nowrap; }
+.tl-when--muted { background: var(--global-text-color-light); }
 .tl-what { flex: 1 1 auto; min-width: 0; }
 .tl-what strong { display: block; line-height: 1.35; }
 .tl-where { font-style: italic; font-size: .9em; color: var(--global-text-color-light); }
@@ -173,8 +166,7 @@
 
 @media (max-width: 600px) {
   .tl-item { flex-direction: column; gap: .3em; }
-  .tl-when { flex: none; align-self: flex-start; }
-  .tl-year { margin-left: .5em; }
+  .tl-when { flex: none; text-align: left; align-self: flex-start; }
 }
 
 /* ------------------------------------------------------------- skill chips */
@@ -1106,15 +1098,12 @@ h2.pub-year::after {
   /* On screen the year is white text on a green block. Browsers do not print
      background colours unless the reader ticks "Background graphics", and
      white-on-white would be invisible — so in print it is plain black text. */
-  .tl-when {
-    flex: 0 0 9em;
+  .tl-when, .tl-when--muted {
+    flex-basis: 8em;
     color: #000 !important;
     background: none !important;
-    border: 0 !important;
     padding: 0 !important;
   }
-  /* 學位在紙上不用框線 */
-  .tl-degree { border: 0 !important; padding: 0 !important; }
 
   /* everything else that is grey on screen goes black on paper */
   .tl-where, .tl-note, .talks-note, .cv-updated,
