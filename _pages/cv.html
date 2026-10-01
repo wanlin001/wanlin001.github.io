@@ -61,12 +61,14 @@ redirect_from:
 {% if cv.education.size > 0 %}
 <h2>Education</h2>
 <div class="tl">
-{% comment %} in Education the institution is the headline, so the link sits on `what` {% endcomment %}
+{% comment %} in Education the institution is the headline, so the link sits on `what`.
+   The year lives in the box on the left and the degree is its own field, so
+   `when:` is just a year and `degree:` is Ph.D. / M.Sc. / B.Sc. / Exchange. {% endcomment %}
 {% for e in cv.education %}
   <div class="tl-item">
     <div class="tl-when">{{ e.when }}</div>
     <div class="tl-what">
-      <strong>{% if e.icon %}<i class="{{ e.icon }} tl-icon" aria-hidden="true"></i>{% endif %}{% if e.link %}<a href="{{ e.link }}" target="_blank" rel="noopener">{{ e.what }}</a>{% else %}{{ e.what }}{% endif %}</strong>
+      <strong>{% if e.icon %}<i class="{{ e.icon }} tl-icon" aria-hidden="true"></i>{% endif %}{% if e.degree %}{{ e.degree }} <span class="tl-inst">{% endif %}{% if e.link %}<a href="{{ e.link }}" target="_blank" rel="noopener">{{ e.what }}</a>{% else %}{{ e.what }}{% endif %}{% if e.degree %}</span>{% endif %}</strong>
       <span class="tl-where">{{ e.where }}</span>
       {% if e.note %}<div class="tl-note">{{ e.note }}</div>{% endif %}
     </div>
@@ -80,7 +82,7 @@ redirect_from:
 <div class="tl">
 {% for e in cv.awards %}
   <div class="tl-item">
-    <div class="tl-when tl-when--muted">{{ e.when }}</div>
+    <div class="tl-when">{{ e.when }}</div>
     <div class="tl-what"><strong>{{ e.what }}</strong><span class="tl-where">{% if e.icon %}<i class="{{ e.icon }} tl-icon" aria-hidden="true"></i>{% endif %}{% if e.link %}<a href="{{ e.link }}" target="_blank" rel="noopener">{{ e.where }}</a>{% else %}{{ e.where }}{% endif %}</span></div>
   </div>
 {% endfor %}
@@ -144,7 +146,7 @@ redirect_from:
 <div class="tl">
 {% for e in cv.mentoring %}
   <div class="tl-item">
-    <div class="tl-when tl-when--muted">{{ e.when }}</div>
+    <div class="tl-when">{{ e.when }}</div>
     <div class="tl-what"><strong>{{ e.what }}</strong><span class="tl-where">{% if e.icon %}<i class="{{ e.icon }} tl-icon" aria-hidden="true"></i>{% endif %}{% if e.link %}<a href="{{ e.link }}" target="_blank" rel="noopener">{{ e.where }}</a>{% else %}{{ e.where }}{% endif %}</span></div>
   </div>
 {% endfor %}
@@ -156,7 +158,7 @@ redirect_from:
 <div class="tl">
 {% for e in cv.teaching %}
   <div class="tl-item">
-    <div class="tl-when tl-when--muted">{{ e.when }}</div>
+    <div class="tl-when">{{ e.when }}</div>
     <div class="tl-what"><strong>{{ e.what }}</strong><span class="tl-where">{% if e.icon %}<i class="{{ e.icon }} tl-icon" aria-hidden="true"></i>{% endif %}{% if e.link %}<a href="{{ e.link }}" target="_blank" rel="noopener">{{ e.where }}</a>{% else %}{{ e.where }}{% endif %}</span></div>
   </div>
 {% endfor %}
@@ -168,7 +170,7 @@ redirect_from:
 <div class="tl">
 {% for e in cv.service %}
   <div class="tl-item">
-    <div class="tl-when tl-when--muted">{{ e.when }}</div>
+    <div class="tl-when">{{ e.when }}</div>
     <div class="tl-what">
       <strong>{{ e.what }}</strong>
       <span class="tl-where">{% if e.icon %}<i class="{{ e.icon }} tl-icon" aria-hidden="true"></i>{% endif %}{% if e.link %}<a href="{{ e.link }}" target="_blank" rel="noopener">{{ e.where }}</a>{% else %}{{ e.where }}{% endif %}</span>
@@ -184,7 +186,7 @@ redirect_from:
 <div class="tl">
 {% for e in cv.collaborations %}
   <div class="tl-item">
-    <div class="tl-when tl-when--muted">{{ e.when }}</div>
+    <div class="tl-when">{{ e.when }}</div>
     <div class="tl-what"><strong>{{ e.what }}</strong><span class="tl-where">{% if e.icon %}<i class="{{ e.icon }} tl-icon" aria-hidden="true"></i>{% endif %}{% if e.link %}<a href="{{ e.link }}" target="_blank" rel="noopener">{{ e.where }}</a>{% else %}{{ e.where }}{% endif %}</span></div>
   </div>
 {% endfor %}

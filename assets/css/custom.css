@@ -158,9 +158,12 @@
   border-radius: 3px;
   padding: .3em .6em;
 }
-.tl-when--muted { background: var(--global-text-color-light); }
+/* 年份一律用同一個框框。以前 Awards 以下用的灰底 .tl-when--muted 已經取消，
+   不要再加回來。 */
 .tl-what { flex: 1 1 auto; min-width: 0; }
 .tl-what strong { display: block; line-height: 1.35; }
+/* Education：學位（Ph.D. / M.Sc. …）粗體，後面接的校系用一般字重 */
+.tl-inst { font-weight: 400; }
 .tl-where { font-style: italic; font-size: .9em; color: var(--global-text-color-light); }
 .tl-note  { font-size: .88em; margin-top: .25em; }
 
@@ -1098,7 +1101,7 @@ h2.pub-year::after {
   /* On screen the year is white text on a green block. Browsers do not print
      background colours unless the reader ticks "Background graphics", and
      white-on-white would be invisible — so in print it is plain black text. */
-  .tl-when, .tl-when--muted {
+  .tl-when {
     flex-basis: 8em;
     color: #000 !important;
     background: none !important;
