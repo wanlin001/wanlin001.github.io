@@ -416,6 +416,33 @@ paperurl: '/files/Hu-Tan-2026-Tectonophysics.pdf'
 
 卡片上就會多一個 **PDF** 按鈕。檔名用 `作者-年-期刊.pdf` 最好認，**不要有空格和中文**。
 
+> 出版社的排版版（publisher PDF / version of record）多半不能自己放在網站上；
+> 多數期刊允許放 **accepted manuscript**（審完、未排版的那一版）。不確定的話，
+> 用期刊的 Sherpa Romeo 查一下，或是只留 DOI 連結。
+
+PDF 太大就先壓一下（1–3 MB 比較剛好），畫質肉眼看不出差別：
+
+```bash
+gs -sDEVICE=pdfwrite -dPDFSETTINGS=/ebook -dNOPAUSE -dQUIET -dBATCH \
+   -sOutputFile=files/輸出.pdf ~/Downloads/原檔.pdf
+```
+
+### 研討會的投影片 / 海報 PDF 放哪
+
+**放進 `files/talks/`**，然後在 `_data/conferences.yml` 那一則加 `pdf:`：
+
+```yaml
+  - authors: "Hu, W.-L."
+    year: 2023
+    title: "[Invited] How do differences in interpreting seismic images…"
+    venue: "EGU General Assembly"
+    place: "Vienna, Austria"
+    pdf: "/files/talks/2023-egu-slip-rates-talk.pdf"
+```
+
+Publications 頁最下面那一則的會議名稱後面就會多一個 **PDF** 連結。
+檔名建議 `年份-會議-主題-talk.pdf`（海報就 `-poster.pdf`）。
+
 ### 演講簡報 PDF 放哪
 
 **放進 `files/talks/`**，檔名 `日期-英文短名.pdf`，例如

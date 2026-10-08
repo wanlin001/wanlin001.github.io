@@ -752,6 +752,9 @@ body { padding-top: var(--masthead-h); }
   vertical-align: 1px;
   white-space: nowrap;
 }
+/* 投影片／海報的 PDF 連結，接在作者和會議那一行後面 */
+.talk__pdf { font-weight: 600; white-space: nowrap; }
+.talk__pdf i { margin-right: .25em; }
 .talks-note { font-size: .82em; color: var(--global-text-color-light); margin: 0 0 .4em 0; }
 
 /* language note on a publication card, e.g. "in Mandarin" */

@@ -142,7 +142,7 @@ author_profile: true
         {%- endif -%}
         {%- if t.doi -%}{%- assign href = t.doi | prepend: "https://doi.org/" -%}{%- else -%}{%- assign href = t.url -%}{%- endif -%}
         <span class="talk__title">{% if label != "" %}<span class="talk__label">{{ label }}</span> {% endif %}{% if href %}<a href="{{ href }}" target="_blank" rel="noopener">{{ plain }}</a>{% else %}{{ plain }}{% endif %}</span>
-        <span class="talk__meta">{{ t.authors }} · {{ t.venue }}{% if t.place %}, {{ t.place }}{% endif %}</span>
+        <span class="talk__meta">{{ t.authors }} · {{ t.venue }}{% if t.place %}, {{ t.place }}{% endif %}{% if t.pdf %} · <a class="talk__pdf" href="{% if t.pdf contains '://' %}{{ t.pdf }}{% else %}{{ base_path }}{{ t.pdf }}{% endif %}"><i class="fas fa-file-pdf" aria-hidden="true"></i> PDF</a>{% endif %}</span>
       </span>
     </li>
   {% endfor %}
