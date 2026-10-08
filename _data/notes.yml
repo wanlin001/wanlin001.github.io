@@ -65,16 +65,22 @@ categories:
 notes:
   - title: "Map Room for Taiwan 地圖寶庫"
     url: "https://www.maproomexplorers.com/"
-    category: other
-    # excerpt: "專為步行者打造的智慧避曬與防雨導航工具。整合 3D 建築模型、行道樹與騎樓圖資，即時計算建築陰影與遮蔭路徑，提供「晴天避曬、雨天走騎樓、夜間走亮路」的最佳步行路線。"
-    topics: [gis, map]
+    category: hiking
+    topics: [gis, map, database]
+
+  - title: "地圖產生器"
+    url: "https://twmap.happyman.idv.tw/map/"
+    excerpt: "Hiking map and gpx in Taiwan"
+    category: hiking
+    topics: [gis, map, database]
+
 
   - title: "Cool Map"
     url: "https://coolmap.tw/"
     category: other
     source: "coolmap.tw"
     excerpt: "專為步行者打造的智慧避曬與防雨導航工具。整合 3D 建築模型、行道樹與騎樓圖資，即時計算建築陰影與遮蔭路徑，提供「晴天避曬、雨天走騎樓、夜間走亮路」的最佳步行路線。"
-    topics: [tools]
+    topics: [tools, map]
 
   - title: "geologic-column-tool"
     url: "https://geologic-column-tool.preview.tenonry.net/"
@@ -103,7 +109,7 @@ notes:
 
   - title: "兩日以上登山裝備清單"
     url: "https://hackmd.io/@HuWanLin/H1qQUcWX1l"
-    #category: hiking
+    category: hiking
     source: "HackMD"
     date: "Feb 2024"
     excerpt: "Packing list for trips of two days or more, with tick boxes you can click on the page. Written in Mandarin."
@@ -111,7 +117,7 @@ notes:
 
   - title: "一日登山裝備清單"
     url: "https://hackmd.io/@HuWanLin/H1TIhHTt-x"
-    #category: hiking
+    category: hiking
     source: "HackMD"
     excerpt: "The short version, for single-day trips. Written in Mandarin."
     topics: [checklist]
@@ -179,7 +185,7 @@ notes:
 
   - title: "English helper"
     url: "https://hackmd.io/@HuWanLin/refiningEnglish"
-    #category: research
+    category: research
     source: "HackMD"
     date: "Nov 2023"
     excerpt: "英文寫作小工具"
