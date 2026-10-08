@@ -35,7 +35,7 @@ Software I use
 | [ParaView](https://www.paraview.org/) / [VisIt](https://visit-dav.github.io/visit-website/) | 3-D visualisation |
 | [ObsPy](https://docs.obspy.org/) | Seismological data handling |
 | [QGIS](https://qgis.org/) | GIS |
-| [MTEX](https://mtex-toolbox.github.io/index)| MTEX-EBSD toolbox|
+| [MTEX](https://mtex-toolbox.github.io/index) | MTEX-EBSD toolbox|
 
 <!-- Slides 這一區的內容也在 _data/resources.yml，category: slides。 -->
 {% include resource-list.html only="slides" %}

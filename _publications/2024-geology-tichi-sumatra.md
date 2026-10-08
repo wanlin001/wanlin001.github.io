@@ -5,8 +5,7 @@ category: outreach
 permalink: /publication/2024-geology-tichi-sumatra
 date: 2024-12-01
 year: 2024
-# TODO 換成妳的中文姓名寫法，例如 authors: '胡○○'
-authors: 'Hu, W.-L.'
+authors: '胡宛琳 Hu, W.-L.'
 venue: '地質 Ti-Chi'
 volume: '43(4), 72–78'
 paperurl: 'https://twgeoref.gsmma.gov.tw/GeoWeb/cp.do?action=cp&kt=2748&xItem=312647&ctNode=217&mp=6'
