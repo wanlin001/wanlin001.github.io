@@ -148,8 +148,8 @@ author_profile: true
         {%- endcomment -%}
         {%- if t.slides -%}{%- assign slideurl = t.slides -%}{%- elsif t.pdf and label != "Poster" -%}{%- assign slideurl = t.pdf -%}{%- else -%}{%- assign slideurl = nil -%}{%- endif -%}
         {%- if t.poster -%}{%- assign posterurl = t.poster -%}{%- elsif t.pdf and label == "Poster" -%}{%- assign posterurl = t.pdf -%}{%- else -%}{%- assign posterurl = nil -%}{%- endif -%}
-        {%- if slideurl %} · <a class="talk__pdf" href="{% if slideurl contains '://' %}{{ slideurl }}{% else %}{{ base_path }}{{ slideurl }}{% endif %}"><i class="fas fa-file-pdf" aria-hidden="true"></i> Slides (PDF)</a>{% endif -%}
-        {%- if posterurl %} · <a class="talk__pdf" href="{% if posterurl contains '://' %}{{ posterurl }}{% else %}{{ base_path }}{{ posterurl }}{% endif %}"><i class="fas fa-file-pdf" aria-hidden="true"></i> Poster (PDF)</a>{% endif -%}</span>
+        {%- if slideurl %} · <a class="talk__pdf" href="{% if slideurl contains '://' %}{{ slideurl }}{% else %}{{ base_path }}{{ slideurl }}{% endif %}"><i class="fas fa-file-pdf" aria-hidden="true"></i> Slides</a>{% endif -%}
+        {%- if posterurl %} · <a class="talk__pdf" href="{% if posterurl contains '://' %}{{ posterurl }}{% else %}{{ base_path }}{{ posterurl }}{% endif %}"><i class="fas fa-file-pdf" aria-hidden="true"></i> Poster</a>{% endif -%}</span>
       </span>
     </li>
   {% endfor %}
