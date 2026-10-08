@@ -63,6 +63,11 @@ categories:
 
 
 notes:
+  - title: "Map Room for Taiwan 地圖寶庫"
+    url: "https://www.maproomexplorers.com/"
+    category: other
+    # excerpt: "專為步行者打造的智慧避曬與防雨導航工具。整合 3D 建築模型、行道樹與騎樓圖資，即時計算建築陰影與遮蔭路徑，提供「晴天避曬、雨天走騎樓、夜間走亮路」的最佳步行路線。"
+    topics: [gis, map]
 
   - title: "Cool Map"
     url: "https://coolmap.tw/"
