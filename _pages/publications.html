@@ -142,7 +142,14 @@ author_profile: true
         {%- endif -%}
         {%- if t.doi -%}{%- assign href = t.doi | prepend: "https://doi.org/" -%}{%- else -%}{%- assign href = t.url -%}{%- endif -%}
         <span class="talk__title">{% if label != "" %}<span class="talk__label">{{ label }}</span> {% endif %}{% if href %}<a href="{{ href }}" target="_blank" rel="noopener">{{ plain }}</a>{% else %}{{ plain }}{% endif %}</span>
-        <span class="talk__meta">{{ t.authors }} · {{ t.venue }}{% if t.place %}, {{ t.place }}{% endif %}{% if t.pdf %} · <a class="talk__pdf" href="{% if t.pdf contains '://' %}{{ t.pdf }}{% else %}{{ base_path }}{{ t.pdf }}{% endif %}"><i class="fas fa-file-pdf" aria-hidden="true"></i> PDF</a>{% endif %}</span>
+        <span class="talk__meta">{{ t.authors }} · {{ t.venue }}{% if t.place %}, {{ t.place }}{% endif %}{%- comment -%}
+          檔案連結：slides: / poster: 各一個，兩個都寫就兩個都出現。
+          只寫 pdf: 的話，標題標成 [Poster] 就當海報，其他當投影片。
+        {%- endcomment -%}
+        {%- if t.slides -%}{%- assign slideurl = t.slides -%}{%- elsif t.pdf and label != "Poster" -%}{%- assign slideurl = t.pdf -%}{%- else -%}{%- assign slideurl = nil -%}{%- endif -%}
+        {%- if t.poster -%}{%- assign posterurl = t.poster -%}{%- elsif t.pdf and label == "Poster" -%}{%- assign posterurl = t.pdf -%}{%- else -%}{%- assign posterurl = nil -%}{%- endif -%}
+        {%- if slideurl %} · <a class="talk__pdf" href="{% if slideurl contains '://' %}{{ slideurl }}{% else %}{{ base_path }}{{ slideurl }}{% endif %}"><i class="fas fa-file-pdf" aria-hidden="true"></i> Slides (PDF)</a>{% endif -%}
+        {%- if posterurl %} · <a class="talk__pdf" href="{% if posterurl contains '://' %}{{ posterurl }}{% else %}{{ base_path }}{{ posterurl }}{% endif %}"><i class="fas fa-file-pdf" aria-hidden="true"></i> Poster (PDF)</a>{% endif -%}</span>
       </span>
     </li>
   {% endfor %}

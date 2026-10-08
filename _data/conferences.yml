@@ -10,9 +10,12 @@
 #       place    地點
 #       doi      有摘要 DOI 就填，標題會變成連結（可省略）
 #       url      沒有 DOI 但有網址（例如 Google Scholar 上的摘要）就填這個（可省略）
-#       pdf      投影片／海報的 PDF。檔案放在 files/talks/，這裡寫
-#                "/files/talks/2023-egu-slip-rates-talk.pdf"，標題旁邊會多一個
-#                PDF 連結。檔名建議 年份-會議-主題-talk.pdf（或 -poster.pdf）
+#       slides   投影片 PDF。檔案放進 files/talks/，這裡寫路徑，例如
+#                "/files/talks/2023-egu-slip-rates-talk.pdf"
+#                → 會議名稱後面多一個「Slides (PDF)」連結
+#       poster   海報 PDF，寫法一樣 → 多一個「Poster (PDF)」連結
+#                兩個都寫就兩個連結都出現（同一場先講再貼海報就這樣寫）
+#                檔名建議 年份-會議-主題-talk.pdf / -poster.pdf，不要有空格和中文
 #
 #  ── 想標註什麼就用方括號寫在 title 開頭 ──────────────────────────────────
 #     title: "[Invited] How do differences in…"
@@ -43,7 +46,7 @@ conferences:
     title: "[Invited] How do differences in interpreting seismic images affect estimates of geological slip rates?"
     venue: "EGU General Assembly"
     place: "Vienna, Austria"
-    pdf: "/files/talks/2023-egu-slip-rates-talk.pdf"
+    slides: "/files/talks/2023-egu-slip-rates-talk.pdf"
 
   - authors: "Hu, W.-L., et al."
     year: 2023

@@ -429,7 +429,7 @@ gs -sDEVICE=pdfwrite -dPDFSETTINGS=/ebook -dNOPAUSE -dQUIET -dBATCH \
 
 ### 研討會的投影片 / 海報 PDF 放哪
 
-**放進 `files/talks/`**，然後在 `_data/conferences.yml` 那一則加 `pdf:`：
+**放進 `files/talks/`**，然後在 `_data/conferences.yml` 那一則加 `slides:` 或 `poster:`：
 
 ```yaml
   - authors: "Hu, W.-L."
@@ -437,11 +437,13 @@ gs -sDEVICE=pdfwrite -dPDFSETTINGS=/ebook -dNOPAUSE -dQUIET -dBATCH \
     title: "[Invited] How do differences in interpreting seismic images…"
     venue: "EGU General Assembly"
     place: "Vienna, Austria"
-    pdf: "/files/talks/2023-egu-slip-rates-talk.pdf"
+    slides: "/files/talks/2023-egu-slip-rates-talk.pdf"   # → Slides (PDF)
+    poster: "/files/talks/2023-egu-slip-rates-poster.pdf" # → Poster (PDF)
 ```
 
-Publications 頁最下面那一則的會議名稱後面就會多一個 **PDF** 連結。
-檔名建議 `年份-會議-主題-talk.pdf`（海報就 `-poster.pdf`）。
+兩個都寫就兩個連結都出現（同一場先口頭報告、又貼海報的情況）。
+Publications 頁最下面那一則的會議名稱後面就會多出這些連結。
+檔名建議 `年份-會議-主題-talk.pdf` / `-poster.pdf`，**不要有空格和中文**。
 
 ### 演講簡報 PDF 放哪
 
