@@ -48,18 +48,16 @@
 
 categories:
 
-  hiking:
-    title: "Hiking"
-
-  fieldwork:
-    title: "Fieldwork"
 
   research:
     title: "Research notes"
-
   # 別人做的工具／網站放這一區（category: other）
   other:
     title: "Tools from others"
+  hiking:
+    title: "Hiking"
+  fieldwork:
+    title: "Fieldwork"
 
 
 notes:
